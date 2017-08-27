@@ -1,6 +1,4 @@
-Make sprites transparent
 Add animations - start with just the bullet (re-use YCL sprites)
-Move textures & animations to manager
 Limit player to screen
 Add player health system
 Add player health GUI
