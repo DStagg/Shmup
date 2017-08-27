@@ -16,7 +16,10 @@ void ShootScene::Begin()
 };
 void ShootScene::End()
 {
-
+	for (int i = 0; i < (int)_Bullets.size(); i++)
+		delete _Bullets[i];
+	for (int i = 0; i < (int)_Enemies.size(); i++)
+		delete _Enemies[i];
 };
 void ShootScene::Pause()
 {
@@ -29,6 +32,7 @@ void ShootScene::Resume()
 void ShootScene::Update(float dt)
 {
 	_ShootTimer += dt;
+	_SpawnTimer += dt;
 
 	sf::Event Event;
 	while (_Window->pollEvent(Event))
@@ -38,6 +42,18 @@ void ShootScene::Update(float dt)
 		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 			SetRunning(false);
 	}
+
+	//	Spawn Enemies
+	if (_SpawnTimer >= _SpawnDelay)
+	{
+		_SpawnTimer = 0.f;
+		Entity* ent = new Entity();
+		ent->SetSize(50.f, 50.f);
+		ent->SetVelocity(0.f, 100.f);
+		ent->SetPosition((float)Random::Generate(0,(int)(_Window->getSize().x - 50.f)), -50.f);
+		_Enemies.push_back(ent);
+	}
+
 
 	//	Control Player
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -69,32 +85,55 @@ void ShootScene::Update(float dt)
 		_Bullets.push_back(bullet);
 	}
 
+	//	Update Bullets
 	for (int i = 0; i < (int)_Bullets.size(); i++)
 	{
 		_Bullets[i]->SetX(_Bullets[i]->GetX() + (_Bullets[i]->GetXVel() * dt));
 		_Bullets[i]->SetY(_Bullets[i]->GetY() + (_Bullets[i]->GetYVel() * dt));
 	}
-
+	//	Cull Bullets
 	while ((int)_Bullets.size() > 100)
+	{
+		delete _Bullets[0];
 		_Bullets.erase(_Bullets.begin());
+	}
+
+	//	Update Enemies
+	for (int i = 0; i < (int)_Enemies.size(); i++)
+	{
+		_Enemies[i]->SetX(_Enemies[i]->GetX() + (_Enemies[i]->GetXVel() * dt));
+		_Enemies[i]->SetY(_Enemies[i]->GetY() + (_Enemies[i]->GetYVel() * dt));
+
+		if (_Enemies[i]->GetY() > _Window->getSize().y)
+			_Enemies[i]->SetYVel(0.f);
+	}
+	//	Cull Enemies
+	while ((int)_Enemies.size() > 50)
+	{
+		delete _Enemies[0];
+		_Enemies.erase(_Enemies.begin());
+	}
 };
 void ShootScene::DrawScreen()
 {
-	DebugDrawEntity(&_Player, _Window);
+	DebugDrawEntity(&_Player, _Window, sf::Color::Blue);
 
 	for (int i = 0; i < (int)_Bullets.size(); i++)
-		DebugDrawEntity(_Bullets[i], _Window);
+		DebugDrawEntity(_Bullets[i], _Window, sf::Color::Cyan);
+
+	for (int i = 0; i < (int)_Enemies.size(); i++)
+		DebugDrawEntity(_Enemies[i], _Window, sf::Color::Red);
 };
 
 ///
 
-void DebugDrawEntity(Entity* ent, sf::RenderWindow* win)
+void DebugDrawEntity(Entity* ent, sf::RenderWindow* win, sf::Color col)
 {
 	sf::RectangleShape rect;
 	rect.setPosition(ent->GetX(), ent->GetY());
 	rect.setSize(sf::Vector2f(ent->GetWidth(), ent->GetHeight()));
 	rect.setOutlineThickness(1.f);
-	rect.setOutlineColor(sf::Color::Cyan);
+	rect.setOutlineColor(col);
 	rect.setFillColor(sf::Color(0, 0, 0, 0));
 	win->draw(rect);
 };

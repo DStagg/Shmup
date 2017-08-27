@@ -3,7 +3,7 @@
 
 #include "SFML\Graphics.hpp"
 #include "Scene.h"
-
+#include "Random.h"
 #include "Entity.h"
 
 class ShootScene : public Scene
@@ -24,13 +24,17 @@ private:
 
 	Entity _Player;
 	std::vector<Entity*> _Bullets;
+	std::vector<Entity*> _Enemies;
 	
 	sf::RenderWindow* _Window;
 
 	float _ShootTimer = 0.f;
 	float _ShootDelay = 0.25f;
+
+	float _SpawnTimer = 0.f;
+	float _SpawnDelay = 2.f;
 };
 
-void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw);
+void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw, sf::Color col = sf::Color::Cyan);
 
 #endif
