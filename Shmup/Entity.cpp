@@ -91,15 +91,33 @@ bool Entity::GetAlive()
 	return _Alive;
 };
 
+void Entity::DoUpdate(float dt)
+{
+	Update(dt);
+	if (_Icon != 0)
+		_Icon->Update(dt);
+};
+
+void Entity::DoDraw(sf::RenderWindow* rw)
+{
+	if (_Icon != 0)
+		_Icon->Draw(rw);
+};
+
+void Entity::SetIcon(Icon* icon)
+{
+	_Icon = icon;
+};
+Icon* Entity::GetIcon()
+{
+	return _Icon;
+};
+
 /////
 
 AABB GenBoundBox(Entity* ent)
 {
-	return GenBoundBox(*ent);
-};
-AABB GenBoundBox(Entity ent)
-{
-	return AABB(ent.GetX(), ent.GetY(), ent.GetWidth(), ent.GetHeight());
+	return AABB(ent->GetX(), ent->GetY(), ent->GetWidth(), ent->GetHeight());
 };
 
 /////
@@ -170,9 +188,9 @@ Entity* EntList::GetEnt(int i)
 
 /////
 
-AnimEnt::AnimEnt()
+AnimEnt::AnimEnt(std::string textag)
 {
-
+	_TexTag = textag;
 };
 AnimEnt::~AnimEnt()
 {
@@ -190,4 +208,24 @@ Animation AnimEnt::GetAnim()
 Animation* AnimEnt::GetAnimPntr()
 {
 	return &_Animation;
+};
+
+void AnimEnt::SetTexTag(std::string tag)
+{
+	_TexTag = tag;
+};
+std::string AnimEnt::GetTexTag()
+{
+	return _TexTag;
+};
+
+void AnimEnt::Update(float dt)
+{
+	_Animation.Play(dt);
+
+	SetX(GetX() + (GetXVel()*dt));
+	SetY(GetY() + (GetYVel()*dt));
+
+	SetWidth(GetAnimPntr()->GetCurrFrame()._Width);
+	SetHeight(GetAnimPntr()->GetCurrFrame()._Height);
 };

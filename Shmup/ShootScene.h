@@ -7,6 +7,7 @@
 #include "Entity.h"
 #include "LoseScene.h"
 #include "ImageManager.h"
+#include "ShmupEnts.h"
 
 class ShootScene : public Scene
 {
@@ -24,7 +25,7 @@ public:
 
 private:
 
-	Entity _Player;
+	PlayerEnt _Player;
 	EntList _Bullets;
 	EntList _Enemies;
 	
@@ -37,7 +38,6 @@ private:
 	float _SpawnDelay = 2.f;
 
 	ImageManager _ImgMan;
-	Animation _Anim;
 };
 
 void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw, sf::Color col = sf::Color::Cyan);

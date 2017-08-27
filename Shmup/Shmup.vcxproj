@@ -22,12 +22,14 @@
     <ClCompile Include="AABB.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Icon.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuList.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ShmupEnts.cpp" />
     <ClCompile Include="ShootScene.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
@@ -35,11 +37,13 @@
     <ClInclude Include="AABB.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Icon.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="LoseScene.h" />
     <ClInclude Include="MenuList.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="ShmupEnts.h" />
     <ClInclude Include="ShootScene.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>

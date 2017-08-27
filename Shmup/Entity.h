@@ -1,9 +1,11 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "AABB.h"
 #include <vector>
 #include <algorithm>
+
+#include "AABB.h"
+#include "Icon.h"
 
 #include "ImageManager.h"
 
@@ -34,7 +36,17 @@ public:
 	void SetAlive(bool b);
 	bool GetAlive();
 
+	void DoUpdate(float dt);
+	void DoDraw(sf::RenderWindow* rw);
+
+	void SetIcon(Icon* icon);
+	Icon* GetIcon();
+	
 private:
+
+	virtual void Update(float dt) = 0;
+
+	Icon* _Icon;
 
 	float _X, _Y;
 	float _Width, _Height;
@@ -43,7 +55,6 @@ private:
 };
 
 AABB GenBoundBox(Entity* ent);
-AABB GenBoundBox(Entity ent);
 
 class EntList
 {
@@ -68,16 +79,22 @@ class AnimEnt : public Entity
 {
 public:
 
-	AnimEnt();
+	AnimEnt(std::string textag);
 	~AnimEnt();
 
 	void SetAnim(Animation a);
 	Animation GetAnim();
 	Animation* GetAnimPntr();
 
+	void SetTexTag(std::string textag);
+	std::string GetTexTag();
+
+	void Update(float dt);
+
 private:
 
 	Animation _Animation;
+	std::string _TexTag;
 };
 
 #endif

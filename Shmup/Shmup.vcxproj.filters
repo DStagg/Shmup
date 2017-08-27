@@ -48,6 +48,12 @@
     <ClCompile Include="ImageManager.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Icon.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ShmupEnts.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
@@ -78,6 +84,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Icon.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="ShmupEnts.h">
       <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>

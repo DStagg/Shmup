@@ -1,5 +1,3 @@
-Refactor animations to be part of entities
-add animations to other entities (player, etc.)
 Limit player to screen
 Add player health system
 Add player health GUI
