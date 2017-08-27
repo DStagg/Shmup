@@ -1,5 +1,20 @@
 #include "ImageManager.h"
 
+AnimationFrame::AnimationFrame(int x, int y, int w, int h, float ft)
+{
+	_X = x;
+	_Y = y;
+	_Width = w;
+	_Height = h;
+	_FrameTime = ft;
+};
+
+Animation::Animation()
+{
+	_CurrentFrame = 0;
+	_Time = 0.f;
+};
+
 ImageManager::ImageManager()
 {
 	sf::Texture defTex;
@@ -7,6 +22,11 @@ ImageManager::ImageManager()
 	_Textures["Default"] = defTex;
 	SetTransMask();
 	SetSmooth(false);
+
+	AnimationFrame frame(0, 0, 1, 1, 0.f);
+	Animation anim;
+	anim._Frames.push_back(frame);
+	_Animations["Default"] = anim;
 };
 ImageManager::~ImageManager()
 {
@@ -41,6 +61,21 @@ sf::Texture* ImageManager::GetTexturePntr(std::string tag)
 	}
 
 	return &_Textures["Default"];
+};
+
+void ImageManager::AddAnimation(std::string tag, Animation anim)
+{
+	_Animations[tag] = anim;
+};
+Animation ImageManager::GetAnimation(std::string tag)
+{
+	for (std::map<std::string, Animation>::iterator i = _Animations.begin(); i != _Animations.end(); i++)
+	{
+		if (i->first == tag)
+			return _Animations[tag];
+	}
+
+	return _Animations["Default"];
 };
 
 void ImageManager::SetTransMask(sf::Color col)
