@@ -29,14 +29,15 @@ public:
 	float GetXVel();
 	float GetYVel();
 
-
+	void SetAlive(bool b);
+	bool GetAlive();
 
 private:
 
 	float _X, _Y;
 	float _Width, _Height;
 	float _XVel, _YVel;
-
+	bool _Alive;
 };
 
 AABB GenBoundBox(Entity* ent);

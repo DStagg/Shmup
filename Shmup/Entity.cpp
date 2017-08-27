@@ -8,6 +8,7 @@ Entity::Entity()
 	SetHeight(0.f);
 	SetXVel(0.f);
 	SetYVel(0.f);
+	SetAlive(true);
 }
 Entity::~Entity()
 {
@@ -81,6 +82,15 @@ float Entity::GetYVel()
 	return _YVel;
 };
 
+void Entity::SetAlive(bool b)
+{
+	_Alive = b;
+};
+bool Entity::GetAlive()
+{
+	return _Alive;
+};
+
 /////
 
 AABB GenBoundBox(Entity* ent)
@@ -128,8 +138,18 @@ void EntList::Cull(int limit)
 
 	while (CountEnts() > limit)
 	{
-		delete _Entities[0];
+		delete GetEnt(0);
 		_Entities.erase(_Entities.begin());
+	}
+
+	for (int i = 0; i < CountEnts(); i++)
+	{
+		if (!GetEnt(i)->GetAlive())
+		{
+			delete GetEnt(i);
+			_Entities.erase(_Entities.begin() + i);
+			i--;
+		}
 	}
 };
 

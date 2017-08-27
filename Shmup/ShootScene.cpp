@@ -93,8 +93,6 @@ void ShootScene::Update(float dt)
 		if (ent->GetY() <= -ent->GetHeight())
 			_Bullets.DelEnt(ent);
 	}
-	//	Cull Bullets
-	_Bullets.Cull(100);
 
 	//	Update Enemies
 	for (int i = 0; i < _Enemies.CountEnts(); i++)
@@ -106,6 +104,20 @@ void ShootScene::Update(float dt)
 		if (ent->GetY() > _Window->getSize().y)
 			_Enemies.DelEnt(ent);
 	}
+
+	//	Collision: Bullets <-> Enemies
+	for (int b = 0; b < _Bullets.CountEnts(); b++ )
+		for (int e = 0; e < _Enemies.CountEnts(); e++)
+		{
+			if (GenBoundBox(_Bullets.GetEnt(b)).Intersects(GenBoundBox(_Enemies.GetEnt(e))))
+			{
+				_Bullets.GetEnt(b)->SetAlive(false);
+				_Enemies.GetEnt(e)->SetAlive(false);
+			}
+		}
+
+	//	Cull Bullets
+	_Bullets.Cull(100);
 	//	Cull Enemies
 	_Enemies.Cull(50);
 };
