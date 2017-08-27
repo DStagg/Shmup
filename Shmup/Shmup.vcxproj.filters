@@ -15,28 +15,52 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Grid.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Utility.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="ShootScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TTTScene.cpp">
+    <ClCompile Include="AABB.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Grid.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>System</Filter>
+    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Utility.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="TTTScene.h">
+    <ClInclude Include="ShootScene.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AABB.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
