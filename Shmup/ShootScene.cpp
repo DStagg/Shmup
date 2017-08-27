@@ -16,10 +16,8 @@ void ShootScene::Begin()
 };
 void ShootScene::End()
 {
-	for (int i = 0; i < (int)_Bullets.size(); i++)
-		delete _Bullets[i];
-	for (int i = 0; i < (int)_Enemies.size(); i++)
-		delete _Enemies[i];
+	_Bullets.Cull(0);
+	_Enemies.Cull(0);
 };
 void ShootScene::Pause()
 {
@@ -51,7 +49,7 @@ void ShootScene::Update(float dt)
 		ent->SetSize(50.f, 50.f);
 		ent->SetVelocity(0.f, 100.f);
 		ent->SetPosition((float)Random::Generate(0,(int)(_Window->getSize().x - 50.f)), -50.f);
-		_Enemies.push_back(ent);
+		_Enemies.AddEnt(ent);
 	}
 
 
@@ -82,47 +80,44 @@ void ShootScene::Update(float dt)
 		bullet->SetYVel(_Player.GetYVel() - 100.f);
 		if (bullet->GetYVel() > -100.f)
 			bullet->SetYVel(-100.f);
-		_Bullets.push_back(bullet);
+		_Bullets.AddEnt(bullet);
 	}
 
 	//	Update Bullets
-	for (int i = 0; i < (int)_Bullets.size(); i++)
+	for (int i = 0; i < _Bullets.CountEnts(); i++)
 	{
-		_Bullets[i]->SetX(_Bullets[i]->GetX() + (_Bullets[i]->GetXVel() * dt));
-		_Bullets[i]->SetY(_Bullets[i]->GetY() + (_Bullets[i]->GetYVel() * dt));
+		Entity* ent = _Bullets.GetEnt(i);
+		ent->SetX(ent->GetX() + (ent->GetXVel() * dt));
+		ent->SetY(ent->GetY() + (ent->GetYVel() * dt));
+
+		if (ent->GetY() <= -ent->GetHeight())
+			_Bullets.DelEnt(ent);
 	}
 	//	Cull Bullets
-	while ((int)_Bullets.size() > 100)
-	{
-		delete _Bullets[0];
-		_Bullets.erase(_Bullets.begin());
-	}
+	_Bullets.Cull(100);
 
 	//	Update Enemies
-	for (int i = 0; i < (int)_Enemies.size(); i++)
+	for (int i = 0; i < _Enemies.CountEnts(); i++)
 	{
-		_Enemies[i]->SetX(_Enemies[i]->GetX() + (_Enemies[i]->GetXVel() * dt));
-		_Enemies[i]->SetY(_Enemies[i]->GetY() + (_Enemies[i]->GetYVel() * dt));
+		Entity* ent = _Enemies.GetEnt(i);
+		ent->SetX(ent->GetX() + (ent->GetXVel() * dt));
+		ent->SetY(ent->GetY() + (ent->GetYVel() * dt));
 
-		if (_Enemies[i]->GetY() > _Window->getSize().y)
-			_Enemies[i]->SetYVel(0.f);
+		if (ent->GetY() > _Window->getSize().y)
+			_Enemies.DelEnt(ent);
 	}
 	//	Cull Enemies
-	while ((int)_Enemies.size() > 50)
-	{
-		delete _Enemies[0];
-		_Enemies.erase(_Enemies.begin());
-	}
+	_Enemies.Cull(50);
 };
 void ShootScene::DrawScreen()
 {
 	DebugDrawEntity(&_Player, _Window, sf::Color::Blue);
 
-	for (int i = 0; i < (int)_Bullets.size(); i++)
-		DebugDrawEntity(_Bullets[i], _Window, sf::Color::Cyan);
+	for (int i = 0; i < _Bullets.CountEnts(); i++)
+		DebugDrawEntity(_Bullets.GetEnt(i), _Window, sf::Color::Cyan);
 
-	for (int i = 0; i < (int)_Enemies.size(); i++)
-		DebugDrawEntity(_Enemies[i], _Window, sf::Color::Red);
+	for (int i = 0; i < _Enemies.CountEnts(); i++)
+		DebugDrawEntity(_Enemies.GetEnt(i), _Window, sf::Color::Red);
 };
 
 ///

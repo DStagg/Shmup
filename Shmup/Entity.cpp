@@ -81,6 +81,8 @@ float Entity::GetYVel()
 	return _YVel;
 };
 
+/////
+
 AABB GenBoundBox(Entity* ent)
 {
 	return GenBoundBox(*ent);
@@ -88,4 +90,59 @@ AABB GenBoundBox(Entity* ent)
 AABB GenBoundBox(Entity ent)
 {
 	return AABB(ent.GetX(), ent.GetY(), ent.GetWidth(), ent.GetHeight());
+};
+
+/////
+
+EntList::EntList()
+{
+
+};
+EntList::~EntList()
+{
+	Cull(0);
+};
+
+void EntList::AddEnt(Entity* ent)
+{
+	if (ent == 0)
+		return;
+	if (std::find(_Entities.begin(), _Entities.end(), ent) != _Entities.end())
+		return;
+	_Entities.push_back(ent);
+};
+void EntList::DelEnt(Entity* ent)
+{
+	if (ent == 0)
+		return;
+	if (std::find(_Entities.begin(), _Entities.end(), ent) != _Entities.end())
+	{
+		delete ent;
+		_Entities.erase(std::find(_Entities.begin(), _Entities.end(), ent));
+	}
+};
+void EntList::Cull(int limit)
+{
+	if (limit < 0)
+		return;
+
+	while (CountEnts() > limit)
+	{
+		delete _Entities[0];
+		_Entities.erase(_Entities.begin());
+	}
+};
+
+int EntList::CountEnts()
+{
+	return (int)_Entities.size();
+};
+Entity* EntList::GetEnt(int i)
+{
+	if (i < 0)
+		i = 0;
+	if (i >= CountEnts())
+		i = CountEnts() - 1;
+
+	return _Entities[i];
 };

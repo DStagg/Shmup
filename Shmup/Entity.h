@@ -2,6 +2,8 @@
 #define ENTITY_H
 
 #include "AABB.h"
+#include <vector>
+#include <algorithm>
 
 class Entity
 {
@@ -39,5 +41,24 @@ private:
 
 AABB GenBoundBox(Entity* ent);
 AABB GenBoundBox(Entity ent);
+
+class EntList
+{
+public:
+
+	EntList();
+	~EntList();
+
+	void AddEnt(Entity* ent);
+	void DelEnt(Entity* ent);
+	void Cull(int limit);
+
+	int CountEnts();
+	Entity* GetEnt(int i);
+
+private:
+
+	std::vector<Entity*> _Entities;
+};
 
 #endif

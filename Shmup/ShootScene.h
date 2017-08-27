@@ -23,8 +23,8 @@ public:
 private:
 
 	Entity _Player;
-	std::vector<Entity*> _Bullets;
-	std::vector<Entity*> _Enemies;
+	EntList _Bullets;
+	EntList _Enemies;
 	
 	sf::RenderWindow* _Window;
 
