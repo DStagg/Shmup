@@ -1,1 +1,21 @@
-Add Medium & Hard AI
+Make sprites transparent
+Add animations - start with just the bullet (re-use YCL sprites)
+Move textures & animations to manager
+Limit player to screen
+Add player health system
+Add player health GUI
+Reimplement enemy types from YCL
+Add enemy shooting
+Add enemy bullet <-> player interactions
+Add doubleshot powerup
+Add laser powerup
+Add powerup time remaining GUI
+Add bombs
+Add bomb ammo powerup
+Add bomb ammo GUI
+Add boss
+Add boss healthbar GUI
+Add level complete win condition
+Add menu Scene
+Add SFX - shoot, hit, explosion
+Add background music

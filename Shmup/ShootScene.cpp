@@ -14,14 +14,11 @@ void ShootScene::Begin()
 	_Player.SetSize(32.f, 64.f);
 	_Player.SetPosition((_Window->getSize().x - _Player.GetWidth()) / 2.f, _Window->getSize().y - _Player.GetHeight());
 
-	if (!_PlayerTexture.loadFromFile("Player.png"))
-		_PlayerTexture.create(32, 64);
-	if (!_BulletTexture.loadFromFile("Bullet.png"))
-		_BulletTexture.create(25, 25);
-	if (!_EnemyTexture.loadFromFile("Enemy.png"))
-		_EnemyTexture.create(50, 50);
-
-	_Player.SetSize(_PlayerTexture.getSize().x, _PlayerTexture.getSize().y);
+	_ImgMan.LoadTextureFromFile("Player", "Player.png");
+	_ImgMan.LoadTextureFromFile("PBullet", "PlayerBullet.png");
+	_ImgMan.LoadTextureFromFile("Enemy", "Enemy.png");
+	
+	_Player.SetSize(_ImgMan.GetTexturePntr("Player")->getSize().x, _ImgMan.GetTexturePntr("Player")->getSize().y);
 };
 void ShootScene::End()
 {
@@ -57,9 +54,9 @@ void ShootScene::Update(float dt)
 		{
 			_SpawnTimer = 0.f;
 			Entity* ent = new Entity();
-			ent->SetSize(_EnemyTexture.getSize().x,_EnemyTexture.getSize().y);
+			ent->SetSize(_ImgMan.GetTexturePntr("Enemy")->getSize().x, _ImgMan.GetTexturePntr("Enemy")->getSize().y);
 			ent->SetVelocity(0.f, 100.f);
-			ent->SetPosition((float)Random::Generate(0, (int)(_Window->getSize().x - _EnemyTexture.getSize().x)), 0.f-_EnemyTexture.getSize().y);
+			ent->SetPosition((float)Random::Generate(0, (int)(_Window->getSize().x - _ImgMan.GetTexturePntr("Enemy")->getSize().x)), 0.f- _ImgMan.GetTexturePntr("Enemy")->getSize().y);
 			_Enemies.AddEnt(ent);
 		}
 
@@ -86,8 +83,8 @@ void ShootScene::Update(float dt)
 		{
 			_ShootTimer = 0.f;
 			Entity* bullet = new Entity();
-			bullet->SetPosition(_Player.GetX() + (_Player.GetWidth() / 2.f ), _Player.GetY());
-			bullet->SetSize(_BulletTexture.getSize().x , _BulletTexture.getSize().y);
+			bullet->SetPosition(_Player.GetX() + ((_Player.GetWidth() - _ImgMan.GetTexturePntr("PBullet")->getSize().x) / 2.f ), _Player.GetY());
+			bullet->SetSize(_ImgMan.GetTexturePntr("PBullet")->getSize().x , _ImgMan.GetTexturePntr("PBullet")->getSize().y);
 			bullet->SetYVel(_Player.GetYVel() - 100.f);
 			if (bullet->GetYVel() > -100.f)
 				bullet->SetYVel(-100.f);
@@ -147,25 +144,25 @@ void ShootScene::Update(float dt)
 void ShootScene::DrawScreen()
 {
 
-	sf::Sprite psprite(_PlayerTexture);
+	sf::Sprite psprite(*_ImgMan.GetTexturePntr("Player"));
 	psprite.setPosition(_Player.GetX(), _Player.GetY());
 	_Window->draw(psprite);
 
 	for (int i = 0; i < _Bullets.CountEnts(); i++)
 	{
-		sf::Sprite bsprite(_BulletTexture);
+		sf::Sprite bsprite(*_ImgMan.GetTexturePntr("PBullet"));
 		bsprite.setPosition(_Bullets.GetEnt(i)->GetX(), _Bullets.GetEnt(i)->GetY());
 		_Window->draw(bsprite);
 	}
 
 	for (int i = 0; i < _Enemies.CountEnts(); i++)
 	{
-		sf::Sprite esprite(_EnemyTexture);
+		sf::Sprite esprite(*_ImgMan.GetTexturePntr("Enemy"));
 		esprite.setPosition(_Enemies.GetEnt(i)->GetX(), _Enemies.GetEnt(i)->GetY());
 		_Window->draw(esprite);
 	}
 
-
+//	*/
 
 	if ( _Player.GetAlive() )
 		DebugDrawEntity(&_Player, _Window, sf::Color::Blue);

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<Animation Image = "EnemyBullet.png" Tag = "ENEMY_BULLET">
+	<Sequence ID = "LIVE">
+		<Frame Left = "0" Right = "16" Top = "0" Bottom = "16" Time = "0.2"></Frame>
+		<Frame Left = "16" Right = "32" Top = "0" Bottom = "16" Time = "0.2"></Frame>
+		<Frame Left = "33" Right = "48" Top = "0" Bottom = "16" Time = "0.2"></Frame>
+		<Frame Left = "16" Right = "32" Top = "0" Bottom = "16" Time = "0.2"></Frame>
+		<Frame Left = "0" Right = "16" Top = "0" Bottom = "16" Time = "0.2"></Frame>
+	</Sequence>
+	<Sequence ID = "DYING">
+		<Frame Left = "48" Right = "64" Top = "0" Bottom = "16" Time = "0.05"></Frame>
+		<Frame Left = "64" Right = "80" Top = "0" Bottom = "16" Time = "0.05"></Frame>
+	</Sequence>
+</Animation>
