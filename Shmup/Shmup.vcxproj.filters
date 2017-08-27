@@ -16,51 +16,63 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="LoseScene.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="Random.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="ShootScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="AABB.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
+    <ClCompile Include="MenuList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
-      <Filter>System</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Random.h">
-      <Filter>System</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>System</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="ShootScene.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Source Files</Filter>
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="LoseScene.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootScene.h">
+      <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="AABB.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuList.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

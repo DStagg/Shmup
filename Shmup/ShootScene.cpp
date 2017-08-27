@@ -41,89 +41,104 @@ void ShootScene::Update(float dt)
 			SetRunning(false);
 	}
 
-	//	Spawn Enemies
-	if (_SpawnTimer >= _SpawnDelay)
+	if (_Player.GetAlive())
 	{
-		_SpawnTimer = 0.f;
-		Entity* ent = new Entity();
-		ent->SetSize(50.f, 50.f);
-		ent->SetVelocity(0.f, 100.f);
-		ent->SetPosition((float)Random::Generate(0,(int)(_Window->getSize().x - 50.f)), -50.f);
-		_Enemies.AddEnt(ent);
-	}
-
-
-	//	Control Player
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		_Player.SetYVel(-200.f);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		_Player.SetYVel(200.f);
-	else
-		_Player.SetYVel(0.f);
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		_Player.SetXVel(-200.f);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		_Player.SetXVel(200.f);
-	else
-		_Player.SetXVel(0.f);
-
-	_Player.SetX(_Player.GetX() + (_Player.GetXVel() * dt));
-	_Player.SetY(_Player.GetY() + (_Player.GetYVel() * dt));
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
-	{
-		_ShootTimer = 0.f;
-		Entity* bullet = new Entity();
-		bullet->SetPosition(_Player.GetX(), _Player.GetY());
-		bullet->SetSize(16.f, 16.f);
-		bullet->SetYVel(_Player.GetYVel() - 100.f);
-		if (bullet->GetYVel() > -100.f)
-			bullet->SetYVel(-100.f);
-		_Bullets.AddEnt(bullet);
-	}
-
-	//	Update Bullets
-	for (int i = 0; i < _Bullets.CountEnts(); i++)
-	{
-		Entity* ent = _Bullets.GetEnt(i);
-		ent->SetX(ent->GetX() + (ent->GetXVel() * dt));
-		ent->SetY(ent->GetY() + (ent->GetYVel() * dt));
-
-		if (ent->GetY() <= -ent->GetHeight())
-			_Bullets.DelEnt(ent);
-	}
-
-	//	Update Enemies
-	for (int i = 0; i < _Enemies.CountEnts(); i++)
-	{
-		Entity* ent = _Enemies.GetEnt(i);
-		ent->SetX(ent->GetX() + (ent->GetXVel() * dt));
-		ent->SetY(ent->GetY() + (ent->GetYVel() * dt));
-
-		if (ent->GetY() > _Window->getSize().y)
-			_Enemies.DelEnt(ent);
-	}
-
-	//	Collision: Bullets <-> Enemies
-	for (int b = 0; b < _Bullets.CountEnts(); b++ )
-		for (int e = 0; e < _Enemies.CountEnts(); e++)
+		//	Spawn Enemies
+		if (_SpawnTimer >= _SpawnDelay)
 		{
-			if (GenBoundBox(_Bullets.GetEnt(b)).Intersects(GenBoundBox(_Enemies.GetEnt(e))))
-			{
-				_Bullets.GetEnt(b)->SetAlive(false);
-				_Enemies.GetEnt(e)->SetAlive(false);
-			}
+			_SpawnTimer = 0.f;
+			Entity* ent = new Entity();
+			ent->SetSize(50.f, 50.f);
+			ent->SetVelocity(0.f, 100.f);
+			ent->SetPosition((float)Random::Generate(0, (int)(_Window->getSize().x - 50.f)), -50.f);
+			_Enemies.AddEnt(ent);
 		}
 
-	//	Cull Bullets
-	_Bullets.Cull(100);
-	//	Cull Enemies
-	_Enemies.Cull(50);
+
+		//	Control Player
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			_Player.SetYVel(-200.f);
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			_Player.SetYVel(200.f);
+		else
+			_Player.SetYVel(0.f);
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			_Player.SetXVel(-200.f);
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			_Player.SetXVel(200.f);
+		else
+			_Player.SetXVel(0.f);
+
+		_Player.SetX(_Player.GetX() + (_Player.GetXVel() * dt));
+		_Player.SetY(_Player.GetY() + (_Player.GetYVel() * dt));
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
+		{
+			_ShootTimer = 0.f;
+			Entity* bullet = new Entity();
+			bullet->SetPosition(_Player.GetX(), _Player.GetY());
+			bullet->SetSize(16.f, 16.f);
+			bullet->SetYVel(_Player.GetYVel() - 100.f);
+			if (bullet->GetYVel() > -100.f)
+				bullet->SetYVel(-100.f);
+			_Bullets.AddEnt(bullet);
+		}
+
+		//	Update Bullets
+		for (int i = 0; i < _Bullets.CountEnts(); i++)
+		{
+			Entity* ent = _Bullets.GetEnt(i);
+			ent->SetX(ent->GetX() + (ent->GetXVel() * dt));
+			ent->SetY(ent->GetY() + (ent->GetYVel() * dt));
+
+			if (ent->GetY() <= -ent->GetHeight())
+				_Bullets.DelEnt(ent);
+		}
+
+		//	Update Enemies
+		for (int i = 0; i < _Enemies.CountEnts(); i++)
+		{
+			Entity* ent = _Enemies.GetEnt(i);
+			ent->SetX(ent->GetX() + (ent->GetXVel() * dt));
+			ent->SetY(ent->GetY() + (ent->GetYVel() * dt));
+
+			if (ent->GetY() > _Window->getSize().y)
+				_Enemies.DelEnt(ent);
+		}
+
+		//	Collision: Bullets <-> Enemies
+		for (int b = 0; b < _Bullets.CountEnts(); b++)
+			for (int e = 0; e < _Enemies.CountEnts(); e++)
+			{
+				if (GenBoundBox(_Bullets.GetEnt(b)).Intersects(GenBoundBox(_Enemies.GetEnt(e))))
+				{
+					_Bullets.GetEnt(b)->SetAlive(false);
+					_Enemies.GetEnt(e)->SetAlive(false);
+				}
+			}
+
+		//	Collisin: Player <-> Enemies
+		for (int e = 0; e < _Enemies.CountEnts(); e++)
+			if (GenBoundBox(_Enemies.GetEnt(e)).Intersects(GenBoundBox(_Player)))
+			{
+				_Enemies.GetEnt(e)->SetAlive(false);
+				_Player.SetAlive(false);
+			}
+
+		//	Cull Bullets
+		_Bullets.Cull(100);
+		//	Cull Enemies
+		_Enemies.Cull(50);
+	}
+	else
+		GetManager()->PushScene(new LoseScene(_Window));
+	
 };
 void ShootScene::DrawScreen()
 {
-	DebugDrawEntity(&_Player, _Window, sf::Color::Blue);
+	if ( _Player.GetAlive() )
+		DebugDrawEntity(&_Player, _Window, sf::Color::Blue);
 
 	for (int i = 0; i < _Bullets.CountEnts(); i++)
 		DebugDrawEntity(_Bullets.GetEnt(i), _Window, sf::Color::Cyan);

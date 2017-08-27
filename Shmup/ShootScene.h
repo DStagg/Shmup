@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "Random.h"
 #include "Entity.h"
+#include "LoseScene.h"
 
 class ShootScene : public Scene
 {
