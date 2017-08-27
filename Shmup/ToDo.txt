@@ -1,4 +1,5 @@
-Add animations - start with just the bullet (re-use YCL sprites)
+Refactor animations to be part of entities
+add animations to other entities (player, etc.)
 Limit player to screen
 Add player health system
 Add player health GUI

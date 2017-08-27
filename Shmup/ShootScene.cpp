@@ -18,6 +18,21 @@ void ShootScene::Begin()
 	_ImgMan.LoadTextureFromFile("PBullet", "PlayerBullet.png");
 	_ImgMan.LoadTextureFromFile("Enemy", "Enemy.png");
 	
+	AnimationFrame f(0, 0, 16, 16, 0.2f);
+	Animation anim;
+	anim._Frames.push_back(f);
+	AnimationFrame f2(16, 0, 16, 16, 0.2f);
+	anim._Frames.push_back(f2);
+	AnimationFrame f3(32, 0, 16, 16, 0.2f);
+	anim._Frames.push_back(f3);
+	AnimationFrame f4(48, 0, 16, 16, 0.2f);
+	anim._Frames.push_back(f4);
+	AnimationFrame f5(64, 0, 16, 16, 0.2f);
+	anim._Frames.push_back(f5);
+	_ImgMan.AddAnimation("PBullet_Idle", anim);
+
+	_Anim = _ImgMan.GetAnimation("PBullet_Idle");
+
 	_Player.SetSize(_ImgMan.GetTexturePntr("Player")->getSize().x, _ImgMan.GetTexturePntr("Player")->getSize().y);
 };
 void ShootScene::End()
@@ -37,6 +52,8 @@ void ShootScene::Update(float dt)
 {
 	_ShootTimer += dt;
 	_SpawnTimer += dt;
+
+	_Anim.Play(dt);
 
 	sf::Event Event;
 	while (_Window->pollEvent(Event))
@@ -82,7 +99,8 @@ void ShootScene::Update(float dt)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
 		{
 			_ShootTimer = 0.f;
-			Entity* bullet = new Entity();
+			AnimEnt* bullet = new AnimEnt();
+			bullet->SetAnim(_ImgMan.GetAnimation("PBullet_Idle"));
 			bullet->SetPosition(_Player.GetX() + ((_Player.GetWidth() - _ImgMan.GetTexturePntr("PBullet")->getSize().x) / 2.f ), _Player.GetY());
 			bullet->SetSize(_ImgMan.GetTexturePntr("PBullet")->getSize().x , _ImgMan.GetTexturePntr("PBullet")->getSize().y);
 			bullet->SetYVel(_Player.GetYVel() - 100.f);
@@ -94,7 +112,13 @@ void ShootScene::Update(float dt)
 		//	Update Bullets
 		for (int i = 0; i < _Bullets.CountEnts(); i++)
 		{
-			Entity* ent = _Bullets.GetEnt(i);
+			AnimEnt* ent = (AnimEnt*)_Bullets.GetEnt(i);
+
+			ent->GetAnimPntr()->Play(dt);
+
+			ent->SetWidth(ent->GetAnimPntr()->GetCurrFrame()._Width);
+			ent->SetHeight(ent->GetAnimPntr()->GetCurrFrame()._Height);
+
 			ent->SetX(ent->GetX() + (ent->GetXVel() * dt));
 			ent->SetY(ent->GetY() + (ent->GetYVel() * dt));
 
@@ -150,7 +174,7 @@ void ShootScene::DrawScreen()
 
 	for (int i = 0; i < _Bullets.CountEnts(); i++)
 	{
-		sf::Sprite bsprite(*_ImgMan.GetTexturePntr("PBullet"));
+		sf::Sprite bsprite(*_ImgMan.GetTexturePntr("PBullet"), AnimIntRect(((AnimEnt*)_Bullets.GetEnt(i))->GetAnim()));
 		bsprite.setPosition(_Bullets.GetEnt(i)->GetX(), _Bullets.GetEnt(i)->GetY());
 		_Window->draw(bsprite);
 	}

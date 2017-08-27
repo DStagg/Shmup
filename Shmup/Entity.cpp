@@ -166,3 +166,28 @@ Entity* EntList::GetEnt(int i)
 
 	return _Entities[i];
 };
+
+
+/////
+
+AnimEnt::AnimEnt()
+{
+
+};
+AnimEnt::~AnimEnt()
+{
+
+};
+
+void AnimEnt::SetAnim(Animation a)
+{
+	_Animation = a;
+};
+Animation AnimEnt::GetAnim()
+{
+	return _Animation;
+};
+Animation* AnimEnt::GetAnimPntr()
+{
+	return &_Animation;
+};

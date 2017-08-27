@@ -37,6 +37,7 @@ private:
 	float _SpawnDelay = 2.f;
 
 	ImageManager _ImgMan;
+	Animation _Anim;
 };
 
 void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw, sf::Color col = sf::Color::Cyan);

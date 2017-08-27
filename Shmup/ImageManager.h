@@ -16,6 +16,11 @@ struct Animation
 {
 	Animation();
 
+	void Play(float dt);
+	AnimationFrame GetCurrFrame();
+
+	bool _Loop;
+	float _Rate;
 	float _Time;
 	int _CurrentFrame;
 	std::vector<AnimationFrame> _Frames;
@@ -50,5 +55,6 @@ private:
 
 };
 
+sf::IntRect AnimIntRect(Animation anim);
 
 #endif

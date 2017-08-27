@@ -5,6 +5,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "ImageManager.h"
+
 class Entity
 {
 public:
@@ -60,6 +62,22 @@ public:
 private:
 
 	std::vector<Entity*> _Entities;
+};
+
+class AnimEnt : public Entity
+{
+public:
+
+	AnimEnt();
+	~AnimEnt();
+
+	void SetAnim(Animation a);
+	Animation GetAnim();
+	Animation* GetAnimPntr();
+
+private:
+
+	Animation _Animation;
 };
 
 #endif

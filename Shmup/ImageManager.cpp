@@ -13,6 +13,32 @@ Animation::Animation()
 {
 	_CurrentFrame = 0;
 	_Time = 0.f;
+	_Rate = 1.f;
+	_Loop = true;
+};
+
+void Animation::Play(float dt)
+{
+	dt = dt * _Rate;
+	_Time += dt;
+	if (_Time >= GetCurrFrame()._FrameTime)
+	{
+		_Time -= GetCurrFrame()._FrameTime;
+		_CurrentFrame++;
+
+		if (_CurrentFrame >= (int)_Frames.size())
+		{
+			if (_Loop)
+				_CurrentFrame = 0;
+			else
+				_CurrentFrame--;
+		}
+	}
+};
+
+AnimationFrame Animation::GetCurrFrame()
+{
+	return _Frames[_CurrentFrame];
 };
 
 ImageManager::ImageManager()
@@ -94,4 +120,11 @@ void ImageManager::SetSmooth(bool b)
 bool ImageManager::GetSmooth()
 {
 	return _Smooth;
+};
+
+///
+
+sf::IntRect AnimIntRect(Animation anim)
+{
+	return sf::IntRect(anim._Frames[anim._CurrentFrame]._X, anim._Frames[anim._CurrentFrame]._Y, anim._Frames[anim._CurrentFrame]._Width, anim._Frames[anim._CurrentFrame]._Height);
 };
