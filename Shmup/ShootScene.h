@@ -34,6 +34,10 @@ private:
 
 	float _SpawnTimer = 0.f;
 	float _SpawnDelay = 2.f;
+
+	sf::Texture _PlayerTexture;
+	sf::Texture _BulletTexture;
+	sf::Texture _EnemyTexture;
 };
 
 void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw, sf::Color col = sf::Color::Cyan);
