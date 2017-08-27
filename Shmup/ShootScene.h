@@ -22,7 +22,13 @@ public:
 
 private:
 
+	Entity _Player;
+	std::vector<Entity*> _Bullets;
+	
 	sf::RenderWindow* _Window;
+
+	float _ShootTimer = 0.f;
+	float _ShootDelay = 0.25f;
 };
 
 void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw);
