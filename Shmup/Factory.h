@@ -9,7 +9,21 @@ public:
 
 	EntFactory();
 
-	Entity* Spawn(std::string type, float x, float y);
+	void Init(ImageManager* img);
+
+	enum Types
+	{
+		Default,
+		Player,
+		PlayerBullet,
+		BombEnemy
+	};
+
+	Entity* Spawn(int type, float x, float y);
+
+private:
+
+	ImageManager* _ImgMan;
 };
 
 #endif

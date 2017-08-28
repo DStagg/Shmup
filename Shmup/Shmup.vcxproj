@@ -32,7 +32,6 @@
     <ClCompile Include="PopAnim.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="ShmupEnts.cpp" />
     <ClCompile Include="ShootScene.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
@@ -49,7 +48,6 @@
     <ClInclude Include="PopAnim.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="ShmupEnts.h" />
     <ClInclude Include="ShootScene.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>

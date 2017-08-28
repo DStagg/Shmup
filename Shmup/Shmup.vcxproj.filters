@@ -51,9 +51,6 @@
     <ClCompile Include="Icon.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="ShmupEnts.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="PopAnim.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -96,9 +93,6 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Icon.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="ShmupEnts.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="PopAnim.h">
