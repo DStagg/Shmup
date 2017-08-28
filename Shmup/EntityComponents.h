@@ -59,6 +59,8 @@ public:
 	void SetMaxHP(int hp);
 	int GetMaxHP();
 
+	void Hurt(int hp);
+
 private:
 
 	int _CurrentHP;

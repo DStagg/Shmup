@@ -71,6 +71,12 @@
     <ClCompile Include="PlayerEnt.cpp">
       <Filter>Project Files\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyEnts.cpp">
+      <Filter>Project Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Project Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
@@ -117,6 +123,12 @@
     </ClInclude>
     <ClInclude Include="PlayerEnt.h">
       <Filter>Project Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyEnts.h">
+      <Filter>Project Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Project Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

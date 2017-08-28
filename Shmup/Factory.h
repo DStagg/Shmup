@@ -4,6 +4,9 @@
 #include "Entity.h"
 
 #include "PlayerEnt.h"
+#include "EnemyEnts.h"
+
+#include "Level.h"
 
 class EntFactory
 {
@@ -11,7 +14,7 @@ public:
 
 	EntFactory();
 
-	void Init(ImageManager* img, sf::RenderWindow* rw);
+	void Init(Level* lvl, ImageManager* img, sf::RenderWindow* rw);
 
 	enum Types
 	{
@@ -31,6 +34,7 @@ private:
 
 	ImageManager* _ImgMan;
 	sf::RenderWindow* _Window;
+	Level* _Level;
 };
 
 #endif

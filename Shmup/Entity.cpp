@@ -1,8 +1,9 @@
 #include "Entity.h"
 
-Entity::Entity()
+Entity::Entity(Level* lvl)
 {
 	SetAlive(true);
+	SetLevel(lvl);
 }
 Entity::~Entity()
 {
@@ -56,6 +57,15 @@ void Entity::SetIcon(Icon* icon)
 Icon* Entity::GetIcon()
 {
 	return _Icon;
+};
+
+void Entity::SetLevel(Level* lvl)
+{
+	_Level = lvl;
+};
+Level* Entity::GetLevel()
+{
+	return _Level;
 };
 
 /////

@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AABB.cpp" />
+    <ClCompile Include="EnemyEnts.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityComponents.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Icon.cpp" />
     <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuList.cpp" />
@@ -38,12 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AABB.h" />
+    <ClInclude Include="EnemyEnts.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityComponents.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Icon.h" />
     <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="LoseScene.h" />
     <ClInclude Include="MenuList.h" />
     <ClInclude Include="PlayerEnt.h" />

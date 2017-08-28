@@ -1,6 +1,6 @@
 #include "PlayerEnt.h"
 
-PlayerEnt::PlayerEnt(sf::RenderWindow* rw)
+PlayerEnt::PlayerEnt(Level* lvl , sf::RenderWindow* rw) : Entity(lvl)
 {
 	_Window = rw;
 };

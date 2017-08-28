@@ -9,6 +9,7 @@
 #include "ImageManager.h"
 #include "PopAnim.h"
 #include "Factory.h"
+#include "Level.h"
 
 class ShootScene : public Scene
 {
@@ -26,10 +27,6 @@ public:
 
 private:
 
-	Entity* _Player;
-	EntList _Bullets;
-	EntList _Enemies;
-	
 	sf::RenderWindow* _Window;
 
 	float _ShootTimer = 0.f;
@@ -37,6 +34,8 @@ private:
 
 	float _SpawnTimer = 0.f;
 	float _SpawnDelay = 2.f;
+
+	Level _Level;
 
 	ImageManager _ImgMan;
 	EntFactory _Factory;

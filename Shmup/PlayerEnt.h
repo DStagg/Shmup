@@ -7,7 +7,7 @@ class PlayerEnt : public Entity
 {
 public:
 
-	PlayerEnt(sf::RenderWindow* rw);
+	PlayerEnt(Level* lvl , sf::RenderWindow* rw);
 
 	void Update(float dt);
 

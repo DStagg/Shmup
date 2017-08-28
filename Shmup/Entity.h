@@ -9,11 +9,13 @@
 
 #include "EntityComponents.h"
 
+class Level;
+
 class Entity
 {
 public:
 
-	Entity();
+	Entity(Level* lvl);
 	~Entity();
 
 	Presence& GetPresence();
@@ -28,6 +30,9 @@ public:
 
 	void SetIcon(Icon* icon);
 	Icon* GetIcon();
+
+	void SetLevel(Level* lvl);
+	Level* GetLevel();
 	
 private:
 
@@ -38,6 +43,7 @@ private:
 	Stats _Stats;
 	Icon* _Icon;
 	
+	Level* _Level;
 };
 
 AABB GenBoundBox(Entity* ent);

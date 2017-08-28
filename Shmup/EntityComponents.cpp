@@ -116,3 +116,8 @@ int Stats::GetMaxHP()
 {
 	return _MaximumHP;
 };
+
+void Stats::Hurt(int hp)
+{
+	SetHP(GetHP() - hp);
+};
