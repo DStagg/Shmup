@@ -19,6 +19,8 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 	{
 	case Types::Player:
 		ent = new PlayerEnt(_Window);
+		ent->GetStats().SetMaxHP(5);
+		ent->GetStats().SetHP(5);
 		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("Player")), _ImgMan->GetAnimation("Player_Idle")));
 		break;
 	case Types::PlayerBullet:

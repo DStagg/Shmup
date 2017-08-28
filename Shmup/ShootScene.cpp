@@ -15,6 +15,7 @@ void ShootScene::Begin()
 	_ImgMan.LoadTextureFromFile("PBullet", "PlayerBullet.png");
 	_ImgMan.LoadTextureFromFile("Enemy", "Enemy.png");
 	_ImgMan.LoadTextureFromFile("BombEnemy", "BombEnemy.png");
+	_ImgMan.LoadTextureFromFile("HealthIcon", "HealthIcon.png");
 	
 	PopulateAnimations(&_ImgMan);
 
@@ -104,7 +105,9 @@ void ShootScene::Update(float dt)
 			if (GenBoundBox(_Enemies.GetEnt(e)).Intersects(GenBoundBox(_Player)))
 			{
 				_Enemies.GetEnt(e)->SetAlive(false);
-				_Player->SetAlive(false);
+				_Player->GetStats().SetHP(_Player->GetStats().GetHP() - 1);
+				if ( _Player->GetStats().GetHP() <= 0 )
+					_Player->SetAlive(false);
 			}
 
 		//	Cull Bullets
@@ -118,6 +121,8 @@ void ShootScene::Update(float dt)
 };
 void ShootScene::DrawScreen()
 {
+	//	Draw Ents	//
+
 	_Player->Draw(_Window);
 
 	for (int i = 0; i < _Bullets.CountEnts(); i++)
@@ -126,6 +131,15 @@ void ShootScene::DrawScreen()
 	for (int i = 0; i < _Enemies.CountEnts(); i++)
 		_Enemies.GetEnt(i)->Draw(_Window);
 
+	
+	//	Draw GUI	//
+
+	for (int i = 0; i < _Player->GetStats().GetHP(); i++)
+	{
+		sf::Sprite pip(*_ImgMan.GetTexturePntr("HealthIcon"));
+		pip.setPosition(((i + 1)*5.f) + (i * pip.getTextureRect().width), _Window->getSize().y - (5.f + pip.getTextureRect().height));
+		_Window->draw(pip);
+	}
 
 	DebugDrawEntity(_Player, _Window, sf::Color::Blue);
 	for (int i = 0; i < _Bullets.CountEnts(); i++)

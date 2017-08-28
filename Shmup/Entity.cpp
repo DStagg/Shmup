@@ -19,6 +19,11 @@ Size& Entity::GetSize()
 	return _Size;
 };
 
+Stats& Entity::GetStats()
+{
+	return _Stats;
+};
+
 void Entity::SetAlive(bool b)
 {
 	_Alive = b;

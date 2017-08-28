@@ -1,5 +1,3 @@
-Add player health system
-Add player health GUI
 Reimplement enemy types from YCL
 Add enemy shooting
 Add enemy bullet <-> player interactions

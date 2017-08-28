@@ -89,3 +89,30 @@ void Presence::UpdatePosition(float dt)
 	SetX(GetX() + GetXVel() * dt);
 	SetY(GetY() + GetYVel() * dt);
 };
+
+
+//	Stats		//
+
+Stats::Stats(int hp)
+{
+	SetHP(hp);
+	SetMaxHP(hp);
+};
+
+void Stats::SetHP(int hp)
+{
+	_CurrentHP = hp;
+};
+int Stats::GetHP()
+{
+	return _CurrentHP;
+};
+
+void Stats::SetMaxHP(int hp)
+{
+	_MaximumHP = hp;
+};
+int Stats::GetMaxHP()
+{
+	return _MaximumHP;
+};

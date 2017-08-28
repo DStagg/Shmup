@@ -48,4 +48,21 @@ private:
 	float _XVel, _YVel;
 };
 
+class Stats
+{
+public:
+
+	Stats(int hp = 1);
+
+	void SetHP(int hp);
+	int GetHP();
+	void SetMaxHP(int hp);
+	int GetMaxHP();
+
+private:
+
+	int _CurrentHP;
+	int _MaximumHP;
+};
+
 #endif

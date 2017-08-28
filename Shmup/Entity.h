@@ -18,6 +18,7 @@ public:
 
 	Presence& GetPresence();
 	Size& GetSize();
+	Stats& GetStats();
 
 	void SetAlive(bool b);
 	bool GetAlive();
@@ -34,6 +35,7 @@ private:
 
 	Presence _Presence;
 	Size _Size;
+	Stats _Stats;
 	Icon* _Icon;
 	
 };
