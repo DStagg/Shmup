@@ -71,7 +71,22 @@ void BasicEnt::Draw(sf::RenderWindow* rw)
 	rw->draw(*GetGraphic().GetSprPntr());
 };
 
-///
+
+//	SFXEnt		//
+
+SFXEnt::SFXEnt(Level* lvl) : BasicEnt(lvl)
+{
+
+};
+
+void SFXEnt::Update(float dt)
+{
+	BasicEnt::Update(dt);
+	if ((GetGraphic().GetCurrentAnim()._CurrentFrame == (int)GetGraphic().GetCurrentAnim()._Frames.size() - 1) && (GetGraphic().GetCurrentAnim()._Time > GetGraphic().GetCurrentFrame()._FrameTime))
+		SetAlive(false);
+};
+
+//////////
 
 AABB GenBoundBox(Entity* ent)
 {

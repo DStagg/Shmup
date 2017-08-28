@@ -57,6 +57,18 @@ private:
 
 };
 
+class SFXEnt : public BasicEnt
+{
+public:
+
+	SFXEnt(Level* lvl);
+
+	void Update(float dt);
+
+private:
+
+};
+
 AABB GenBoundBox(Entity* ent);
 
 class EntList

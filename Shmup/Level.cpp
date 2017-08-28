@@ -29,6 +29,10 @@ EntList& Level::GetEnemyBullets()
 {
 	return _EnemyBullets;
 };
+EntList& Level::GetSFX()
+{
+	return _SFX;
+};
 Entity* Level::GetPlayer()
 {
 	return _Player;

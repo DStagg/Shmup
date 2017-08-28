@@ -114,6 +114,28 @@ void PopulateAnimations(ImageManager* img)
 	ebanim._Frames.push_back(eb4);
 	img->AddAnimation("EBullet_Idle", ebanim);
 
-
-
+	//	Explosion
+	AnimationFrame ex1(0, 0, 32, 32, 0.1f);
+	AnimationFrame ex2(32, 0, 32, 32, 0.1f);
+	AnimationFrame ex3(64, 0, 32, 32, 0.1f);
+	AnimationFrame ex4(96, 0, 32, 32, 0.1f);
+	AnimationFrame ex5(128, 0, 32, 32, 0.1f);
+	AnimationFrame ex6(0, 32, 32, 32, 0.1f);
+	AnimationFrame ex7(32, 32, 32, 32, 0.1f);
+	AnimationFrame ex8(64, 32, 32, 32, 0.1f);
+	AnimationFrame ex9(96, 32, 32, 32, 0.1f);
+	AnimationFrame ex10(128, 32, 32, 32, 0.1f);
+	Animation exanim;
+	exanim._Frames.push_back(ex1);
+	exanim._Frames.push_back(ex2);
+	exanim._Frames.push_back(ex3);
+	exanim._Frames.push_back(ex4);
+	exanim._Frames.push_back(ex5);
+	exanim._Frames.push_back(ex6);
+	exanim._Frames.push_back(ex7);
+	exanim._Frames.push_back(ex8);
+	exanim._Frames.push_back(ex9);
+	exanim._Frames.push_back(ex10);
+	exanim._Loop = false;
+	img->AddAnimation("Explosion", exanim);
 };

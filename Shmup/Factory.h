@@ -26,7 +26,8 @@ public:
 		SpreaderEnemy,
 		SwarmEnemy,
 		TankEnemy,
-		EnemyBullet
+		EnemyBullet,
+		Explosion
 	};
 
 	Entity* Spawn(int type, float x, float y);

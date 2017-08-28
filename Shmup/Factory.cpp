@@ -82,6 +82,12 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetPresence().SetYVel(150.f);
 		ent->GetSize().SetSize(16.f, 16.f);
 		break;
+	case Types::Explosion:
+		ent = new SFXEnt(_Level);
+		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Explosion")));
+		ent->GetGraphic().AddAnimation("Explosion", _ImgMan->GetAnimation("Explosion"));
+		ent->GetGraphic().Swap("Explosion");
+		break;
 	default:
 		ent = new BasicEnt(_Level);
 		ent->GetSize().SetSize(25.f, 25.f);

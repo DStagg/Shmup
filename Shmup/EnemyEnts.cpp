@@ -22,6 +22,7 @@ void BombEnt::Update(float dt)
 		SetAlive(false);
 		GetGraphic().Swap("Death");
 		GetLevel()->GetPlayer()->GetStats().Hurt(1);
+		GetLevel()->GetSFX().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::Explosion, GetPresence().GetX(), GetPresence().GetY()));
 	}
 
 	BasicEnt::Update(dt);

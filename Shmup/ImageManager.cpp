@@ -23,15 +23,13 @@ void Animation::Play(float dt)
 	_Time += dt;
 	if (_Time >= GetCurrFrame()._FrameTime)
 	{
-		_Time -= GetCurrFrame()._FrameTime;
-		_CurrentFrame++;
-
-		if (_CurrentFrame >= (int)_Frames.size())
+		if ((_CurrentFrame < (int)_Frames.size() - 1) || (_Loop))
 		{
-			if (_Loop)
+			_Time -= GetCurrFrame()._FrameTime;
+			_CurrentFrame++;
+
+			if ((_CurrentFrame >= (int)_Frames.size()) && (_Loop))
 				_CurrentFrame = 0;
-			else
-				_CurrentFrame--;
 		}
 	}
 };

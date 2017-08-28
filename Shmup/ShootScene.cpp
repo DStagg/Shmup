@@ -21,6 +21,7 @@ void ShootScene::Begin()
 	_ImgMan.LoadTextureFromFile("TankEnemy", "TankEnemy.png");
 	_ImgMan.LoadTextureFromFile("HealthIcon", "HealthIcon.png");
 	_ImgMan.LoadTextureFromFile("EBullet", "EnemyBullet.png");
+	_ImgMan.LoadTextureFromFile("Explosion", "Explosion.png");
 	
 	PopulateAnimations(&_ImgMan);
 	_Level.GetFactory().Init(&_Level, &_ImgMan, _Window);
@@ -109,6 +110,10 @@ void ShootScene::Update(float dt)
 				_Level.GetEnemyBullets().DelEnt(_Level.GetEnemyBullets().GetEnt(i));
 		}
 
+		//	Update SFX
+		for (int i = 0; i < _Level.GetSFX().CountEnts(); i++)
+			_Level.GetSFX().GetEnt(i)->Update(dt);
+
 		//	Collision: PBullets <-> Enemies
 		for (int b = 0; b < _Level.GetPlayerBullets().CountEnts(); b++)
 			for (int e = 0; e < _Level.GetEnemies().CountEnts(); e++)
@@ -148,6 +153,8 @@ void ShootScene::Update(float dt)
 		_Level.GetEnemyBullets().Cull(100);
 		//	Cull Enemies
 		_Level.GetEnemies().Cull(50);
+		//	Cull SFX
+		_Level.GetSFX().Cull(50);
 	}
 	else
 		GetManager()->PushScene(new LoseScene(_Window));
@@ -159,15 +166,17 @@ void ShootScene::DrawScreen()
 
 	_Level.GetPlayer()->Draw(_Window);
 
-	for (int i = 0; i < _Level.GetPlayerBullets().CountEnts(); i++)
-		_Level.GetPlayerBullets().GetEnt(i)->Draw(_Window);
-
 	for (int i = 0; i < _Level.GetEnemies().CountEnts(); i++)
 		_Level.GetEnemies().GetEnt(i)->Draw(_Window);
+
+	for (int i = 0; i < _Level.GetPlayerBullets().CountEnts(); i++)
+		_Level.GetPlayerBullets().GetEnt(i)->Draw(_Window);
 
 	for (int i = 0; i < _Level.GetEnemyBullets().CountEnts(); i++)
 		_Level.GetEnemyBullets().GetEnt(i)->Draw(_Window);
 
+	for (int i = 0; i < _Level.GetSFX().CountEnts(); i++)
+		_Level.GetSFX().GetEnt(i)->Draw(_Window);
 	
 	//	Draw GUI	//
 
@@ -185,6 +194,8 @@ void ShootScene::DrawScreen()
 		DebugDrawEntity(_Level.GetEnemies().GetEnt(i), _Window, sf::Color::Red);
 	for (int i = 0; i < _Level.GetEnemyBullets().CountEnts(); i++)
 		DebugDrawEntity(_Level.GetEnemyBullets().GetEnt(i), _Window, sf::Color::Magenta);
+	for (int i = 0; i < _Level.GetSFX().CountEnts(); i++)
+		DebugDrawEntity(_Level.GetSFX().GetEnt(i), _Window, sf::Color::Yellow);
 };
 
 ///
