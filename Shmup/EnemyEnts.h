@@ -4,6 +4,8 @@
 #include "Entity.h"
 #include "PlayerEnt.h"
 
+#include "Utility.h"
+
 class BombEnt : public Entity
 {
 public:
@@ -44,5 +46,17 @@ private:
 	float _ShootDelay = 1.f;
 };
 
+class SwarmEnt : public Entity
+{
+public:
+
+	SwarmEnt(Level* lvl);
+
+	void Update(float dt);
+
+private:
+
+	float _Timer = 0.f;
+};
 
 #endif

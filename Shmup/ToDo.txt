@@ -1,4 +1,7 @@
 Implement enemy behaviour
+Add explosions
+Add death animations
+Add switching animations
 Add doubleshot powerup
 Add laser powerup
 Add powerup time remaining GUI

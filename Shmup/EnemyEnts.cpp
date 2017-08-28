@@ -73,4 +73,21 @@ void SpreaderEnt::Update(float dt)
 
 	Entity::Update(dt);
 	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
-}
+};
+
+
+//	Swarm Ent
+
+SwarmEnt::SwarmEnt(Level* lvl) : Entity(lvl)
+{
+	
+};
+
+void SwarmEnt::Update(float dt)
+{
+	_Timer += dt;
+	GetPresence().SetXVel(cos(_Timer)*50.f);
+	
+	Entity::Update(dt);
+	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
+};

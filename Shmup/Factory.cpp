@@ -47,7 +47,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetStats().SetHP(2);
 		break;
 	case Types::SwarmEnemy:
-		ent = new Entity(_Level);
+		ent = new SwarmEnt(_Level);
 		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("SwarmEnemy")), _ImgMan->GetAnimation("SwarmEnemy_Idle")));
 		ent->GetPresence().SetYVel(150.f);
 		break;
