@@ -26,8 +26,8 @@ public:
 	void SetAlive(bool b);
 	bool GetAlive();
 
-	virtual void Update(float dt);
-	virtual void Draw(sf::RenderWindow* rw);
+	virtual void Update(float dt) = 0;
+	virtual void Draw(sf::RenderWindow* rw) = 0;
 
 	void SetLevel(Level* lvl);
 	Level* GetLevel();
@@ -42,6 +42,19 @@ private:
 	Graphic _Graphic;
 	
 	Level* _Level;
+};
+
+class BasicEnt : public Entity
+{
+public:
+
+	BasicEnt(Level* lvl);
+
+	void Update(float dt);
+	void Draw(sf::RenderWindow* rw);
+
+private:
+
 };
 
 AABB GenBoundBox(Entity* ent);

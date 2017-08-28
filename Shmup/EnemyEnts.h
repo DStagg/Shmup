@@ -6,7 +6,7 @@
 
 #include "Utility.h"
 
-class BombEnt : public Entity
+class BombEnt : public BasicEnt
 {
 public:
 
@@ -18,7 +18,7 @@ private:
 
 };
 
-class DroneEnt : public Entity
+class DroneEnt : public BasicEnt
 {
 public:
 
@@ -32,7 +32,7 @@ private:
 	float _ShootDelay = 1.f;
 };
 
-class SpreaderEnt : public Entity
+class SpreaderEnt : public BasicEnt
 {
 public:
 
@@ -46,7 +46,7 @@ private:
 	float _ShootDelay = 1.f;
 };
 
-class SwarmEnt : public Entity
+class SwarmEnt : public BasicEnt
 {
 public:
 
@@ -59,7 +59,7 @@ private:
 	float _Timer = 0.f;
 };
 
-class TankEnt : public Entity
+class TankEnt : public BasicEnt
 {
 public:
 

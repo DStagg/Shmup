@@ -28,7 +28,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetGraphic().Swap("Idle");
 		break;
 	case Types::PlayerBullet:
-		ent = new Entity(_Level);
+		ent = new BasicEnt(_Level);
 		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("PBullet")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("PBullet_Idle"));
 		ent->GetGraphic().Swap("Idle");
@@ -73,7 +73,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetStats().SetHP(3);
 		break;
 	case Types::EnemyBullet:
-		ent = new Entity(_Level);
+		ent = new BasicEnt(_Level);
 		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("EBullet")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("EBullet_Idle"));
 		ent->GetGraphic().Swap("Idle");
@@ -81,7 +81,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetSize().SetSize(16.f, 16.f);
 		break;
 	default:
-		ent = new Entity(_Level);
+		ent = new BasicEnt(_Level);
 		ent->GetSize().SetSize(25.f, 25.f);
 		break;
 	}

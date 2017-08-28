@@ -39,17 +39,6 @@ bool Entity::GetAlive()
 	return _Alive;
 };
 
-void Entity::Update(float dt)
-{
-	
-};
-
-void Entity::Draw(sf::RenderWindow* rw)
-{
-
-};
-
-
 void Entity::SetLevel(Level* lvl)
 {
 	_Level = lvl;
@@ -60,6 +49,29 @@ Level* Entity::GetLevel()
 };
 
 /////
+
+
+//	BasicEnt	//
+
+BasicEnt::BasicEnt(Level* lvl) : Entity(lvl)
+{
+
+};
+
+void BasicEnt::Update(float dt)
+{
+	GetPresence().UpdatePosition(dt);
+	GetGraphic().Play(dt);
+	GetSize().SetSize((float)GetGraphic().GetCurrentFrame()._Width, (float)GetGraphic().GetCurrentFrame()._Height);
+};
+
+void BasicEnt::Draw(sf::RenderWindow* rw)
+{
+	GetGraphic().GetSprPntr()->setPosition(GetPresence().GetX(), GetPresence().GetY());
+	rw->draw(*GetGraphic().GetSprPntr());
+};
+
+///
 
 AABB GenBoundBox(Entity* ent)
 {

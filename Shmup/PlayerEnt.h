@@ -10,6 +10,7 @@ public:
 	PlayerEnt(Level* lvl , sf::RenderWindow* rw);
 
 	void Update(float dt);
+	void Draw(sf::RenderWindow* rw);
 
 private:
 

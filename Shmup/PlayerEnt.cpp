@@ -37,6 +37,13 @@ void PlayerEnt::Update(float dt)
 		GetGraphic().Swap("Death");
 
 	GetPresence().UpdatePosition(dt);
+	GetGraphic().Play(dt);
 	GetSize().SetSize((float)GetGraphic().GetCurrentFrame()._Width, (float)GetGraphic().GetCurrentFrame()._Height);
 
+};
+
+void PlayerEnt::Draw(sf::RenderWindow* rw)
+{
+	GetGraphic().GetSprPntr()->setPosition(GetPresence().GetX(), GetPresence().GetY());
+	rw->draw(*GetGraphic().GetSprPntr());
 };

@@ -3,7 +3,7 @@
 
 //	Bomb		//
 
-BombEnt::BombEnt(Level* lvl) : Entity(lvl)
+BombEnt::BombEnt(Level* lvl) : BasicEnt(lvl)
 {
 	
 };
@@ -17,14 +17,14 @@ void BombEnt::Update(float dt)
 		SetAlive(false);
 	}
 
-	GetPresence().UpdatePosition(dt);
-	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
+	BasicEnt::Update(dt);
 };
+
 
 
 //	Drone		//
 
-DroneEnt::DroneEnt(Level* lvl) : Entity(lvl)
+DroneEnt::DroneEnt(Level* lvl) : BasicEnt(lvl)
 {
 	_ShootTimer = 0.f;
 };
@@ -40,14 +40,13 @@ void DroneEnt::Update(float dt)
 		GetLevel()->GetEnemyBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::EnemyBullet, GetPresence().GetX() + (GetSize().GetWidth() / 2.f), GetPresence().GetY() + GetSize().GetHeight()));
 	}
 
-	GetPresence().UpdatePosition(dt);
-	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
+	BasicEnt::Update(dt);
 };
 
 
 //	Spreader	//
 
-SpreaderEnt::SpreaderEnt(Level* lvl) : Entity(lvl)
+SpreaderEnt::SpreaderEnt(Level* lvl) : BasicEnt(lvl)
 {
 	_ShootTimer = 0.f;
 };
@@ -71,14 +70,13 @@ void SpreaderEnt::Update(float dt)
 		GetLevel()->GetEnemyBullets().AddEnt(b3);
 	}
 
-	GetPresence().UpdatePosition(dt);
-	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
+	BasicEnt::Update(dt);
 };
 
 
 //	Swarm Ent
 
-SwarmEnt::SwarmEnt(Level* lvl) : Entity(lvl)
+SwarmEnt::SwarmEnt(Level* lvl) : BasicEnt(lvl)
 {
 	
 };
@@ -88,14 +86,14 @@ void SwarmEnt::Update(float dt)
 	_Timer += dt;
 	GetPresence().SetXVel(cos(_Timer)*50.f);
 	
-	GetPresence().UpdatePosition(dt);
-	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
+	BasicEnt::Update(dt);
 };
+
 
 
 //	Tank Ent
 
-TankEnt::TankEnt(Level* lvl) : Entity(lvl)
+TankEnt::TankEnt(Level* lvl) : BasicEnt(lvl)
 {
 
 };
@@ -112,6 +110,8 @@ void TankEnt::Update(float dt)
 		GetLevel()->GetEnemyBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::EnemyBullet, GetPresence().GetX() + GetSize().GetWidth(), GetPresence().GetY() + GetSize().GetHeight()));
 	}
 
-	GetPresence().UpdatePosition(dt);
-	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
+	BasicEnt::Update(dt);
 };
+
+
+
