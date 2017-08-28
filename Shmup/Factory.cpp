@@ -52,7 +52,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetPresence().SetYVel(150.f);
 		break;
 	case Types::TankEnemy:
-		ent = new Entity(_Level);
+		ent = new TankEnt(_Level);
 		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("TankEnemy")), _ImgMan->GetAnimation("TankEnemy_Idle")));
 		ent->GetPresence().SetYVel(75.f);
 		ent->GetStats().SetHP(3);

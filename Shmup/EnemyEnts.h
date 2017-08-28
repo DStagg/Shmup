@@ -59,4 +59,18 @@ private:
 	float _Timer = 0.f;
 };
 
+class TankEnt : public Entity
+{
+public:
+
+	TankEnt(Level* lvl);
+
+	void Update(float dt);
+
+private:
+
+	float _ShootTimer = 0.f;
+	float _ShootDelay = 1.5f;
+};
+
 #endif

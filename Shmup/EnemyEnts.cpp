@@ -91,3 +91,27 @@ void SwarmEnt::Update(float dt)
 	Entity::Update(dt);
 	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
 };
+
+
+//	Tank Ent
+
+TankEnt::TankEnt(Level* lvl) : Entity(lvl)
+{
+
+};
+
+void TankEnt::Update(float dt)
+{
+	_ShootTimer += dt;
+
+	if (_ShootTimer >= _ShootDelay)
+	{
+		_ShootTimer = 0.f;
+
+		GetLevel()->GetEnemyBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::EnemyBullet, GetPresence().GetX(), GetPresence().GetY() + GetSize().GetHeight()));
+		GetLevel()->GetEnemyBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::EnemyBullet, GetPresence().GetX() + GetSize().GetWidth(), GetPresence().GetY() + GetSize().GetHeight()));
+	}
+
+	Entity::Update(dt);
+	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
+};
