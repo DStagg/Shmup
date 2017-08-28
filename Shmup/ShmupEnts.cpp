@@ -7,6 +7,7 @@ PlayerEnt::PlayerEnt()
 
 void PlayerEnt::Update(float dt)
 {
+	/*
 	SetX(GetX() + (GetXVel()*dt));
 	SetY(GetY() + (GetYVel()*dt));
 
@@ -14,5 +15,5 @@ void PlayerEnt::Update(float dt)
 		SetWidth(GetIcon()->GetWidth());
 	if ( GetIcon()->GetHeight() != 0)
 		SetHeight(GetIcon()->GetHeight());
-
+	*/
 };

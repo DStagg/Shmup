@@ -15,7 +15,7 @@ SpriteIcon::SpriteIcon(Entity* ent, sf::Sprite spr) : Icon(ent)
 
 void SpriteIcon::Update(float dt)
 {
-	_Sprite.setPosition(_Entity->GetX(), _Entity->GetY());
+	_Sprite.setPosition(_Entity->GetPresence().GetX(), _Entity->GetPresence().GetY());
 };
 
 void SpriteIcon::Draw(sf::RenderWindow* rw)
@@ -43,7 +43,7 @@ AnimIcon::AnimIcon(Entity* ent, sf::Sprite spr, Animation anim) : Icon(ent)
 void AnimIcon::Update(float dt)
 {
 	_Animation.Play(dt);
-	_Sprite.setPosition(_Entity->GetX(), _Entity->GetY());
+	_Sprite.setPosition(_Entity->GetPresence().GetX(), _Entity->GetPresence().GetY());
 	_Sprite.setTextureRect(AnimIntRect(_Animation));
 
 };
@@ -55,12 +55,12 @@ void AnimIcon::Draw(sf::RenderWindow* rw)
 
 float AnimIcon::GetWidth()
 {
-	return _Animation.GetCurrFrame()._Width;
+	return (float)_Animation.GetCurrFrame()._Width;
 };
 
 float AnimIcon::GetHeight()
 {
-	return _Animation.GetCurrFrame()._Height;
+	return (float)_Animation.GetCurrFrame()._Height;
 };
 
 /////
@@ -75,8 +75,8 @@ RectIcon::RectIcon(Entity* ent, sf::Color col) : Icon(ent)
 
 void RectIcon::Update(float dt)
 {
-	_Rectangle.setPosition(_Entity->GetX(), _Entity->GetY());
-	_Rectangle.setSize(sf::Vector2f(_Entity->GetWidth(), _Entity->GetHeight()));
+	_Rectangle.setPosition(_Entity->GetPresence().GetX(), _Entity->GetPresence().GetY());
+	_Rectangle.setSize(sf::Vector2f(_Entity->GetSize().GetWidth(), _Entity->GetSize().GetHeight()));
 };
 
 void RectIcon::Draw(sf::RenderWindow* rw)

@@ -16,40 +16,10 @@ void ShootScene::Begin()
 	_ImgMan.LoadTextureFromFile("Enemy", "Enemy.png");
 	_ImgMan.LoadTextureFromFile("BombEnemy", "BombEnemy.png");
 	
-	AnimationFrame f(0, 0, 16, 16, 0.2f);
-	Animation anim;
-	anim._Frames.push_back(f);
-	AnimationFrame f2(16, 0, 16, 16, 0.2f);
-	anim._Frames.push_back(f2);
-	AnimationFrame f3(32, 0, 16, 16, 0.2f);
-	anim._Frames.push_back(f3);
-	AnimationFrame f4(48, 0, 16, 16, 0.2f);
-	anim._Frames.push_back(f4);
-	_ImgMan.AddAnimation("PBullet_Idle", anim);
+	PopulateAnimations(&_ImgMan);
 
-	AnimationFrame p1(0, 0, 48, 27, 0.2f);
-	AnimationFrame p2(48, 0, 48, 27, 0.2f);
-	AnimationFrame p3(96, 0, 48, 27, 0.2f);
-	Animation panim;
-	panim._Frames.push_back(p1);
-	panim._Frames.push_back(p2);
-	panim._Frames.push_back(p3);
-	_ImgMan.AddAnimation("Player_Idle", panim);
-
-	AnimationFrame e1(0, 0, 32, 32, 0.3f);
-	AnimationFrame e2(32, 0, 32, 32, 0.3f);
-	AnimationFrame e3(64, 0, 32, 32, 0.3f);
-	Animation eanim;
-	eanim._Frames.push_back(e1);
-	eanim._Frames.push_back(e2);
-	eanim._Frames.push_back(e3);
-	eanim._Frames.push_back(e3);
-	eanim._Frames.push_back(e2);
-	eanim._Frames.push_back(e1);
-	_ImgMan.AddAnimation("BombEnemy_Idle", eanim);
-
-	_Player.SetSize(64.f, 32.f);
-	_Player.SetPosition((_Window->getSize().x - _Player.GetWidth()) / 2.f, _Window->getSize().y - _Player.GetHeight());
+	_Player.GetSize().SetSize(64.f, 32.f);
+	_Player.GetPresence().SetPosition((_Window->getSize().x - _Player.GetSize().GetWidth()) / 2.f, _Window->getSize().y - _Player.GetSize().GetHeight());
 
 	_Player.SetIcon(new AnimIcon(&_Player, sf::Sprite(*_ImgMan.GetTexturePntr("Player")), _ImgMan.GetAnimation("Player_Idle")));
 	
@@ -89,53 +59,52 @@ void ShootScene::Update(float dt)
 		{
 			_SpawnTimer = 0.f;
 
-			PlayerEnt* ent = new PlayerEnt();
-			//ent->SetIcon(new RectIcon(ent, sf::Color::Red));
+			Entity* ent = new Entity();
 			ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan.GetTexturePntr("BombEnemy")), _ImgMan.GetAnimation("BombEnemy_Idle")));
-			ent->SetVelocity(0.f, 100.f);
-			ent->SetSize(50.f, 50.f);
-			ent->SetPosition((float)Random::Generate(0, (int)(_Window->getSize().x - 50.f)), 0.f - 50.f);
+			ent->GetPresence().SetVelocity(0.f, 100.f);
+			ent->GetSize().SetSize(50.f, 50.f);
+			ent->GetPresence().SetPosition((float)Random::Generate(0, (int)(_Window->getSize().x - 50.f)), 0.f - 50.f);
 			_Enemies.AddEnt(ent);
 
 		}
 
 		//	Control Player
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			_Player.SetYVel(-200.f);
+			_Player.GetPresence().SetYVel(-200.f);
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			_Player.SetYVel(200.f);
+			_Player.GetPresence().SetYVel(200.f);
 		else
-			_Player.SetYVel(0.f);
+			_Player.GetPresence().SetYVel(0.f);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			_Player.SetXVel(-200.f);
+			_Player.GetPresence().SetXVel(-200.f);
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			_Player.SetXVel(200.f);
+			_Player.GetPresence().SetXVel(200.f);
 		else
-			_Player.SetXVel(0.f);
+			_Player.GetPresence().SetXVel(0.f);
 
-		_Player.DoUpdate(dt);
+		_Player.Update(dt);
 
-		if (_Player.GetX() > _Window->getSize().x - _Player.GetWidth())
+		if (_Player.GetPresence().GetX() > _Window->getSize().x - _Player.GetSize().GetWidth())
 		{
-			_Player.SetX(_Window->getSize().x - _Player.GetWidth());
-			_Player.DoUpdate(0.f);
+			_Player.GetPresence().SetX(_Window->getSize().x - _Player.GetSize().GetWidth());
+			_Player.Update(0.f);
 		}
-		else if (_Player.GetX() < 0.f)
+		else if (_Player.GetPresence().GetX() < 0.f)
 		{
-			_Player.SetX(0.f);
-			_Player.DoUpdate(0.f);
+			_Player.GetPresence().SetX(0.f);
+			_Player.Update(0.f);
 		}
 
-		if (_Player.GetY() > _Window->getSize().y - _Player.GetHeight())
+		if (_Player.GetPresence().GetY() > _Window->getSize().y - _Player.GetSize().GetHeight())
 		{
-			_Player.SetY(_Window->getSize().y - _Player.GetHeight());
-			_Player.DoUpdate(0.f);
+			_Player.GetPresence().SetY(_Window->getSize().y - _Player.GetSize().GetHeight());
+			_Player.Update(0.f);
 		}
-		else if (_Player.GetY() < 0.f)
+		else if (_Player.GetPresence().GetY() < 0.f)
 		{
-			_Player.SetY(0.f);
-			_Player.DoUpdate(0.f);
+			_Player.GetPresence().SetY(0.f);
+			_Player.Update(0.f);
 		}
 
 		//	Spawn Bullets
@@ -143,11 +112,11 @@ void ShootScene::Update(float dt)
 		{
 			_ShootTimer = 0.f;
 
-			PlayerEnt* bullet = new PlayerEnt();
+			Entity* bullet = new Entity();
 			bullet->SetIcon(new AnimIcon(bullet, sf::Sprite(*_ImgMan.GetTexturePntr("PBullet")), _ImgMan.GetAnimation("PBullet_Idle")));
-			bullet->SetSize(16.f, 16.f);
-			bullet->SetPosition(_Player.GetX() + ((_Player.GetWidth() - bullet->GetWidth()) / 2.f), _Player.GetY());
-			bullet->SetVelocity(0.f, -200.f);
+			bullet->GetSize().SetSize(16.f, 16.f);
+			bullet->GetPresence().SetPosition(_Player.GetPresence().GetX() + ((_Player.GetSize().GetWidth() - bullet->GetSize().GetWidth()) / 2.f), _Player.GetPresence().GetY());
+			bullet->GetPresence().SetVelocity(0.f, -200.f);
 
 			_Bullets.AddEnt(bullet);
 		}
@@ -155,20 +124,20 @@ void ShootScene::Update(float dt)
 		//	Update Bullets
 		for (int i = 0; i < _Bullets.CountEnts(); i++)
 		{
-			PlayerEnt* ent = (PlayerEnt*)_Bullets.GetEnt(i);
-			ent->DoUpdate(dt);
+			Entity* ent = _Bullets.GetEnt(i);
+			ent->Update(dt);
 
-			if (ent->GetY() <= -ent->GetHeight())
+			if (ent->GetPresence().GetY() <= -ent->GetSize().GetHeight())
 				_Bullets.DelEnt(ent);
 		}
 
 		//	Update Enemies
 		for (int i = 0; i < _Enemies.CountEnts(); i++)
 		{
-			PlayerEnt* ent = (PlayerEnt*)_Enemies.GetEnt(i);
-			ent->DoUpdate(dt);
+			Entity* ent = _Enemies.GetEnt(i);
+			ent->Update(dt);
 			
-			if (ent->GetY() > _Window->getSize().y)
+			if (ent->GetPresence().GetY() > _Window->getSize().y)
 				_Enemies.DelEnt(ent);
 		}
 
@@ -202,14 +171,20 @@ void ShootScene::Update(float dt)
 };
 void ShootScene::DrawScreen()
 {
-	_Player.DoDraw(_Window);
+	_Player.Draw(_Window);
 
 	for (int i = 0; i < _Bullets.CountEnts(); i++)
-		_Bullets.GetEnt(i)->DoDraw(_Window);
+		_Bullets.GetEnt(i)->Draw(_Window);
 
 	for (int i = 0; i < _Enemies.CountEnts(); i++)
-		_Enemies.GetEnt(i)->DoDraw(_Window);
+		_Enemies.GetEnt(i)->Draw(_Window);
 
+
+	DebugDrawEntity(&_Player, _Window, sf::Color::Blue);
+	for (int i = 0; i < _Bullets.CountEnts(); i++)
+		DebugDrawEntity(_Bullets.GetEnt(i), _Window, sf::Color::Cyan);
+	for (int i = 0; i < _Enemies.CountEnts(); i++)
+		DebugDrawEntity(_Enemies.GetEnt(i), _Window, sf::Color::Red);
 };
 
 ///
@@ -217,8 +192,8 @@ void ShootScene::DrawScreen()
 void DebugDrawEntity(Entity* ent, sf::RenderWindow* win, sf::Color col)
 {
 	sf::RectangleShape rect;
-	rect.setPosition(ent->GetX(), ent->GetY());
-	rect.setSize(sf::Vector2f(ent->GetWidth(), ent->GetHeight()));
+	rect.setPosition(ent->GetPresence().GetX(), ent->GetPresence().GetY());
+	rect.setSize(sf::Vector2f(ent->GetSize().GetWidth(), ent->GetSize().GetHeight()));
 	rect.setOutlineThickness(1.f);
 	rect.setOutlineColor(col);
 	rect.setFillColor(sf::Color(0, 0, 0, 0));

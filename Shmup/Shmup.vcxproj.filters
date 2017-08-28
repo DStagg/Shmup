@@ -54,6 +54,15 @@
     <ClCompile Include="ShmupEnts.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="PopAnim.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponents.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
@@ -90,6 +99,15 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="ShmupEnts.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="PopAnim.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponents.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
       <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>

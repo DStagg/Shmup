@@ -8,6 +8,7 @@
 #include "LoseScene.h"
 #include "ImageManager.h"
 #include "ShmupEnts.h"
+#include "PopAnim.h"
 
 class ShootScene : public Scene
 {
@@ -25,7 +26,7 @@ public:
 
 private:
 
-	PlayerEnt _Player;
+	Entity _Player;
 	EntList _Bullets;
 	EntList _Enemies;
 	

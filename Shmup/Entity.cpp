@@ -2,12 +2,6 @@
 
 Entity::Entity()
 {
-	SetX(0.f);
-	SetY(0.f);
-	SetWidth(0.f);
-	SetHeight(0.f);
-	SetXVel(0.f);
-	SetYVel(0.f);
 	SetAlive(true);
 }
 Entity::~Entity()
@@ -15,71 +9,14 @@ Entity::~Entity()
 
 };
 
-void Entity::SetX(float x)
+Presence& Entity::GetPresence()
 {
-	_X = x;
-};
-void Entity::SetY(float y)
-{
-	_Y = y;
-};
-void Entity::SetPosition(float x, float y)
-{
-	SetX(x);
-	SetY(y);
+	return _Presence;
 };
 
-void Entity::SetWidth(float w)
+Size& Entity::GetSize()
 {
-	_Width = w;
-};
-void Entity::SetHeight(float h)
-{
-	_Height = h;
-};
-void Entity::SetSize(float w, float h)
-{
-	SetWidth(w);
-	SetHeight(h);
-};
-
-void Entity::SetXVel(float xv)
-{
-	_XVel = xv;
-};
-void Entity::SetYVel(float yv)
-{
-	_YVel = yv;
-};
-void Entity::SetVelocity(float xv, float yv)
-{
-	SetXVel(xv);
-	SetYVel(yv);
-};
-
-float Entity::GetX()
-{
-	return _X;
-};
-float Entity::GetY()
-{
-	return _Y;
-};
-float Entity::GetWidth()
-{
-	return _Width;
-};
-float Entity::GetHeight()
-{
-	return _Height;
-};
-float Entity::GetXVel()
-{
-	return _XVel;
-};
-float Entity::GetYVel()
-{
-	return _YVel;
+	return _Size;
 };
 
 void Entity::SetAlive(bool b)
@@ -91,14 +28,17 @@ bool Entity::GetAlive()
 	return _Alive;
 };
 
-void Entity::DoUpdate(float dt)
+void Entity::Update(float dt)
 {
-	Update(dt);
+	GetPresence().UpdatePosition(dt);
 	if (_Icon != 0)
+	{
 		_Icon->Update(dt);
+		GetSize().SetSize(_Icon->GetWidth(), _Icon->GetHeight());
+	}	
 };
 
-void Entity::DoDraw(sf::RenderWindow* rw)
+void Entity::Draw(sf::RenderWindow* rw)
 {
 	if (_Icon != 0)
 		_Icon->Draw(rw);
@@ -117,7 +57,7 @@ Icon* Entity::GetIcon()
 
 AABB GenBoundBox(Entity* ent)
 {
-	return AABB(ent->GetX(), ent->GetY(), ent->GetWidth(), ent->GetHeight());
+	return AABB(ent->GetPresence().GetX(), ent->GetPresence().GetY(), ent->GetSize().GetWidth(), ent->GetSize().GetHeight());
 };
 
 /////
@@ -183,49 +123,4 @@ Entity* EntList::GetEnt(int i)
 		i = CountEnts() - 1;
 
 	return _Entities[i];
-};
-
-
-/////
-
-AnimEnt::AnimEnt(std::string textag)
-{
-	_TexTag = textag;
-};
-AnimEnt::~AnimEnt()
-{
-
-};
-
-void AnimEnt::SetAnim(Animation a)
-{
-	_Animation = a;
-};
-Animation AnimEnt::GetAnim()
-{
-	return _Animation;
-};
-Animation* AnimEnt::GetAnimPntr()
-{
-	return &_Animation;
-};
-
-void AnimEnt::SetTexTag(std::string tag)
-{
-	_TexTag = tag;
-};
-std::string AnimEnt::GetTexTag()
-{
-	return _TexTag;
-};
-
-void AnimEnt::Update(float dt)
-{
-	_Animation.Play(dt);
-
-	SetX(GetX() + (GetXVel()*dt));
-	SetY(GetY() + (GetYVel()*dt));
-
-	SetWidth(GetAnimPntr()->GetCurrFrame()._Width);
-	SetHeight(GetAnimPntr()->GetCurrFrame()._Height);
 };
