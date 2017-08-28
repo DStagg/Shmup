@@ -30,6 +30,8 @@ void PlayerEnt::Update(float dt)
 
 	if ((GetStats().GetHP() == 1) && (GetGraphic().GetCurrentAnimName() != "Death"))
 		GetGraphic().Swap("Death");
+	else if ((GetStats().GetHP() > 1) && (GetGraphic().GetCurrentAnimName() == "Death"))
+		GetGraphic().Swap("Idle");
 
 	GetPresence().UpdatePosition(dt);
 

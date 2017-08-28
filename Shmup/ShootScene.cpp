@@ -136,6 +136,14 @@ void ShootScene::Update(float dt)
 				}
 			}
 
+		//	Collision: Player <-> Powerups
+		for (int p = 0; p < _Level.GetPowerups().CountEnts(); p++)
+			if (GenBoundBox(_Level.GetPowerups().GetEnt(p)).Intersects(GenBoundBox(_Level.GetPlayer())))
+			{
+				_Level.GetPowerups().GetEnt(p)->SetAlive(false);
+				_Level.GetPlayer()->GetStats().Hurt(-1);
+			}
+
 		//	Collision: Player <-> Enemies
 		for (int e = 0; e < _Level.GetEnemies().CountEnts(); e++)
 			if (GenBoundBox(_Level.GetEnemies().GetEnt(e)).Intersects(GenBoundBox(_Level.GetPlayer())))
@@ -163,6 +171,8 @@ void ShootScene::Update(float dt)
 		_Level.GetEnemyBullets().Cull(100);
 		//	Cull Enemies
 		_Level.GetEnemies().Cull(50);
+		//	Cull Powerups
+		_Level.GetPowerups().Cull(50);
 		//	Cull SFX
 		_Level.GetSFX().Cull(50);
 	}
