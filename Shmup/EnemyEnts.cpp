@@ -43,3 +43,34 @@ void DroneEnt::Update(float dt)
 	Entity::Update(dt);
 	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
 };
+
+
+//	Spreader	//
+
+SpreaderEnt::SpreaderEnt(Level* lvl) : Entity(lvl)
+{
+	_ShootTimer = 0.f;
+};
+
+void SpreaderEnt::Update(float dt)
+{
+	_ShootTimer += dt;
+
+	if (_ShootTimer >= _ShootDelay)
+	{
+		_ShootTimer = 0.f;
+
+		Entity* b1 = GetLevel()->GetFactory().Spawn(EntFactory::EnemyBullet, GetPresence().GetX() + (GetSize().GetWidth() / 2.f), GetPresence().GetY() + GetSize().GetHeight());
+		b1->GetPresence().SetXVel(-50.f);
+		Entity* b2 = GetLevel()->GetFactory().Spawn(EntFactory::EnemyBullet, GetPresence().GetX() + (GetSize().GetWidth() / 2.f), GetPresence().GetY() + GetSize().GetHeight());
+		Entity* b3 = GetLevel()->GetFactory().Spawn(EntFactory::EnemyBullet, GetPresence().GetX() + (GetSize().GetWidth() / 2.f), GetPresence().GetY() + GetSize().GetHeight());
+		b3->GetPresence().SetXVel(50.f);
+
+		GetLevel()->GetEnemyBullets().AddEnt(b1);
+		GetLevel()->GetEnemyBullets().AddEnt(b2);
+		GetLevel()->GetEnemyBullets().AddEnt(b3);
+	}
+
+	Entity::Update(dt);
+	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
+}

@@ -41,7 +41,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetStats().SetHP(2);
 		break;
 	case Types::SpreaderEnemy:
-		ent = new Entity(_Level);
+		ent = new SpreaderEnt(_Level);
 		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("SpreaderEnemy")), _ImgMan->GetAnimation("SpreaderEnemy_Idle")));
 		ent->GetPresence().SetYVel(100.f);
 		ent->GetStats().SetHP(2);

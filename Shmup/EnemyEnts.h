@@ -14,7 +14,6 @@ public:
 
 private:
 
-	//Level* _Level;
 };
 
 class DroneEnt : public Entity
@@ -31,6 +30,19 @@ private:
 	float _ShootDelay = 1.f;
 };
 
+class SpreaderEnt : public Entity
+{
+public:
+
+	SpreaderEnt(Level* lvl);
+
+	void Update(float dt);
+
+private:
+
+	float _ShootTimer = 0.f;
+	float _ShootDelay = 1.f;
+};
 
 
 #endif
