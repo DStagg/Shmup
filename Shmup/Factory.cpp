@@ -88,6 +88,21 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetGraphic().AddAnimation("Explosion", _ImgMan->GetAnimation("Explosion"));
 		ent->GetGraphic().Swap("Explosion");
 		break;
+	case Types::DoublePowerup:
+		ent = new BasicEnt(_Level);
+		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("DoublePowerup")));
+		ent->GetPresence().SetYVel(100.f);
+		break;
+	case Types::HealPowerup:
+		ent = new BasicEnt(_Level);
+		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("HealPowerup")));
+		ent->GetPresence().SetYVel(100.f);
+		break;		
+	case Types::LaserPowerup:
+		ent = new BasicEnt(_Level);
+		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("LaserPowerup")));
+		ent->GetPresence().SetYVel(100.f);
+		break;
 	default:
 		ent = new BasicEnt(_Level);
 		ent->GetSize().SetSize(25.f, 25.f);

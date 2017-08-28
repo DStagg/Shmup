@@ -137,6 +137,8 @@ Animation& Graphic::GetCurrentAnim()
 };
 AnimationFrame Graphic::GetCurrentFrame()
 {
+	if (GetCurrentAnimName() == "Static")
+		return AnimationFrame(0, 0, 0, 0, 0.f);
 	return _Animations[GetCurrentAnimName()].GetCurrFrame();
 };
 

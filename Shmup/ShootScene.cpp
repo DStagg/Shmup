@@ -21,6 +21,9 @@ void ShootScene::Begin()
 	_ImgMan.LoadTextureFromFile("HealthIcon", "HealthIcon.png");
 	_ImgMan.LoadTextureFromFile("EBullet", "EnemyBullet.png");
 	_ImgMan.LoadTextureFromFile("Explosion", "Explosion.png");
+	_ImgMan.LoadTextureFromFile("DoublePowerup", "DoublePowerup.png");
+	_ImgMan.LoadTextureFromFile("LaserPowerup", "LaserPowerup.png");
+	_ImgMan.LoadTextureFromFile("HealPowerup", "HealPowerup.png");
 	
 	PopulateAnimations(&_ImgMan);
 	_Level.GetFactory().Init(&_Level, &_ImgMan, _Window);
@@ -101,6 +104,10 @@ void ShootScene::Update(float dt)
 				_Level.GetEnemyBullets().DelEnt(_Level.GetEnemyBullets().GetEnt(i));
 		}
 
+		//	Update Powerups
+		for (int i = 0; i < _Level.GetPowerups().CountEnts(); i++)
+			_Level.GetPowerups().GetEnt(i)->Update(dt);
+
 		//	Update SFX
 		for (int i = 0; i < _Level.GetSFX().CountEnts(); i++)
 			_Level.GetSFX().GetEnt(i)->Update(dt);
@@ -117,6 +124,14 @@ void ShootScene::Update(float dt)
 					{
 						_Level.GetEnemies().GetEnt(e)->SetAlive(false);
 						_Level.GetSFX().AddEnt(_Level.GetFactory().Spawn(EntFactory::Explosion, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
+
+						int ran = Random::Generate(1, 5);
+						if (ran == 1)
+							_Level.GetPowerups().AddEnt(_Level.GetFactory().Spawn(EntFactory::HealPowerup, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
+						else if (ran == 2)
+							_Level.GetPowerups().AddEnt(_Level.GetFactory().Spawn(EntFactory::DoublePowerup, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
+						else if (ran == 3)
+							_Level.GetPowerups().AddEnt(_Level.GetFactory().Spawn(EntFactory::LaserPowerup, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
 					}
 				}
 			}
@@ -170,6 +185,9 @@ void ShootScene::DrawScreen()
 	for (int i = 0; i < _Level.GetEnemyBullets().CountEnts(); i++)
 		_Level.GetEnemyBullets().GetEnt(i)->Draw(_Window);
 
+	for (int i = 0; i < _Level.GetPowerups().CountEnts(); i++)
+		_Level.GetPowerups().GetEnt(i)->Draw(_Window);
+
 	for (int i = 0; i < _Level.GetSFX().CountEnts(); i++)
 		_Level.GetSFX().GetEnt(i)->Draw(_Window);
 	
@@ -193,6 +211,8 @@ void ShootScene::DrawScreen()
 	for (int i = 0; i < _Level.GetSFX().CountEnts(); i++)
 		DebugDrawEntity(_Level.GetSFX().GetEnt(i), _Window, sf::Color::Yellow);
 		*/
+	for (int i = 0; i < _Level.GetPowerups().CountEnts(); i++)
+		DebugDrawEntity(_Level.GetPowerups().GetEnt(i), _Window, sf::Color::White);
 };
 
 ///

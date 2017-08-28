@@ -16,6 +16,7 @@ public:
 	EntList& GetPlayerBullets();
 	EntList& GetEnemyBullets();
 	EntList& GetSFX();
+	EntList& GetPowerups();
 	
 	Entity* GetPlayer();
 	void SetPlayer(Entity* p);
@@ -28,6 +29,7 @@ private:
 	EntList _PlayerBullets;
 	EntList _EnemyBullets;
 	EntList _SFX;
+	EntList _Powerups;
 	Entity* _Player;
 
 	EntFactory _Factory;

@@ -27,6 +27,11 @@ public:
 		SwarmEnemy,
 		TankEnemy,
 		EnemyBullet,
+		Boss,
+		DoublePowerup,
+		LaserPowerup,
+		BombPowerup,
+		HealPowerup,
 		Explosion
 	};
 

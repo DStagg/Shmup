@@ -34,6 +34,10 @@ EntList& Level::GetSFX()
 {
 	return _SFX;
 };
+EntList& Level::GetPowerups()
+{
+	return _Powerups;
+};
 Entity* Level::GetPlayer()
 {
 	return _Player;
