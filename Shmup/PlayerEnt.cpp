@@ -1,4 +1,5 @@
 #include "PlayerEnt.h"
+#include "Level.h"
 
 PlayerEnt::PlayerEnt(Level* lvl , sf::RenderWindow* rw) : Entity(lvl)
 {
@@ -22,14 +23,6 @@ void PlayerEnt::Update(float dt)
 	else
 		GetPresence().SetXVel(0.f);
 
-	if (GetPresence().GetX() < 0.f)
-		GetPresence().SetX(0.f);
-	else if (GetPresence().GetX() > _Window->getSize().x - GetSize().GetWidth())
-		GetPresence().SetX(_Window->getSize().x - GetSize().GetWidth());
-
-	if (GetPresence().GetY() < 0.f)
-		GetPresence().SetY(0.f);
-
 	if (GetStats().GetHP() <= 0)
 		SetAlive(false);
 
@@ -37,6 +30,17 @@ void PlayerEnt::Update(float dt)
 		GetGraphic().Swap("Death");
 
 	GetPresence().UpdatePosition(dt);
+
+	if (GetPresence().GetX() < 0.f)
+		GetPresence().SetX(0.f);
+	else if (GetPresence().GetX() > GetLevel()->GetSize().GetWidth() - GetSize().GetWidth())
+		GetPresence().SetX(GetLevel()->GetSize().GetWidth() - GetSize().GetWidth());
+
+	if (GetPresence().GetY() < 0.f)
+		GetPresence().SetY(0.f);
+	if (GetPresence().GetY() > GetLevel()->GetSize().GetHeight() - GetSize().GetHeight())
+		GetPresence().SetY(GetLevel()->GetSize().GetHeight() - GetSize().GetHeight());
+
 	GetGraphic().Play(dt);
 	GetSize().SetSize((float)GetGraphic().GetCurrentFrame()._Width, (float)GetGraphic().GetCurrentFrame()._Height);
 
