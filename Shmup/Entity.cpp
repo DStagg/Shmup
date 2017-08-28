@@ -7,7 +7,8 @@ Entity::Entity(Level* lvl)
 }
 Entity::~Entity()
 {
-
+	if (GetIcon() != 0)
+		delete GetIcon();
 };
 
 Presence& Entity::GetPresence()

@@ -37,6 +37,21 @@ void PopulateAnimations(ImageManager* img)
 	eanim._Frames.push_back(e1);
 	img->AddAnimation("BombEnemy_Idle", eanim);
 
+	AnimationFrame ba1(0, 32, 32, 32, 0.1f);
+	AnimationFrame ba2(32, 32, 32, 32, 0.1f);
+	AnimationFrame ba3(64, 32, 32, 32, 0.1f);
+	Animation baanim;
+	baanim._Frames.push_back(ba1);
+	baanim._Frames.push_back(ba2);
+	baanim._Frames.push_back(ba3);
+	img->AddAnimation("BombEnemy_Armed", baanim);
+
+	AnimationFrame bd(96, 0, 32, 32, 0.05f);
+	Animation bdanim;
+	bdanim._Frames.push_back(bd);
+	bdanim._Frames.push_back(ba1);
+	img->AddAnimation("BomdEnemy_Death", bdanim);
+
 	//	Drone Enemy 3 x 45px by 31px
 	AnimationFrame d1(0, 0, 45, 31, 0.3f);
 	AnimationFrame d2(45, 0, 45, 31, 0.3f);
