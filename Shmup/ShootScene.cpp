@@ -116,6 +116,28 @@ void ShootScene::Update(float dt)
 
 		_Player.DoUpdate(dt);
 
+		if (_Player.GetX() > _Window->getSize().x - _Player.GetWidth())
+		{
+			_Player.SetX(_Window->getSize().x - _Player.GetWidth());
+			_Player.DoUpdate(0.f);
+		}
+		else if (_Player.GetX() < 0.f)
+		{
+			_Player.SetX(0.f);
+			_Player.DoUpdate(0.f);
+		}
+
+		if (_Player.GetY() > _Window->getSize().y - _Player.GetHeight())
+		{
+			_Player.SetY(_Window->getSize().y - _Player.GetHeight());
+			_Player.DoUpdate(0.f);
+		}
+		else if (_Player.GetY() < 0.f)
+		{
+			_Player.SetY(0.f);
+			_Player.DoUpdate(0.f);
+		}
+
 		//	Spawn Bullets
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
 		{
