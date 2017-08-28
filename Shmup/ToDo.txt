@@ -1,4 +1,4 @@
-Reimplement enemy types from YCL
+Implement enemy behaviour
 Add enemy shooting
 Add enemy bullet <-> player interactions
 Add doubleshot powerup

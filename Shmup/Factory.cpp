@@ -31,7 +31,30 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 	case Types::BombEnemy:
 		ent = new Entity();
 		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("BombEnemy")), _ImgMan->GetAnimation("BombEnemy_Idle")));
+		ent->GetPresence().SetYVel(125.f);
+		break;
+	case Types::DroneEnemy:
+		ent = new Entity();
+		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("DroneEnemy")), _ImgMan->GetAnimation("DroneEnemy_Idle")));
 		ent->GetPresence().SetYVel(100.f);
+		ent->GetStats().SetHP(2);
+		break;
+	case Types::SpreaderEnemy:
+		ent = new Entity();
+		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("SpreaderEnemy")), _ImgMan->GetAnimation("SpreaderEnemy_Idle")));
+		ent->GetPresence().SetYVel(100.f);
+		ent->GetStats().SetHP(2);
+		break;
+	case Types::SwarmEnemy:
+		ent = new Entity();
+		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("SwarmEnemy")), _ImgMan->GetAnimation("SwarmEnemy_Idle")));
+		ent->GetPresence().SetYVel(150.f);
+		break;
+	case Types::TankEnemy:
+		ent = new Entity();
+		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("TankEnemy")), _ImgMan->GetAnimation("TankEnemy_Idle")));
+		ent->GetPresence().SetYVel(75.f);
+		ent->GetStats().SetHP(3);
 		break;
 	default:
 		ent = new Entity();

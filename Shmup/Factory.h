@@ -18,7 +18,11 @@ public:
 		Default,
 		Player,
 		PlayerBullet,
-		BombEnemy
+		BombEnemy,
+		DroneEnemy,
+		SpreaderEnemy,
+		SwarmEnemy,
+		TankEnemy
 	};
 
 	Entity* Spawn(int type, float x, float y);

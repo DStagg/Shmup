@@ -15,6 +15,10 @@ void ShootScene::Begin()
 	_ImgMan.LoadTextureFromFile("PBullet", "PlayerBullet.png");
 	_ImgMan.LoadTextureFromFile("Enemy", "Enemy.png");
 	_ImgMan.LoadTextureFromFile("BombEnemy", "BombEnemy.png");
+	_ImgMan.LoadTextureFromFile("DroneEnemy", "DroneEnemy.png");
+	_ImgMan.LoadTextureFromFile("SpreaderEnemy", "SpreaderEnemy.png");
+	_ImgMan.LoadTextureFromFile("SwarmEnemy", "SwarmEnemy.png");
+	_ImgMan.LoadTextureFromFile("TankEnemy", "TankEnemy.png");
 	_ImgMan.LoadTextureFromFile("HealthIcon", "HealthIcon.png");
 	
 	PopulateAnimations(&_ImgMan);
@@ -51,6 +55,14 @@ void ShootScene::Update(float dt)
 			SetRunning(false);
 		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 			SetRunning(false);
+		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Return))
+		{
+			_Enemies.AddEnt(_Factory.Spawn(EntFactory::BombEnemy, 100.f, 100.f));
+			_Enemies.AddEnt(_Factory.Spawn(EntFactory::DroneEnemy, 200.f, 100.f));
+			_Enemies.AddEnt(_Factory.Spawn(EntFactory::SwarmEnemy, 300.f, 100.f));
+			_Enemies.AddEnt(_Factory.Spawn(EntFactory::SpreaderEnemy, 400.f, 100.f));
+			_Enemies.AddEnt(_Factory.Spawn(EntFactory::TankEnemy, 500.f, 100.f));
+		}
 	}
 
 	if (_Player->GetAlive())
@@ -96,7 +108,9 @@ void ShootScene::Update(float dt)
 				if (GenBoundBox(_Bullets.GetEnt(b)).Intersects(GenBoundBox(_Enemies.GetEnt(e))))
 				{
 					_Bullets.GetEnt(b)->SetAlive(false);
-					_Enemies.GetEnt(e)->SetAlive(false);
+					_Enemies.GetEnt(e)->GetStats().SetHP(_Enemies.GetEnt(e)->GetStats().GetHP() - 1);
+					if ( _Enemies.GetEnt(e)->GetStats().GetHP() <= 0 )
+						_Enemies.GetEnt(e)->SetAlive(false);
 				}
 			}
 
