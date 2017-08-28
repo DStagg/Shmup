@@ -30,7 +30,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetPresence().SetYVel(-300.f);
 		break;
 	case Types::BombEnemy:
-		ent = new Entity(_Level);
+		ent = new BombEnt(_Level);
 		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("BombEnemy")), _ImgMan->GetAnimation("BombEnemy_Idle")));
 		ent->GetPresence().SetYVel(125.f);
 		break;

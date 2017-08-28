@@ -30,5 +30,8 @@ void PlayerEnt::Update(float dt)
 	if (GetPresence().GetY() < 0.f)
 		GetPresence().SetY(0.f);
 
+	if (GetStats().GetHP() <= 0)
+		SetAlive(false);
+
 	Entity::Update(dt);
 };
