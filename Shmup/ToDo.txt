@@ -1,6 +1,5 @@
-Add explosions
-Add death animations
-Add switching animations
+Add random level spawner (all enemy types, specific waves)
+Add load/save level from/to human-readable file.
 Add doubleshot powerup
 Add laser powerup
 Add powerup time remaining GUI

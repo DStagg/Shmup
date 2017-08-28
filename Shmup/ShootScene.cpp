@@ -191,6 +191,7 @@ void ShootScene::DrawScreen()
 		_Window->draw(pip);
 	}
 
+	/*
 	DebugDrawEntity(_Level.GetPlayer(), _Window, sf::Color::Blue);
 	for (int i = 0; i < _Level.GetPlayerBullets().CountEnts(); i++)
 		DebugDrawEntity(_Level.GetPlayerBullets().GetEnt(i), _Window, sf::Color::Cyan);
@@ -200,6 +201,7 @@ void ShootScene::DrawScreen()
 		DebugDrawEntity(_Level.GetEnemyBullets().GetEnt(i), _Window, sf::Color::Magenta);
 	for (int i = 0; i < _Level.GetSFX().CountEnts(); i++)
 		DebugDrawEntity(_Level.GetSFX().GetEnt(i), _Window, sf::Color::Yellow);
+		*/
 };
 
 ///
