@@ -20,6 +20,7 @@ public:
 
 	Presence& GetPresence();
 	Size& GetSize();
+	Graphic& GetGraphic();
 	Stats& GetStats();
 
 	void SetAlive(bool b);
@@ -27,9 +28,6 @@ public:
 
 	virtual void Update(float dt);
 	virtual void Draw(sf::RenderWindow* rw);
-
-	void SetIcon(Icon* icon);
-	Icon* GetIcon();
 
 	void SetLevel(Level* lvl);
 	Level* GetLevel();
@@ -41,7 +39,7 @@ private:
 	Presence _Presence;
 	Size _Size;
 	Stats _Stats;
-	Icon* _Icon;
+	Graphic _Graphic;
 	
 	Level* _Level;
 };

@@ -33,6 +33,10 @@ void PlayerEnt::Update(float dt)
 	if (GetStats().GetHP() <= 0)
 		SetAlive(false);
 
-	Entity::Update(dt);
-	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
+	if ((GetStats().GetHP() == 1) && (GetGraphic().GetCurrentAnimName() != "Death"))
+		GetGraphic().Swap("Death");
+
+	GetPresence().UpdatePosition(dt);
+	GetSize().SetSize((float)GetGraphic().GetCurrentFrame()._Width, (float)GetGraphic().GetCurrentFrame()._Height);
+
 };

@@ -24,6 +24,12 @@ void PopulateAnimations(ImageManager* img)
 	panim._Frames.push_back(p3);
 	img->AddAnimation("Player_Idle", panim);
 
+	AnimationFrame pd1(0, 27, 48, 27, 0.1f);
+	Animation pdanim;
+	pdanim._Frames.push_back(pd1);
+	pdanim._Frames.push_back(p1);
+	img->AddAnimation("Player_Death", pdanim);
+
 	//	Bomb Enemy
 	AnimationFrame e1(0, 0, 32, 32, 0.3f);
 	AnimationFrame e2(32, 0, 32, 32, 0.3f);

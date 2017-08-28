@@ -17,8 +17,8 @@ void BombEnt::Update(float dt)
 		SetAlive(false);
 	}
 
-	Entity::Update(dt);
-	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
+	GetPresence().UpdatePosition(dt);
+	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
 };
 
 
@@ -40,8 +40,8 @@ void DroneEnt::Update(float dt)
 		GetLevel()->GetEnemyBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::EnemyBullet, GetPresence().GetX() + (GetSize().GetWidth() / 2.f), GetPresence().GetY() + GetSize().GetHeight()));
 	}
 
-	Entity::Update(dt);
-	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
+	GetPresence().UpdatePosition(dt);
+	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
 };
 
 
@@ -71,8 +71,8 @@ void SpreaderEnt::Update(float dt)
 		GetLevel()->GetEnemyBullets().AddEnt(b3);
 	}
 
-	Entity::Update(dt);
-	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
+	GetPresence().UpdatePosition(dt);
+	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
 };
 
 
@@ -88,8 +88,8 @@ void SwarmEnt::Update(float dt)
 	_Timer += dt;
 	GetPresence().SetXVel(cos(_Timer)*50.f);
 	
-	Entity::Update(dt);
-	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
+	GetPresence().UpdatePosition(dt);
+	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
 };
 
 
@@ -112,6 +112,6 @@ void TankEnt::Update(float dt)
 		GetLevel()->GetEnemyBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::EnemyBullet, GetPresence().GetX() + GetSize().GetWidth(), GetPresence().GetY() + GetSize().GetHeight()));
 	}
 
-	Entity::Update(dt);
-	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
+	GetPresence().UpdatePosition(dt);
+	GetSize().SetSize(GetGraphic().GetCurrentFrame()._Width, GetGraphic().GetCurrentFrame()._Height);
 };

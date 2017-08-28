@@ -1,6 +1,9 @@
 #ifndef ENTITYCOMPONENTS_H
 #define ENTITYCOMPONENTS_H
 
+#include "SFML\Graphics.hpp"
+#include "ImageManager.h"
+
 class Size
 {
 public:
@@ -46,6 +49,32 @@ private:
 	
 	float _X, _Y;
 	float _XVel, _YVel;
+};
+
+class Graphic
+{
+public:
+
+	Graphic();
+	Graphic(sf::Sprite spr);
+
+	void AddAnimation(std::string tag, Animation anim);
+
+	void Play(float dt);
+	void Swap(std::string tag = "Static");
+
+	std::string GetCurrentAnimName();
+	Animation& GetCurrentAnim();
+	AnimationFrame GetCurrentFrame();
+
+	void SetSprite(sf::Sprite spr);
+	sf::Sprite* GetSprPntr();
+
+private:
+
+	std::string _CurrentAnim = "Static";
+	std::map <std::string, Animation > _Animations;
+	sf::Sprite _Sprite;
 };
 
 class Stats

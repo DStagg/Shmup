@@ -74,6 +74,7 @@ void ShootScene::Update(float dt)
 		}
 
 		_Level.GetPlayer()->Update(dt);
+		_Level.GetPlayer()->GetGraphic().Play(dt);
 
 		//	Spawn Bullets
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
@@ -157,7 +158,9 @@ void ShootScene::DrawScreen()
 {
 	//	Draw Ents	//
 
-	_Level.GetPlayer()->Draw(_Window);
+//	_Level.GetPlayer()->Draw(_Window);
+	_Level.GetPlayer()->GetGraphic().GetSprPntr()->setPosition(_Level.GetPlayer()->GetPresence().GetX(), _Level.GetPlayer()->GetPresence().GetY());
+	_Window->draw(*_Level.GetPlayer()->GetGraphic().GetSprPntr());
 
 	for (int i = 0; i < _Level.GetPlayerBullets().CountEnts(); i++)
 		_Level.GetPlayerBullets().GetEnt(i)->Draw(_Window);

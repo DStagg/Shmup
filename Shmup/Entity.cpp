@@ -7,8 +7,7 @@ Entity::Entity(Level* lvl)
 }
 Entity::~Entity()
 {
-	if (GetIcon() != 0)
-		delete GetIcon();
+
 };
 
 Presence& Entity::GetPresence()
@@ -19,6 +18,11 @@ Presence& Entity::GetPresence()
 Size& Entity::GetSize()
 {
 	return _Size;
+};
+
+Graphic& Entity::GetGraphic()
+{
+	return _Graphic;
 };
 
 Stats& Entity::GetStats()
@@ -37,25 +41,14 @@ bool Entity::GetAlive()
 
 void Entity::Update(float dt)
 {
-	GetPresence().UpdatePosition(dt);
-	if (GetIcon() != 0)
-		GetIcon()->Update(dt);
+	
 };
 
 void Entity::Draw(sf::RenderWindow* rw)
 {
-	if (_Icon != 0)
-		_Icon->Draw(rw);
+
 };
 
-void Entity::SetIcon(Icon* icon)
-{
-	_Icon = icon;
-};
-Icon* Entity::GetIcon()
-{
-	return _Icon;
-};
 
 void Entity::SetLevel(Level* lvl)
 {
