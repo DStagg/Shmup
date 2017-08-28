@@ -7,7 +7,6 @@
 #include "Entity.h"
 #include "LoseScene.h"
 #include "ImageManager.h"
-#include "ShmupEnts.h"
 #include "PopAnim.h"
 #include "Factory.h"
 

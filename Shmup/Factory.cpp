@@ -5,9 +5,10 @@ EntFactory::EntFactory()
 
 };
 
-void EntFactory::Init(ImageManager* img)
+void EntFactory::Init(ImageManager* img, sf::RenderWindow* rw)
 {
 	_ImgMan = img;
+	_Window = rw;
 };
 
 Entity* EntFactory::Spawn(int type, float x, float y)
@@ -17,7 +18,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 	switch (type)
 	{
 	case Types::Player:
-		ent = new Entity();
+		ent = new PlayerEnt(_Window);
 		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("Player")), _ImgMan->GetAnimation("Player_Idle")));
 		break;
 	case Types::PlayerBullet:

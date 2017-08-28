@@ -29,6 +29,7 @@
     <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuList.cpp" />
+    <ClCompile Include="PlayerEnt.cpp" />
     <ClCompile Include="PopAnim.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="LoseScene.h" />
     <ClInclude Include="MenuList.h" />
+    <ClInclude Include="PlayerEnt.h" />
     <ClInclude Include="PopAnim.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Scene.h" />

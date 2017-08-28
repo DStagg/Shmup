@@ -3,13 +3,15 @@
 
 #include "Entity.h"
 
+#include "PlayerEnt.h"
+
 class EntFactory
 {
 public:
 
 	EntFactory();
 
-	void Init(ImageManager* img);
+	void Init(ImageManager* img, sf::RenderWindow* rw);
 
 	enum Types
 	{
@@ -24,6 +26,7 @@ public:
 private:
 
 	ImageManager* _ImgMan;
+	sf::RenderWindow* _Window;
 };
 
 #endif

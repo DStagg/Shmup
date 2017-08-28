@@ -18,13 +18,14 @@ void ShootScene::Begin()
 	
 	PopulateAnimations(&_ImgMan);
 
-	_Factory.Init(&_ImgMan);
+	_Factory.Init(&_ImgMan, _Window);
 
 	_Player = _Factory.Spawn(EntFactory::Player, _Window->getSize().x / 2.f - 50.f, _Window->getSize().y - 50.f);
 	
 };
 void ShootScene::End()
 {
+	delete _Player;
 	_Bullets.Cull(0);
 	_Enemies.Cull(0);
 };
@@ -60,44 +61,7 @@ void ShootScene::Update(float dt)
 			_Enemies.AddEnt(_Factory.Spawn(EntFactory::BombEnemy, (float)Random::Generate(0, (int)(_Window->getSize().x - 50.f)), 0.f - 50.f));
 		}
 
-		//	Control Player
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			_Player->GetPresence().SetYVel(-200.f);
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			_Player->GetPresence().SetYVel(200.f);
-		else
-			_Player->GetPresence().SetYVel(0.f);
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			_Player->GetPresence().SetXVel(-200.f);
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			_Player->GetPresence().SetXVel(200.f);
-		else
-			_Player->GetPresence().SetXVel(0.f);
-
 		_Player->Update(dt);
-
-		if (_Player->GetPresence().GetX() > _Window->getSize().x - _Player->GetSize().GetWidth())
-		{
-			_Player->GetPresence().SetX(_Window->getSize().x - _Player->GetSize().GetWidth());
-			_Player->Update(0.f);
-		}
-		else if (_Player->GetPresence().GetX() < 0.f)
-		{
-			_Player->GetPresence().SetX(0.f);
-			_Player->Update(0.f);
-		}
-
-		if (_Player->GetPresence().GetY() > _Window->getSize().y - _Player->GetSize().GetHeight())
-		{
-			_Player->GetPresence().SetY(_Window->getSize().y - _Player->GetSize().GetHeight());
-			_Player->Update(0.f);
-		}
-		else if (_Player->GetPresence().GetY() < 0.f)
-		{
-			_Player->GetPresence().SetY(0.f);
-			_Player->Update(0.f);
-		}
 
 		//	Spawn Bullets
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
@@ -109,21 +73,19 @@ void ShootScene::Update(float dt)
 		//	Update Bullets
 		for (int i = 0; i < _Bullets.CountEnts(); i++)
 		{
-			Entity* ent = _Bullets.GetEnt(i);
-			ent->Update(dt);
+			_Bullets.GetEnt(i)->Update(dt);
 
-			if (ent->GetPresence().GetY() <= -ent->GetSize().GetHeight())
-				_Bullets.DelEnt(ent);
+			if (_Bullets.GetEnt(i)->GetPresence().GetY() <= -_Bullets.GetEnt(i)->GetSize().GetHeight())
+				_Bullets.DelEnt(_Bullets.GetEnt(i));
 		}
 
 		//	Update Enemies
 		for (int i = 0; i < _Enemies.CountEnts(); i++)
 		{
-			Entity* ent = _Enemies.GetEnt(i);
-			ent->Update(dt);
+			_Enemies.GetEnt(i)->Update(dt);
 			
-			if (ent->GetPresence().GetY() > _Window->getSize().y)
-				_Enemies.DelEnt(ent);
+			if (_Enemies.GetEnt(i)->GetPresence().GetY() > _Window->getSize().y)
+				_Enemies.DelEnt(_Enemies.GetEnt(i));
 		}
 
 		//	Collision: Bullets <-> Enemies

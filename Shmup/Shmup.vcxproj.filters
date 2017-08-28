@@ -1,108 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
+    <Filter Include="Core Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="System">
+    <Filter Include="Project Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Project Files\Entity">
+      <UniqueIdentifier>{40783f7e-7209-4f68-a7f3-d1ac0373e26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project Files\Resources">
+      <UniqueIdentifier>{1dfe4342-6be6-4409-882c-0be570cfe509}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project Files\Scenes">
+      <UniqueIdentifier>{02562356-f8a1-4941-a9e3-e477c59f85f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project Files\Entity\Base Stuff">
+      <UniqueIdentifier>{c4001b3f-e41f-425f-bfd9-5f8d5c5701f5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Grid.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClCompile>
     <ClCompile Include="Random.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClCompile>
     <ClCompile Include="Utility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="LoseScene.cpp">
-      <Filter>System</Filter>
+      <Filter>Core Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ShootScene.cpp">
-      <Filter>System</Filter>
+      <Filter>Project Files</Filter>
     </ClCompile>
     <ClCompile Include="AABB.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClCompile>
     <ClCompile Include="MenuList.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClCompile>
     <ClCompile Include="ImageManager.cpp">
-      <Filter>System</Filter>
+      <Filter>Project Files\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Icon.cpp">
-      <Filter>System</Filter>
+    <ClCompile Include="LoseScene.cpp">
+      <Filter>Project Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="PopAnim.cpp">
-      <Filter>System</Filter>
+      <Filter>Project Files\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootScene.cpp">
+      <Filter>Project Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClCompile>
     <ClCompile Include="EntityComponents.cpp">
-      <Filter>System</Filter>
+      <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClCompile>
     <ClCompile Include="Factory.cpp">
-      <Filter>System</Filter>
+      <Filter>Project Files\Entity\Base Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Icon.cpp">
+      <Filter>Project Files\Entity\Base Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerEnt.cpp">
+      <Filter>Project Files\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClInclude>
     <ClInclude Include="Random.h">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="LoseScene.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="ShootScene.h">
-      <Filter>System</Filter>
+      <Filter>Core Files</Filter>
     </ClInclude>
     <ClInclude Include="AABB.h">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClInclude>
     <ClInclude Include="MenuList.h">
-      <Filter>Source Files</Filter>
+      <Filter>Core Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageManager.h">
-      <Filter>System</Filter>
+      <Filter>Project Files\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Icon.h">
-      <Filter>System</Filter>
+    <ClInclude Include="LoseScene.h">
+      <Filter>Project Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="PopAnim.h">
-      <Filter>System</Filter>
+      <Filter>Project Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootScene.h">
+      <Filter>Project Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Icon.h">
+      <Filter>Project Files\Entity\Base Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClInclude>
     <ClInclude Include="EntityComponents.h">
-      <Filter>System</Filter>
+      <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClInclude>
     <ClInclude Include="Factory.h">
-      <Filter>System</Filter>
+      <Filter>Project Files\Entity\Base Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerEnt.h">
+      <Filter>Project Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
