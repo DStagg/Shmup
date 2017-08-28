@@ -99,6 +99,15 @@ void ShootScene::Update(float dt)
 				_Level.GetEnemies().DelEnt(_Level.GetEnemies().GetEnt(i));
 		}
 
+		//	Update Enemy Bullets
+		for (int i = 0; i < _Level.GetEnemyBullets().CountEnts(); i++)
+		{
+			_Level.GetEnemyBullets().GetEnt(i)->Update(dt);
+
+			if (_Level.GetEnemyBullets().GetEnt(i)->GetPresence().GetY() > _Level.GetSize().GetHeight())
+				_Level.GetEnemyBullets().DelEnt(_Level.GetEnemyBullets().GetEnt(i));
+		}
+
 		//	Collision: Bullets <-> Enemies
 		for (int b = 0; b < _Level.GetPlayerBullets().CountEnts(); b++)
 			for (int e = 0; e < _Level.GetEnemies().CountEnts(); e++)

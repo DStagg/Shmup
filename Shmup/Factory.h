@@ -6,7 +6,7 @@
 #include "PlayerEnt.h"
 #include "EnemyEnts.h"
 
-#include "Level.h"
+class Level;
 
 class EntFactory
 {
@@ -25,7 +25,8 @@ public:
 		DroneEnemy,
 		SpreaderEnemy,
 		SwarmEnemy,
-		TankEnemy
+		TankEnemy,
+		EnemyBullet
 	};
 
 	Entity* Spawn(int type, float x, float y);

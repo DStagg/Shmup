@@ -37,3 +37,8 @@ void Level::SetPlayer(Entity* p)
 {
 	_Player = p;
 };
+
+EntFactory& Level::GetFactory()
+{
+	return _Factory;
+};

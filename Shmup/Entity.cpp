@@ -37,11 +37,8 @@ bool Entity::GetAlive()
 void Entity::Update(float dt)
 {
 	GetPresence().UpdatePosition(dt);
-	if (_Icon != 0)
-	{
-		_Icon->Update(dt);
-		GetSize().SetSize(_Icon->GetWidth(), _Icon->GetHeight());
-	}	
+	if (GetIcon() != 0)
+		GetIcon()->Update(dt);
 };
 
 void Entity::Draw(sf::RenderWindow* rw)

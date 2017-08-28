@@ -35,7 +35,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetPresence().SetYVel(125.f);
 		break;
 	case Types::DroneEnemy:
-		ent = new Entity(_Level);
+		ent = new DroneEnt(_Level);
 		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("DroneEnemy")), _ImgMan->GetAnimation("DroneEnemy_Idle")));
 		ent->GetPresence().SetYVel(100.f);
 		ent->GetStats().SetHP(2);
@@ -56,6 +56,12 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("TankEnemy")), _ImgMan->GetAnimation("TankEnemy_Idle")));
 		ent->GetPresence().SetYVel(75.f);
 		ent->GetStats().SetHP(3);
+		break;
+	case Types::EnemyBullet:
+		ent = new Entity(_Level);
+		ent->SetIcon(new RectIcon(ent, sf::Color::Magenta));
+		ent->GetPresence().SetYVel(150.f);
+		ent->GetSize().SetSize(16.f, 16.f);
 		break;
 	default:
 		ent = new Entity(_Level);

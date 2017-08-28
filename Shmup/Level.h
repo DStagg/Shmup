@@ -2,6 +2,7 @@
 #define LEVEL_H
 
 #include "Entity.h"
+#include "Factory.h"
 
 class Level
 {
@@ -18,14 +19,16 @@ public:
 	Entity* GetPlayer();
 	void SetPlayer(Entity* p);
 
+	EntFactory& GetFactory();
+
 private:
 
 	EntList _Enemies;
 	EntList _PlayerBullets;
 	EntList _EnemyBullets;
-
 	Entity* _Player;
 
+	EntFactory _Factory;
 	Size _Size;
 };
 

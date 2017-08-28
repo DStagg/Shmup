@@ -14,10 +14,22 @@ public:
 
 private:
 
-	Level* _Level;
+	//Level* _Level;
 };
 
+class DroneEnt : public Entity
+{
+public:
 
+	DroneEnt(Level* lvl);
+
+	void Update(float dt);
+
+private:
+
+	float _ShootTimer = 0.f;
+	float _ShootDelay = 1.f;
+};
 
 
 

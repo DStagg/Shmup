@@ -34,4 +34,5 @@ void PlayerEnt::Update(float dt)
 		SetAlive(false);
 
 	Entity::Update(dt);
+	GetSize().SetSize(GetIcon()->GetWidth(), GetIcon()->GetHeight());
 };
