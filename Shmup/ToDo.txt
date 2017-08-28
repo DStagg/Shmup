@@ -1,6 +1,4 @@
 Implement enemy behaviour
-Add enemy shooting
-Add enemy bullet <-> player interactions
 Add doubleshot powerup
 Add laser powerup
 Add powerup time remaining GUI

@@ -59,7 +59,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		break;
 	case Types::EnemyBullet:
 		ent = new Entity(_Level);
-		ent->SetIcon(new RectIcon(ent, sf::Color::Magenta));
+		ent->SetIcon(new AnimIcon(ent, sf::Sprite(*_ImgMan->GetTexturePntr("EBullet")), _ImgMan->GetAnimation("EBullet_Idle")));
 		ent->GetPresence().SetYVel(150.f);
 		ent->GetSize().SetSize(16.f, 16.f);
 		break;

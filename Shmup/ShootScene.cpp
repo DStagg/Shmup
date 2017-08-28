@@ -20,12 +20,13 @@ void ShootScene::Begin()
 	_ImgMan.LoadTextureFromFile("SwarmEnemy", "SwarmEnemy.png");
 	_ImgMan.LoadTextureFromFile("TankEnemy", "TankEnemy.png");
 	_ImgMan.LoadTextureFromFile("HealthIcon", "HealthIcon.png");
+	_ImgMan.LoadTextureFromFile("EBullet", "EnemyBullet.png");
 	
 	PopulateAnimations(&_ImgMan);
-	_Factory.Init(&_Level, &_ImgMan, _Window);
+	_Level.GetFactory().Init(&_Level, &_ImgMan, _Window);
 
 	_Level.GetSize().SetSize((float)_Window->getSize().x, (float)_Window->getSize().y);
-	_Level.SetPlayer(_Factory.Spawn(EntFactory::Player, _Level.GetSize().GetWidth() / 2.f - 50.f, _Level.GetSize().GetHeight() - 50.f));
+	_Level.SetPlayer(_Level.GetFactory().Spawn(EntFactory::Player, _Level.GetSize().GetWidth() / 2.f - 50.f, _Level.GetSize().GetHeight() - 50.f));
 		
 };
 void ShootScene::End()
@@ -55,11 +56,11 @@ void ShootScene::Update(float dt)
 			SetRunning(false);
 		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Return))
 		{
-			_Level.GetEnemies().AddEnt(_Factory.Spawn(EntFactory::BombEnemy, 100.f, 100.f));
-			_Level.GetEnemies().AddEnt(_Factory.Spawn(EntFactory::DroneEnemy, 200.f, 100.f));
-			_Level.GetEnemies().AddEnt(_Factory.Spawn(EntFactory::SwarmEnemy, 300.f, 100.f));
-			_Level.GetEnemies().AddEnt(_Factory.Spawn(EntFactory::SpreaderEnemy, 400.f, 100.f));
-			_Level.GetEnemies().AddEnt(_Factory.Spawn(EntFactory::TankEnemy, 500.f, 100.f));
+			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::BombEnemy, 100.f, 100.f));
+			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::DroneEnemy, 200.f, 100.f));
+			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::SwarmEnemy, 300.f, 100.f));
+			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::SpreaderEnemy, 400.f, 100.f));
+			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::TankEnemy, 500.f, 100.f));
 		}
 	}
 
@@ -69,7 +70,7 @@ void ShootScene::Update(float dt)
 		if (_SpawnTimer >= _SpawnDelay)
 		{
 			_SpawnTimer = 0.f;
-			_Level.GetEnemies().AddEnt(_Factory.Spawn(EntFactory::BombEnemy, (float)Random::Generate(0, (int)(_Level.GetSize().GetWidth() - 50.f)), 0.f - 50.f));
+			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::BombEnemy, (float)Random::Generate(0, (int)(_Level.GetSize().GetWidth() - 50.f)), 0.f - 50.f));
 		}
 
 		_Level.GetPlayer()->Update(dt);
@@ -78,7 +79,7 @@ void ShootScene::Update(float dt)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
 		{
 			_ShootTimer = 0.f;
-			_Level.GetPlayerBullets().AddEnt(_Factory.Spawn(EntFactory::PlayerBullet, _Level.GetPlayer()->GetPresence().GetX() + (_Level.GetPlayer()->GetSize().GetWidth() / 2.f), _Level.GetPlayer()->GetPresence().GetY()));
+			_Level.GetPlayerBullets().AddEnt(_Level.GetFactory().Spawn(EntFactory::PlayerBullet, _Level.GetPlayer()->GetPresence().GetX() + (_Level.GetPlayer()->GetSize().GetWidth() / 2.f), _Level.GetPlayer()->GetPresence().GetY()));
 		}
 
 		//	Update Bullets
@@ -108,7 +109,7 @@ void ShootScene::Update(float dt)
 				_Level.GetEnemyBullets().DelEnt(_Level.GetEnemyBullets().GetEnt(i));
 		}
 
-		//	Collision: Bullets <-> Enemies
+		//	Collision: PBullets <-> Enemies
 		for (int b = 0; b < _Level.GetPlayerBullets().CountEnts(); b++)
 			for (int e = 0; e < _Level.GetEnemies().CountEnts(); e++)
 			{
@@ -121,18 +122,30 @@ void ShootScene::Update(float dt)
 				}
 			}
 
-		//	Collisin: Player <-> Enemies
+		//	Collision: Player <-> Enemies
 		for (int e = 0; e < _Level.GetEnemies().CountEnts(); e++)
 			if (GenBoundBox(_Level.GetEnemies().GetEnt(e)).Intersects(GenBoundBox(_Level.GetPlayer())))
 			{
 				_Level.GetEnemies().GetEnt(e)->SetAlive(false);
 				_Level.GetPlayer()->GetStats().Hurt(1);
-				if ( _Level.GetPlayer()->GetStats().GetHP() <= 0 )
-					_Level.GetPlayer()->SetAlive(false);
 			}
+
+		//	Collision: Player <-> EBullets
+		for ( int e = 0; e <_Level.GetEnemyBullets().CountEnts(); e++ )
+			if (GenBoundBox(_Level.GetEnemyBullets().GetEnt(e)).Intersects(GenBoundBox(_Level.GetPlayer())))
+			{
+				_Level.GetEnemyBullets().GetEnt(e)->SetAlive(false);
+				_Level.GetPlayer()->GetStats().Hurt(1);
+			}
+
+		//	Check Player Health
+		if (_Level.GetPlayer()->GetStats().GetHP() <= 0)
+			_Level.GetPlayer()->SetAlive(false);
 
 		//	Cull Bullets
 		_Level.GetPlayerBullets().Cull(100);
+		//	Cull Enemy Bullets
+		_Level.GetEnemyBullets().Cull(100);
 		//	Cull Enemies
 		_Level.GetEnemies().Cull(50);
 	}

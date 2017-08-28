@@ -38,7 +38,7 @@ private:
 	Level _Level;
 
 	ImageManager _ImgMan;
-	EntFactory _Factory;
+//	EntFactory _Factory;
 };
 
 void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw, sf::Color col = sf::Color::Cyan);

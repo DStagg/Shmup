@@ -81,7 +81,17 @@ void PopulateAnimations(ImageManager* img)
 	swanim._Frames.push_back(sw2);
 	img->AddAnimation("SwarmEnemy_Idle", swanim);
 
-
+	//	Enemy Bullet
+	AnimationFrame eb(0, 0, 16, 16, 0.2f);
+	Animation ebanim;
+	ebanim._Frames.push_back(eb);
+	AnimationFrame eb2(16, 0, 16, 16, 0.2f);
+	ebanim._Frames.push_back(eb2);
+	AnimationFrame eb3(32, 0, 16, 16, 0.2f);
+	ebanim._Frames.push_back(eb3);
+	AnimationFrame eb4(48, 0, 16, 16, 0.2f);
+	ebanim._Frames.push_back(eb4);
+	img->AddAnimation("EBullet_Idle", ebanim);
 
 
 
