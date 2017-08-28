@@ -38,6 +38,8 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent = new BombEnt(_Level);
 		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("BombEnemy")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("BombEnemy_Idle"));
+		ent->GetGraphic().AddAnimation("Armed", _ImgMan->GetAnimation("BombEnemy_Armed"));
+		ent->GetGraphic().AddAnimation("Death", _ImgMan->GetAnimation("BombEnemy_Death"));
 		ent->GetGraphic().Swap("Idle");
 		ent->GetPresence().SetYVel(125.f);
 		break;

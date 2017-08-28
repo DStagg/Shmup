@@ -10,11 +10,18 @@ BombEnt::BombEnt(Level* lvl) : BasicEnt(lvl)
 
 void BombEnt::Update(float dt)
 {
-	AABB box(GetPresence().GetX() - 50.f, GetPresence().GetY() - 50.f, 100.f + GetSize().GetWidth(), 100.f + GetSize().GetHeight());
-	if (box.Intersects(GenBoundBox(GetLevel()->GetPlayer())))
+	AABB kill_box(GetPresence().GetX() - 50.f, GetPresence().GetY() - 50.f, 100.f + GetSize().GetWidth(), 100.f + GetSize().GetHeight());
+	AABB warn_box(GetPresence().GetX() - 100.f, GetPresence().GetY() - 100.f, 200.f + GetSize().GetWidth(), 200.f + GetSize().GetHeight());
+	
+	if (GetAlive() && warn_box.Intersects(GenBoundBox(GetLevel()->GetPlayer())) && (GetGraphic().GetCurrentAnimName() != "Armed"))
+		GetGraphic().Swap("Armed");
+	else if (GetAlive() && !warn_box.Intersects(GenBoundBox(GetLevel()->GetPlayer())) && (GetGraphic().GetCurrentAnimName() == "Armed"))
+		GetGraphic().Swap("Idle");
+	else if (GetAlive() && kill_box.Intersects(GenBoundBox(GetLevel()->GetPlayer())))
 	{
-		GetLevel()->GetPlayer()->GetStats().Hurt(1);
 		SetAlive(false);
+		GetGraphic().Swap("Death");
+		GetLevel()->GetPlayer()->GetStats().Hurt(1);
 	}
 
 	BasicEnt::Update(dt);
