@@ -77,6 +77,15 @@
     <ClCompile Include="Level.cpp">
       <Filter>Project Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpawnQueue.cpp">
+      <Filter>Project Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryFile.cpp">
+      <Filter>Core Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BinarySave.cpp">
+      <Filter>Core Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
@@ -129,6 +138,15 @@
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Project Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnQueue.h">
+      <Filter>Project Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryFile.h">
+      <Filter>Core Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BinarySave.h">
+      <Filter>Core Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

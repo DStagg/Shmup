@@ -91,6 +91,14 @@ SwarmEnt::SwarmEnt(Level* lvl) : BasicEnt(lvl)
 
 void SwarmEnt::Update(float dt)
 {
+	if (_Timer == 0.f)
+	{
+		if (GetPresence().GetX() < 100.f)
+			GetPresence().SetX(100.f);
+		else if (GetPresence().GetX() > GetLevel()->GetSize().GetWidth() - (100.f + GetSize().GetWidth()))
+			GetPresence().SetX(GetLevel()->GetSize().GetWidth() - (100.f + GetSize().GetWidth()));
+	}
+
 	_Timer += dt;
 	GetPresence().SetXVel(cos(_Timer)*50.f);
 	

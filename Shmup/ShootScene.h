@@ -10,6 +10,7 @@
 #include "PopAnim.h"
 #include "Factory.h"
 #include "Level.h"
+#include "SpawnQueue.h"
 
 class ShootScene : public Scene
 {
@@ -32,13 +33,10 @@ private:
 	float _ShootTimer = 0.f;
 	float _ShootDelay = 0.25f;
 
-	float _SpawnTimer = 0.f;
-	float _SpawnDelay = 2.f;
-
 	Level _Level;
+	SpawnQueue _SpawnQueue;
 
 	ImageManager _ImgMan;
-//	EntFactory _Factory;
 };
 
 void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw, sf::Color col = sf::Color::Cyan);

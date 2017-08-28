@@ -13,7 +13,6 @@ void ShootScene::Begin()
 {
 	_ImgMan.LoadTextureFromFile("Player", "Player.png");
 	_ImgMan.LoadTextureFromFile("PBullet", "PlayerBullet.png");
-	_ImgMan.LoadTextureFromFile("Enemy", "Enemy.png");
 	_ImgMan.LoadTextureFromFile("BombEnemy", "BombEnemy.png");
 	_ImgMan.LoadTextureFromFile("DroneEnemy", "DroneEnemy.png");
 	_ImgMan.LoadTextureFromFile("SpreaderEnemy", "SpreaderEnemy.png");
@@ -29,6 +28,8 @@ void ShootScene::Begin()
 	_Level.GetSize().SetSize((float)_Window->getSize().x, (float)_Window->getSize().y);
 	_Level.SetPlayer(_Level.GetFactory().Spawn(EntFactory::Player, _Level.GetSize().GetWidth() / 2.f - 50.f, _Level.GetSize().GetHeight() - 50.f));
 		
+	_SpawnQueue.Load("Queue.bin");
+	//GenSpawnQueue(&_SpawnQueue);
 };
 void ShootScene::End()
 {
@@ -45,7 +46,6 @@ void ShootScene::Resume()
 void ShootScene::Update(float dt)
 {
 	_ShootTimer += dt;
-	_SpawnTimer += dt;
 
 	//	Check if we need to quit
 	sf::Event Event;
@@ -67,11 +67,18 @@ void ShootScene::Update(float dt)
 
 	if (_Level.GetPlayer()->GetAlive())
 	{
-		//	Spawn Enemies
-		if (_SpawnTimer >= _SpawnDelay)
+		//	Progress Spawn Queue
+		if (_SpawnQueue.CountEntries() > 0)
 		{
-			_SpawnTimer = 0.f;
-			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::BombEnemy, (float)Random::Generate(0, (int)(_Level.GetSize().GetWidth() - 50.f)), 0.f - 50.f));
+			_SpawnQueue.AddTime(dt);
+			while (_SpawnQueue.GetTime() >= _SpawnQueue.PeekFront()._Delay)
+			{
+				SpawnEntry entry = _SpawnQueue.PopFront();
+				_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(entry._ID, entry._X, entry._Y));
+
+				if (_SpawnQueue.CountEntries() == 0)
+					break;
+			}
 		}
 
 		_Level.GetPlayer()->Update(dt);
