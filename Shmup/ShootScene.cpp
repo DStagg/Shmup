@@ -122,8 +122,11 @@ void ShootScene::Update(float dt)
 				{
 					_Level.GetPlayerBullets().GetEnt(b)->SetAlive(false);
 					_Level.GetEnemies().GetEnt(e)->GetStats().Hurt(1);
-					if (_Level.GetEnemies().GetEnt(e)->GetStats().GetHP() <= 0 )
+					if (_Level.GetEnemies().GetEnt(e)->GetStats().GetHP() <= 0)
+					{
 						_Level.GetEnemies().GetEnt(e)->SetAlive(false);
+						_Level.GetSFX().AddEnt(_Level.GetFactory().Spawn(EntFactory::Explosion, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
+					}
 				}
 			}
 
@@ -132,6 +135,7 @@ void ShootScene::Update(float dt)
 			if (GenBoundBox(_Level.GetEnemies().GetEnt(e)).Intersects(GenBoundBox(_Level.GetPlayer())))
 			{
 				_Level.GetEnemies().GetEnt(e)->SetAlive(false);
+				_Level.GetSFX().AddEnt(_Level.GetFactory().Spawn(EntFactory::Explosion, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
 				_Level.GetPlayer()->GetStats().Hurt(1);
 			}
 

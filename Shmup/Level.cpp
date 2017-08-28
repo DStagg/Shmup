@@ -11,6 +11,7 @@ Level::~Level()
 	_Enemies.Cull(0);
 	_PlayerBullets.Cull(0);
 	_EnemyBullets.Cull(0);
+	_SFX.Cull(0);
 };
 
 Size& Level::GetSize()
