@@ -8,6 +8,8 @@ PlayerEnt::PlayerEnt(Level* lvl , sf::RenderWindow* rw) : Entity(lvl)
 
 void PlayerEnt::Update(float dt)
 {
+	_ShootTimer += dt;
+
 	//	Control Player
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		GetPresence().SetYVel(-200.f);
@@ -40,6 +42,13 @@ void PlayerEnt::Update(float dt)
 		GetPresence().SetY(0.f);
 	if (GetPresence().GetY() > GetLevel()->GetSize().GetHeight() - GetSize().GetHeight())
 		GetPresence().SetY(GetLevel()->GetSize().GetHeight() - GetSize().GetHeight());
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
+	{
+		_ShootTimer = 0.f;
+		GetLevel()->GetPlayerBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::PlayerBullet, GetPresence().GetX() + (GetSize().GetWidth() / 2.f), GetPresence().GetY()));
+	}
+
 
 	GetGraphic().Play(dt);
 	GetSize().SetSize((float)GetGraphic().GetCurrentFrame()._Width, (float)GetGraphic().GetCurrentFrame()._Height);

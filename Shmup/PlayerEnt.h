@@ -16,6 +16,9 @@ private:
 
 	sf::RenderWindow* _Window;
 
+	float _ShootTimer = 0.f;
+	float _ShootDelay = 0.25f;
+
 };
 
 #endif

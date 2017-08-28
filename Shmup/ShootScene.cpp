@@ -47,7 +47,6 @@ void ShootScene::Update(float dt)
 {
 	_ShootTimer += dt;
 
-	//	Check if we need to quit
 	sf::Event Event;
 	while (_Window->pollEvent(Event))
 	{
@@ -55,14 +54,6 @@ void ShootScene::Update(float dt)
 			SetRunning(false);
 		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 			SetRunning(false);
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Return))
-		{
-			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::BombEnemy, 100.f, 100.f));
-			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::DroneEnemy, 200.f, 100.f));
-			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::SwarmEnemy, 300.f, 100.f));
-			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::SpreaderEnemy, 400.f, 100.f));
-			_Level.GetEnemies().AddEnt(_Level.GetFactory().Spawn(EntFactory::TankEnemy, 500.f, 100.f));
-		}
 	}
 
 	if (_Level.GetPlayer()->GetAlive())
@@ -82,14 +73,7 @@ void ShootScene::Update(float dt)
 		}
 
 		_Level.GetPlayer()->Update(dt);
-
-		//	Spawn Bullets
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
-		{
-			_ShootTimer = 0.f;
-			_Level.GetPlayerBullets().AddEnt(_Level.GetFactory().Spawn(EntFactory::PlayerBullet, _Level.GetPlayer()->GetPresence().GetX() + (_Level.GetPlayer()->GetSize().GetWidth() / 2.f), _Level.GetPlayer()->GetPresence().GetY()));
-		}
-
+		
 		//	Update Bullets
 		for (int i = 0; i < _Level.GetPlayerBullets().CountEnts(); i++)
 		{
