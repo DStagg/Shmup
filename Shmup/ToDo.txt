@@ -8,4 +8,14 @@ Add boss healthbar GUI
 Add level complete win condition
 Add menu Scene
 Add SFX - shoot, hit, explosion
-Add background mu\sic
+Add background music
+
+
+
+
+Polish:
+1. Make all bullets centered on where they appear
+2. Add an invincibility animation for the player
+3. Make better powerup sprites
+4. Animate powerups
+5. Add "pickup" SFX when powerups are collected

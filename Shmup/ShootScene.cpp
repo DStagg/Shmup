@@ -166,8 +166,11 @@ void ShootScene::Update(float dt)
 			{
 				_Level.GetEnemies().GetEnt(e)->SetAlive(false);
 				_Level.GetSFX().AddEnt(_Level.GetFactory().Spawn(EntFactory::Explosion, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
-				if (((PlayerEnt*)_Level.GetPlayer())->_Invincibility <= 0.f )
+				if (((PlayerEnt*)_Level.GetPlayer())->_Invincibility <= 0.f)
+				{
 					_Level.GetPlayer()->GetStats().Hurt(1);
+					((PlayerEnt*)_Level.GetPlayer())->_Invincibility = 0.5f;
+				}
 			}
 
 		//	Collision: Player <-> EBullets
@@ -175,7 +178,11 @@ void ShootScene::Update(float dt)
 			if (GenBoundBox(_Level.GetEnemyBullets().GetEnt(e)).Intersects(GenBoundBox(_Level.GetPlayer())))
 			{
 				_Level.GetEnemyBullets().GetEnt(e)->SetAlive(false);
-				_Level.GetPlayer()->GetStats().Hurt(1);
+				if (((PlayerEnt*)_Level.GetPlayer())->_Invincibility <= 0.f)
+				{
+					_Level.GetPlayer()->GetStats().Hurt(1);
+					((PlayerEnt*)_Level.GetPlayer())->_Invincibility = 0.5f;
+				}
 			}
 
 		//	Check Player Health
