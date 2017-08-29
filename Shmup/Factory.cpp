@@ -103,6 +103,11 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("LaserPowerup")));
 		ent->GetPresence().SetYVel(100.f);
 		break;
+	case Types::InvinciblePowerup:
+		ent = new BasicEnt(_Level);
+		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("InvinciblePowerup")));
+		ent->GetPresence().SetYVel(100.f);
+		break;
 	default:
 		ent = new BasicEnt(_Level);
 		ent->GetSize().SetSize(25.f, 25.f);

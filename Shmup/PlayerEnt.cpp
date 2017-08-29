@@ -10,6 +10,13 @@ void PlayerEnt::Update(float dt)
 {
 	_ShootTimer += dt;
 
+	if (_DoubleShot > 0.f)
+		_DoubleShot -= dt;
+	if (_Invincibility > 0.f)
+		_Invincibility -= dt;
+	if (_Laser > 0.f)
+		_Laser -= dt;
+
 	//	Control Player
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		GetPresence().SetYVel(-200.f);
@@ -48,7 +55,15 @@ void PlayerEnt::Update(float dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
 	{
 		_ShootTimer = 0.f;
-		GetLevel()->GetPlayerBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::PlayerBullet, GetPresence().GetX() + (GetSize().GetWidth() / 2.f), GetPresence().GetY()));
+
+		if (_DoubleShot > 0.f)
+		{
+			GetLevel()->GetPlayerBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::PlayerBullet, GetPresence().GetX() , GetPresence().GetY()));
+			GetLevel()->GetPlayerBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::PlayerBullet, GetPresence().GetX() + GetSize().GetWidth(), GetPresence().GetY()));
+		}
+		else
+			GetLevel()->GetPlayerBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::PlayerBullet, GetPresence().GetX() + (GetSize().GetWidth() / 2.f), GetPresence().GetY()));
+	
 	}
 
 

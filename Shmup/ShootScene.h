@@ -11,6 +11,7 @@
 #include "Factory.h"
 #include "Level.h"
 #include "SpawnQueue.h"
+#include "PlayerEnt.h"
 
 class ShootScene : public Scene
 {

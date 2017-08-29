@@ -12,6 +12,10 @@ public:
 	void Update(float dt);
 	void Draw(sf::RenderWindow* rw);
 
+	float _DoubleShot = 0.f;
+	float _Invincibility = 0.f;
+	float _Laser = 0.f;
+
 private:
 
 	sf::RenderWindow* _Window;
