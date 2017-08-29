@@ -1,4 +1,5 @@
 #include "Factory.h"
+#include "Level.h"
 
 EntFactory::EntFactory()
 {
@@ -107,6 +108,11 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent = new BasicEnt(_Level);
 		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("InvinciblePowerup")));
 		ent->GetPresence().SetYVel(100.f);
+		break;
+	case Types::Laser:
+		ent = new BasicEnt(_Level);
+		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("LaserBeam")));
+		ent->GetGraphic().GetSprPntr()->setScale(1.f, _Level->GetSize().GetHeight() / ent->GetGraphic().GetSprPntr()->getLocalBounds().height);
 		break;
 	default:
 		ent = new BasicEnt(_Level);

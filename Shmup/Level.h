@@ -19,7 +19,9 @@ public:
 	EntList& GetPowerups();
 	
 	Entity* GetPlayer();
+	Entity* GetLaser();
 	void SetPlayer(Entity* p);
+	void SetLaser(Entity* e);
 
 	EntFactory& GetFactory();
 
@@ -31,6 +33,7 @@ private:
 	EntList _SFX;
 	EntList _Powerups;
 	Entity* _Player;
+	Entity* _Laser;
 
 	EntFactory _Factory;
 	Size _Size;

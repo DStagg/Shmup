@@ -33,6 +33,7 @@ public:
 		BombPowerup,
 		HealPowerup,
 		InvinciblePowerup,
+		Laser,
 		Explosion
 	};
 

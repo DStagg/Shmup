@@ -41,10 +41,19 @@ EntList& Level::GetPowerups()
 Entity* Level::GetPlayer()
 {
 	return _Player;
-}
+};
+Entity* Level::GetLaser()
+{
+	return _Laser;
+};
+
 void Level::SetPlayer(Entity* p)
 {
 	_Player = p;
+};
+void Level::SetLaser(Entity* l)
+{
+	_Laser = l;
 };
 
 EntFactory& Level::GetFactory()
