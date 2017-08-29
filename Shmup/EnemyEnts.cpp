@@ -21,7 +21,11 @@ void BombEnt::Update(float dt)
 	{
 		SetAlive(false);
 		GetGraphic().Swap("Death");
-		GetLevel()->GetPlayer()->GetStats().Hurt(1);
+		if (((PlayerEnt*)GetLevel()->GetPlayer())->_Invincibility <= 0.f)
+		{
+			GetLevel()->GetPlayer()->GetStats().Hurt(1);
+			((PlayerEnt*)GetLevel()->GetPlayer())->_Invincibility = 0.5f;
+		}
 		GetLevel()->GetSFX().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::Explosion, GetPresence().GetX(), GetPresence().GetY()));
 	}
 
