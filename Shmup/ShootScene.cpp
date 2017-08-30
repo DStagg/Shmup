@@ -60,6 +60,12 @@ void ShootScene::Update(float dt)
 			SetRunning(false);
 		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 			SetRunning(false);
+		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num1))
+			((PlayerEnt*)_Level.GetPlayer())->_DoubleShot = 5.f;
+		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num2))
+			((PlayerEnt*)_Level.GetPlayer())->_Laser = 2.5f;
+		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num3))
+			((PlayerEnt*)_Level.GetPlayer())->_Invincibility = 5.f;
 	}
 
 	if (_Level.GetPlayer()->GetAlive())
@@ -244,13 +250,58 @@ void ShootScene::DrawScreen()
 		_Level.GetSFX().GetEnt(i)->Draw(_Window);
 	
 	//	Draw GUI	//
-
+	//	Health
 	for (int i = 0; i < _Level.GetPlayer()->GetStats().GetHP(); i++)
 	{
 		sf::Sprite pip(*_ImgMan.GetTexturePntr("HealthIcon"));
 		pip.setPosition(((i + 1)*5.f) + (i * pip.getTextureRect().width), _Window->getSize().y - (5.f + pip.getTextureRect().height));
 		_Window->draw(pip);
 	}
+
+	//	Powerups
+	int active = 1;
+	PlayerEnt* pent = (PlayerEnt*)_Level.GetPlayer();
+
+	if (pent->_DoubleShot > 0.f)
+	{
+		sf::Sprite doublegui(*_ImgMan.GetTexturePntr("DoublePowerup"));
+		doublegui.setPosition(_Window->getSize().x - ((doublegui.getLocalBounds().width + 10.f) * (float)active), _Window->getSize().y - (doublegui.getLocalBounds().height + 10.f));
+		_Window->draw(doublegui);
+		
+		sf::RectangleShape doublebar(sf::Vector2f(doublegui.getLocalBounds().width / 2.f, pent->_DoubleShot * 10.f));
+		doublebar.setPosition(doublegui.getPosition().x + (doublegui.getLocalBounds().width / 2.f), doublegui.getPosition().y - (10.f + doublebar.getLocalBounds().height));
+		doublebar.setFillColor(sf::Color::Green);
+		_Window->draw(doublebar);
+
+		active++;
+	}
+	if (pent->_Laser > 0.f)
+	{
+		sf::Sprite lasergui(*_ImgMan.GetTexturePntr("LaserPowerup"));
+		lasergui.setPosition(_Window->getSize().x - ((lasergui.getLocalBounds().width + 10.f) * (float)active), _Window->getSize().y - (lasergui.getLocalBounds().height + 10.f));
+		_Window->draw(lasergui);
+
+		sf::RectangleShape laserbar(sf::Vector2f(lasergui.getLocalBounds().width / 2.f, pent->_Laser * 10.f));
+		laserbar.setPosition(lasergui.getPosition().x + (lasergui.getLocalBounds().width / 2.f), lasergui.getPosition().y - (10.f + laserbar.getLocalBounds().height));
+		laserbar.setFillColor(sf::Color::Green);
+		_Window->draw(laserbar);
+
+		active++;
+	}
+	if (pent->_Invincibility > 0.f)
+	{
+		sf::Sprite lasergui(*_ImgMan.GetTexturePntr("InvinciblePowerup"));
+		lasergui.setPosition(_Window->getSize().x - ((lasergui.getLocalBounds().width + 10.f) * (float)active), _Window->getSize().y - (lasergui.getLocalBounds().height + 10.f));
+		_Window->draw(lasergui);
+
+		sf::RectangleShape laserbar(sf::Vector2f(lasergui.getLocalBounds().width / 2.f, pent->_Invincibility * 10.f));
+		laserbar.setPosition(lasergui.getPosition().x + (lasergui.getLocalBounds().width / 2.f), lasergui.getPosition().y - (10.f + laserbar.getLocalBounds().height));
+		laserbar.setFillColor(sf::Color::Green);
+		_Window->draw(laserbar);
+
+		active++;
+	}
+
 
 	/*
 	DebugDrawEntity(_Level.GetPlayer(), _Window, sf::Color::Blue);

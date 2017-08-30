@@ -1,4 +1,3 @@
-Add powerup time remaining GUI
 Add bombs
 Add bomb ammo powerup
 Add bomb ammo GUI
@@ -15,6 +14,7 @@ Add background music
 Polish:
 1. Make all bullets centered on where they appear
 2. Add an invincibility animation for the player
-3. Make better powerup sprites
-4. Animate powerups
-5. Add "pickup" SFX when powerups are collected
+3. Make a "hitframe" animation for the player - distinguish from the invincibility animation by time
+4. Make better powerup sprites
+5. Animate powerups
+6. Add "pickup" SFX when powerups are collected
