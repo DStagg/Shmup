@@ -269,7 +269,7 @@ void ShootScene::DrawScreen()
 		_Window->draw(doublegui);
 		
 		sf::RectangleShape doublebar(sf::Vector2f(doublegui.getLocalBounds().width / 2.f, pent->_DoubleShot * 10.f));
-		doublebar.setPosition(doublegui.getPosition().x + (doublegui.getLocalBounds().width / 2.f), doublegui.getPosition().y - (10.f + doublebar.getLocalBounds().height));
+		doublebar.setPosition(doublegui.getPosition().x + (doublegui.getLocalBounds().width / 4.f), doublegui.getPosition().y - (10.f + doublebar.getLocalBounds().height));
 		doublebar.setFillColor(sf::Color::Green);
 		_Window->draw(doublebar);
 
@@ -282,7 +282,7 @@ void ShootScene::DrawScreen()
 		_Window->draw(lasergui);
 
 		sf::RectangleShape laserbar(sf::Vector2f(lasergui.getLocalBounds().width / 2.f, pent->_Laser * 10.f));
-		laserbar.setPosition(lasergui.getPosition().x + (lasergui.getLocalBounds().width / 2.f), lasergui.getPosition().y - (10.f + laserbar.getLocalBounds().height));
+		laserbar.setPosition(lasergui.getPosition().x + (lasergui.getLocalBounds().width / 4.f), lasergui.getPosition().y - (10.f + laserbar.getLocalBounds().height));
 		laserbar.setFillColor(sf::Color::Green);
 		_Window->draw(laserbar);
 
@@ -295,7 +295,7 @@ void ShootScene::DrawScreen()
 		_Window->draw(lasergui);
 
 		sf::RectangleShape laserbar(sf::Vector2f(lasergui.getLocalBounds().width / 2.f, pent->_Invincibility * 10.f));
-		laserbar.setPosition(lasergui.getPosition().x + (lasergui.getLocalBounds().width / 2.f), lasergui.getPosition().y - (10.f + laserbar.getLocalBounds().height));
+		laserbar.setPosition(lasergui.getPosition().x + (lasergui.getLocalBounds().width / 4.f), lasergui.getPosition().y - (10.f + laserbar.getLocalBounds().height));
 		laserbar.setFillColor(sf::Color::Green);
 		_Window->draw(laserbar);
 
