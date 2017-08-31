@@ -66,6 +66,17 @@ void PlayerEnt::Update(float dt)
 	
 	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && (_ShootTimer >= _ShootDelay) && (_Bombs >= 1))
+	{
+		_ShootTimer = 0.f;
+		_Bombs--;
+
+		for (int i = 0; i < GetLevel()->GetEnemies().CountEnts(); i++)
+			GetLevel()->GetEnemies().GetEnt(i)->GetStats().SetHP(0);
+		for (int i = 0; i < GetLevel()->GetEnemyBullets().CountEnts(); i++)
+			GetLevel()->GetEnemyBullets().GetEnt(i)->SetAlive(false);
+	}
+
 
 	GetGraphic().Play(dt);
 	GetSize().SetSize((float)GetGraphic().GetCurrentFrame()._Width, (float)GetGraphic().GetCurrentFrame()._Height);

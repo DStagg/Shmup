@@ -41,8 +41,13 @@ AnimationFrame Animation::GetCurrFrame()
 
 ImageManager::ImageManager()
 {
+	sf::Image defImg;
+	defImg.create(32, 32);
+	for (int x = 0; x < 32; x++)
+		for (int y = 0; y < 32; y++)
+			defImg.setPixel(x, y, sf::Color::Cyan);
 	sf::Texture defTex;
-	defTex.create(32, 32);
+	defTex.loadFromImage(defImg);
 	_Textures["Default"] = defTex;
 	SetTransMask();
 	SetSmooth(false);
@@ -71,8 +76,8 @@ bool ImageManager::LoadTextureFromFile(std::string tag, std::string filename)
 		return true;
 	}
 
-	tex.create(32, 32);
-	_Textures[tag] = tex;
+	//tex.create(32, 32);
+	_Textures[tag] = _Textures["Default"];
 	return false;
 };
 
@@ -81,7 +86,7 @@ sf::Texture* ImageManager::GetTexturePntr(std::string tag)
 	for (std::map<std::string, sf::Texture>::iterator i = _Textures.begin(); i != _Textures.end(); i++)
 	{
 		if (i->first == tag)
-			return &_Textures[tag];
+			return &i->second;
 	}
 
 	return &_Textures["Default"];

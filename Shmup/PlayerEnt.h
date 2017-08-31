@@ -15,6 +15,7 @@ public:
 	float _DoubleShot = 0.f;
 	float _Invincibility = 0.f;
 	float _Laser = 0.f;
+	int _Bombs = 0;
 
 private:
 

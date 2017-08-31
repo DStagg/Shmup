@@ -26,6 +26,7 @@ void ShootScene::Begin()
 	_ImgMan.LoadTextureFromFile("HealPowerup", "HealPowerup.png");
 	_ImgMan.LoadTextureFromFile("InvinciblePowerup", "InvinciblePowerup.png");
 	_ImgMan.LoadTextureFromFile("LaserBeam", "LaserBeam.png");
+	_ImgMan.LoadTextureFromFile("Bomb", "Bomb.png");
 	
 	PopulateAnimations(&_ImgMan);
 	_Level.GetFactory().Init(&_Level, &_ImgMan, _Window);
@@ -66,6 +67,8 @@ void ShootScene::Update(float dt)
 			((PlayerEnt*)_Level.GetPlayer())->_Laser = 2.5f;
 		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num3))
 			((PlayerEnt*)_Level.GetPlayer())->_Invincibility = 5.f;
+		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num4))
+			((PlayerEnt*)_Level.GetPlayer())->_Bombs += 1;
 	}
 
 	if (_Level.GetPlayer()->GetAlive())
@@ -101,7 +104,14 @@ void ShootScene::Update(float dt)
 		//	Update Enemies
 		for (int i = 0; i < _Level.GetEnemies().CountEnts(); i++)
 		{
-			_Level.GetEnemies().GetEnt(i)->Update(dt);
+			if (_Level.GetEnemies().GetEnt(i)->GetStats().GetHP() <= 0)
+			{
+				_Level.GetEnemies().GetEnt(i)->SetAlive(false);
+				_Level.GetSFX().AddEnt(_Level.GetFactory().Spawn(EntFactory::Explosion, _Level.GetEnemies().GetEnt(i)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(i)->GetPresence().GetY()));
+			}
+
+			if ( _Level.GetEnemies().GetEnt(i)->GetAlive() )
+				_Level.GetEnemies().GetEnt(i)->Update(dt);
 			
 			if (_Level.GetEnemies().GetEnt(i)->GetPresence().GetY() > _Level.GetSize().GetHeight())
 				_Level.GetEnemies().DelEnt(_Level.GetEnemies().GetEnt(i));
@@ -262,6 +272,18 @@ void ShootScene::DrawScreen()
 	int active = 1;
 	PlayerEnt* pent = (PlayerEnt*)_Level.GetPlayer();
 
+	if (pent->_Bombs > 0)
+	{
+		sf::Sprite bombgui(*_ImgMan.GetTexturePntr("Bomb"));
+		
+		for (int i = 0; i < pent->_Bombs; i++)
+		{
+			bombgui.setPosition(_Window->getSize().x - ((bombgui.getLocalBounds().width + 10.f) * active), _Window->getSize().y - ((bombgui.getLocalBounds().height + 10.f) * (i + 1)));
+			_Window->draw(bombgui);
+		}
+
+		active++;
+	}
 	if (pent->_DoubleShot > 0.f)
 	{
 		sf::Sprite doublegui(*_ImgMan.GetTexturePntr("DoublePowerup"));
