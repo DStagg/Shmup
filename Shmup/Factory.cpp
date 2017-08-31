@@ -114,6 +114,11 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("LaserBeam")));
 		ent->GetGraphic().GetSprPntr()->setScale(1.f, _Level->GetSize().GetHeight() / ent->GetGraphic().GetSprPntr()->getLocalBounds().height);
 		break;
+	case Types::BombPowerup:
+		ent = new BasicEnt(_Level);
+		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Bomb")));
+		ent->GetPresence().SetYVel(100.f);
+		break;
 	default:
 		ent = new BasicEnt(_Level);
 		ent->GetSize().SetSize(25.f, 25.f);

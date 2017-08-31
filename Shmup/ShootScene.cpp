@@ -11,6 +11,8 @@ ShootScene::~ShootScene()
 
 void ShootScene::Begin()
 {
+	Random::TimeSeed();
+
 	_ImgMan.LoadTextureFromFile("Player", "Player.png");
 	_ImgMan.LoadTextureFromFile("PBullet", "PlayerBullet.png");
 	_ImgMan.LoadTextureFromFile("BombEnemy", "BombEnemy.png");
@@ -147,7 +149,7 @@ void ShootScene::Update(float dt)
 						_Level.GetEnemies().GetEnt(e)->SetAlive(false);
 						_Level.GetSFX().AddEnt(_Level.GetFactory().Spawn(EntFactory::Explosion, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
 
-						int ran = Random::Generate(1, 6);
+						int ran = Random::Generate(1, 7);
 						if (ran == 1)
 							_Level.GetPowerups().AddEnt(_Level.GetFactory().Spawn(EntFactory::HealPowerup, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
 						else if (ran == 2)
@@ -156,6 +158,8 @@ void ShootScene::Update(float dt)
 							_Level.GetPowerups().AddEnt(_Level.GetFactory().Spawn(EntFactory::LaserPowerup, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
 						else if (ran == 4)
 							_Level.GetPowerups().AddEnt(_Level.GetFactory().Spawn(EntFactory::InvinciblePowerup, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
+						else if (ran == 5)
+							_Level.GetPowerups().AddEnt(_Level.GetFactory().Spawn(EntFactory::BombPowerup, _Level.GetEnemies().GetEnt(e)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(e)->GetPresence().GetY()));
 					}
 				}
 			}
@@ -189,6 +193,10 @@ void ShootScene::Update(float dt)
 				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->getTexture() == _ImgMan.GetTexturePntr("InvinciblePowerup"))
 				{
 					((PlayerEnt*)_Level.GetPlayer())->_Invincibility = 5.f;
+				}
+				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->getTexture() == _ImgMan.GetTexturePntr("Bomb"))
+				{
+					((PlayerEnt*)_Level.GetPlayer())->_Bombs++;
 				}
 			}
 
