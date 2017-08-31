@@ -56,6 +56,8 @@ void PlayerEnt::Update(float dt)
 	{
 		_ShootTimer = 0.f;
 
+		Service::GetAudio().PlaySFX("Shoot");
+
 		if (_DoubleShot > 0.f)
 		{
 			GetLevel()->GetPlayerBullets().AddEnt(GetLevel()->GetFactory().Spawn(EntFactory::PlayerBullet, GetPresence().GetX() , GetPresence().GetY()));

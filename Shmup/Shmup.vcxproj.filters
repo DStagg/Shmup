@@ -86,6 +86,12 @@
     <ClCompile Include="BinarySave.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
+    <ClCompile Include="Service.cpp">
+      <Filter>Project Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioService.cpp">
+      <Filter>Project Files\Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
@@ -147,6 +153,12 @@
     </ClInclude>
     <ClInclude Include="BinarySave.h">
       <Filter>Core Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>Project Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioService.h">
+      <Filter>Project Files\Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

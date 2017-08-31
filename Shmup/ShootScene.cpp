@@ -13,6 +13,12 @@ void ShootScene::Begin()
 {
 	Random::TimeSeed();
 
+	Service::Init(new SFMLAudio());
+	Service::GetAudio().StoreSFX("Shoot", "Shoot.wav");
+	Service::GetAudio().StoreSFX("Explosion", "Explosion.wav");
+	if (Service::GetAudio().StoreStream("MainBGM", "Paradox.ogg"))
+		Service::GetAudio().PlayStream("MainBGM");
+
 	_ImgMan.LoadTextureFromFile("Player", "Player.png");
 	_ImgMan.LoadTextureFromFile("PBullet", "PlayerBullet.png");
 	_ImgMan.LoadTextureFromFile("BombEnemy", "BombEnemy.png");
@@ -71,6 +77,13 @@ void ShootScene::Update(float dt)
 			((PlayerEnt*)_Level.GetPlayer())->_Invincibility = 5.f;
 		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num4))
 			((PlayerEnt*)_Level.GetPlayer())->_Bombs += 1;
+		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::P))
+		{
+			if (Service::GetAudio().StreamPlaying("MainBGM"))
+				Service::GetAudio().PauseStream("MainBGM");
+			else
+				Service::GetAudio().PlayStream("MainBGM");
+		}
 	}
 
 	if (_Level.GetPlayer()->GetAlive())
@@ -110,6 +123,7 @@ void ShootScene::Update(float dt)
 			{
 				_Level.GetEnemies().GetEnt(i)->SetAlive(false);
 				_Level.GetSFX().AddEnt(_Level.GetFactory().Spawn(EntFactory::Explosion, _Level.GetEnemies().GetEnt(i)->GetPresence().GetX(), _Level.GetEnemies().GetEnt(i)->GetPresence().GetY()));
+				Service::GetAudio().PlaySFX("Explosion");
 			}
 
 			if ( _Level.GetEnemies().GetEnt(i)->GetAlive() )

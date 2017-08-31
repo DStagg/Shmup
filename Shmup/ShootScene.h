@@ -12,6 +12,8 @@
 #include "Level.h"
 #include "SpawnQueue.h"
 #include "PlayerEnt.h"
+#include "Service.h"
+#include "AudioService.h"
 
 class ShootScene : public Scene
 {

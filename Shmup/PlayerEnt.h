@@ -2,6 +2,7 @@
 #define PLAYERENT_H
 
 #include "Entity.h"
+#include "Service.h"
 
 class PlayerEnt : public Entity
 {
