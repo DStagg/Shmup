@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Scene.h"
-#include "ShootScene.h"
+#include "MenuScene.h"
 
 
 int main()
@@ -14,7 +14,7 @@ int main()
 	_Window.create(sf::VideoMode(624, 624), "Shoot-em-up");
 
 	SceneManager SCM;
-	SCM.PushScene(new ShootScene(&_Window));
+	SCM.PushScene(new MenuScene(&_Window));
 	
 	UpdateClock.restart();
 	while (SCM.GetActiveScenePntr() != 0)

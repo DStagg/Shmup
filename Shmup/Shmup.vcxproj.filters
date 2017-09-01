@@ -92,6 +92,9 @@
     <ClCompile Include="AudioService.cpp">
       <Filter>Project Files\Resources</Filter>
     </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Project Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
@@ -159,6 +162,9 @@
     </ClInclude>
     <ClInclude Include="AudioService.h">
       <Filter>Project Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Project Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,11 +13,8 @@ void ShootScene::Begin()
 {
 	Random::TimeSeed();
 
-	Service::Init(new SFMLAudio());
 	Service::GetAudio().StoreSFX("Shoot", "Shoot.wav");
 	Service::GetAudio().StoreSFX("Explosion", "Explosion.wav");
-	if (Service::GetAudio().StoreStream("MainBGM", "Paradox.ogg"))
-		Service::GetAudio().PlayStream("MainBGM");
 
 	_ImgMan.LoadTextureFromFile("Player", "Player.png");
 	_ImgMan.LoadTextureFromFile("PBullet", "PlayerBullet.png");

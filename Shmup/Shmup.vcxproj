@@ -34,6 +34,7 @@
     <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuList.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="PlayerEnt.cpp" />
     <ClCompile Include="PopAnim.cpp" />
     <ClCompile Include="Random.cpp" />
@@ -58,6 +59,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="LoseScene.h" />
     <ClInclude Include="MenuList.h" />
+    <ClInclude Include="MenuScene.h" />
     <ClInclude Include="PlayerEnt.h" />
     <ClInclude Include="PopAnim.h" />
     <ClInclude Include="Random.h" />

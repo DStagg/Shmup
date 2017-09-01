@@ -1,11 +1,6 @@
 Add boss
 Add boss healthbar GUI
 Add level complete win condition
-Add menu Scene
-Add SFX - shoot, hit, explosion
-Add background music
-
-
 
 
 Polish:
@@ -14,4 +9,5 @@ Polish:
 3. Make a "hitframe" animation for the player - distinguish from the invincibility animation by time
 4. Make better powerup sprites
 5. Animate powerups
-6. Add "pickup" SFX when powerups are collected
+6. Add remaining SFX (powerup pickup, player hurt, bomb, appropriate menu stuff)
+7. Add more appropriate background music
