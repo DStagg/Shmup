@@ -16,6 +16,8 @@ void EntFactory::Init(Level* lvl, ImageManager* img, sf::RenderWindow* rw)
 Entity* EntFactory::Spawn(int type, float x, float y)
 {
 	Entity* ent;
+	BasicEnt* ta;
+	BasicEnt* tb;
 
 	switch (type)
 	{
@@ -118,6 +120,19 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent = new BasicEnt(_Level);
 		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Bomb")));
 		ent->GetPresence().SetYVel(100.f);
+		break;
+	case Types::Boss:
+		ent = new BossEnt(_Level);
+		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Boss")));
+		ent->GetPresence().SetYVel(50.f);
+		ent->GetPresence().SetPosition(x, y);
+		ta = new BasicEnt(_Level);
+		ta->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Turret")));
+		ta->GetPresence().SetYVel(50.f);
+		tb = new BasicEnt(_Level);
+		tb->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Turret")));
+		tb->GetPresence().SetYVel(50.f);
+		((BossEnt*)ent)->InitTurrets(ta, tb);
 		break;
 	default:
 		ent = new BasicEnt(_Level);

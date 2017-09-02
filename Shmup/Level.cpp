@@ -3,6 +3,9 @@
 Level::Level(float w, float h)
 {
 	GetSize().SetSize(w, h);
+	_Player = 0;
+	_Laser = 0;
+	_Boss = 0;
 }
 
 Level::~Level()
@@ -42,6 +45,10 @@ Entity* Level::GetPlayer()
 {
 	return _Player;
 };
+Entity* Level::GetBoss()
+{
+	return _Boss;
+};
 Entity* Level::GetLaser()
 {
 	return _Laser;
@@ -50,6 +57,10 @@ Entity* Level::GetLaser()
 void Level::SetPlayer(Entity* p)
 {
 	_Player = p;
+};
+void Level::SetBoss(Entity* b)
+{
+	_Boss = b;
 };
 void Level::SetLaser(Entity* l)
 {

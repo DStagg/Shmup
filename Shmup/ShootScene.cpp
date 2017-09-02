@@ -32,6 +32,8 @@ void ShootScene::Begin()
 	_ImgMan.LoadTextureFromFile("InvinciblePowerup", "InvinciblePowerup.png");
 	_ImgMan.LoadTextureFromFile("LaserBeam", "LaserBeam.png");
 	_ImgMan.LoadTextureFromFile("Bomb", "Bomb.png");
+	_ImgMan.LoadTextureFromFile("Boss", "Boss.png");
+	_ImgMan.LoadTextureFromFile("Turret", "Turret.png");
 	
 	PopulateAnimations(&_ImgMan);
 	_Level.GetFactory().Init(&_Level, &_ImgMan, _Window);
@@ -40,7 +42,9 @@ void ShootScene::Begin()
 	_Level.SetPlayer(_Level.GetFactory().Spawn(EntFactory::Player, _Level.GetSize().GetWidth() / 2.f - 50.f, _Level.GetSize().GetHeight() - 50.f));
 	_Level.SetLaser(_Level.GetFactory().Spawn(EntFactory::Laser, 0.f, 0.f));
 		
-	_SpawnQueue.Load("Queue.bin");
+
+	_Level.SetBoss(_Level.GetFactory().Spawn(EntFactory::Boss, 250.f, -256.f));
+	//_SpawnQueue.Load("Queue.bin");
 	//GenSpawnQueue(&_SpawnQueue);
 };
 void ShootScene::End()
@@ -129,6 +133,8 @@ void ShootScene::Update(float dt)
 			if (_Level.GetEnemies().GetEnt(i)->GetPresence().GetY() > _Level.GetSize().GetHeight())
 				_Level.GetEnemies().DelEnt(_Level.GetEnemies().GetEnt(i));
 		}
+		if ((_Level.GetBoss() != 0) && (_Level.GetBoss()->GetAlive()))
+			_Level.GetBoss()->Update(dt);
 
 		//	Update Enemy Bullets
 		for (int i = 0; i < _Level.GetEnemyBullets().CountEnts(); i++)
@@ -266,6 +272,9 @@ void ShootScene::DrawScreen()
 	for (int i = 0; i < _Level.GetEnemies().CountEnts(); i++)
 		_Level.GetEnemies().GetEnt(i)->Draw(_Window);
 
+	if ((_Level.GetBoss() != 0) && (_Level.GetBoss()->GetAlive()))
+		_Level.GetBoss()->Draw(_Window);
+
 	for (int i = 0; i < _Level.GetPlayerBullets().CountEnts(); i++)
 		_Level.GetPlayerBullets().GetEnt(i)->Draw(_Window);
 
@@ -358,6 +367,8 @@ void ShootScene::DrawScreen()
 		DebugDrawEntity(_Level.GetPowerups().GetEnt(i), _Window, sf::Color::White);
 	DebugDrawEntity(_Level.GetLaser(), _Window, sf::Color::Green);
 	*/
+	if ((_Level.GetBoss() != 0) && (_Level.GetBoss()->GetAlive()))
+		DebugDrawEntity(_Level.GetBoss(), _Window, sf::Color::Red);
 };
 
 ///

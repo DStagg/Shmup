@@ -5,6 +5,7 @@
 
 #include "PlayerEnt.h"
 #include "EnemyEnts.h"
+#include "BossEnt.h"
 
 class Level;
 

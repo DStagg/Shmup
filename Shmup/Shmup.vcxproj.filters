@@ -95,6 +95,9 @@
     <ClCompile Include="MenuScene.cpp">
       <Filter>Project Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="BossEnt.cpp">
+      <Filter>Project Files\Entity\Base Stuff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
@@ -165,6 +168,9 @@
     </ClInclude>
     <ClInclude Include="MenuScene.h">
       <Filter>Project Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BossEnt.h">
+      <Filter>Project Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

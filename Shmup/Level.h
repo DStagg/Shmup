@@ -19,8 +19,10 @@ public:
 	EntList& GetPowerups();
 	
 	Entity* GetPlayer();
+	Entity* GetBoss();
 	Entity* GetLaser();
 	void SetPlayer(Entity* p);
+	void SetBoss(Entity* b);
 	void SetLaser(Entity* e);
 
 	EntFactory& GetFactory();
@@ -33,6 +35,7 @@ private:
 	EntList _SFX;
 	EntList _Powerups;
 	Entity* _Player;
+	Entity* _Boss;
 	Entity* _Laser;
 
 	EntFactory _Factory;

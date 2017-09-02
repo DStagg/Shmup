@@ -23,6 +23,7 @@
     <ClCompile Include="AudioService.cpp" />
     <ClCompile Include="BinaryFile.cpp" />
     <ClCompile Include="BinarySave.cpp" />
+    <ClCompile Include="BossEnt.cpp" />
     <ClCompile Include="EnemyEnts.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityComponents.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="AudioService.h" />
     <ClInclude Include="BinaryFile.h" />
     <ClInclude Include="BinarySave.h" />
+    <ClInclude Include="BossEnt.h" />
     <ClInclude Include="EnemyEnts.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityComponents.h" />
