@@ -7,7 +7,7 @@
 [] Factory.h/.cpp - swap EntFactor::Init() and ::Spawn() to SDL3 (after EntityComponents)
 [x] Icon.h/.cpp - swap ::Draw() and ::_Rectangle to SDL3
 [] ImageManager.h/.cpp - swap all to SDL3
-[] PlayerEnt.h/.cpp - swap constructor, ::Update() and ::Draw() to SDL3
+[x] PlayerEnt.h/.cpp - swap constructor, ::Update() and ::Draw() to SDL3
 
 //	Scenes	//
 

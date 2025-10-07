@@ -14,7 +14,7 @@ public:
 
 	EntFactory();
 
-	void Init(Level* lvl, ImageManager* img, sf::RenderWindow* rw);
+	void Init(Level* lvl, ImageManager* img, SDL_Renderer* renderer);
 
 	enum Types
 	{
@@ -42,6 +42,6 @@ public:
 private:
 
 	ImageManager* _ImgMan;
-	sf::RenderWindow* _Window;
+	SDL_Renderer* _Window;
 	Level* _Level;
 };

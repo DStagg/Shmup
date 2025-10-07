@@ -6,11 +6,11 @@ EntFactory::EntFactory()
 
 };
 
-void EntFactory::Init(Level* lvl, ImageManager* img, sf::RenderWindow* rw)
+void EntFactory::Init(Level* lvl, ImageManager* img, SDL_Renderer* renderer)
 {
 	_Level = lvl;
 	_ImgMan = img;
-	_Window = rw;
+	_Window = renderer;
 };
 
 Entity* EntFactory::Spawn(int type, float x, float y)
