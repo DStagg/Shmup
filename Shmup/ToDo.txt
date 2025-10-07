@@ -1,7 +1,7 @@
 //	SDL3	//
 
-[] Fix audio
-[] Fix GUI
+[x] Fix audio
+[x] Fix GUI
 [] Fix enemies
 [] Finish tests/fixes
 

@@ -354,7 +354,7 @@ void ShootScene::DrawScreen()
 		dstrect.y = h - (5.f + pip._Texture->h);
 		dstrect.w = pip._Texture->w;
 		dstrect.h = pip._Texture->h;
-		SDL_RenderTexture(_Window, pip._Texture, &pip._SrcRect, &dstrect);
+		SDL_RenderTexture(_Window, pip._Texture, NULL, &dstrect);
 	}
 
 	//	Powerups
@@ -374,7 +374,7 @@ void ShootScene::DrawScreen()
 			dstrect.y = h - ((bombgui._Texture->h + 10.f) * (i + 1));
 			dstrect.w = bombgui._Texture->w;
 			dstrect.h = bombgui._Texture->h;
-			SDL_RenderTexture(_Window, bombgui._Texture, &bombgui._SrcRect, &dstrect);
+			SDL_RenderTexture(_Window, bombgui._Texture, NULL, &dstrect);
 			
 			
 		}
@@ -391,7 +391,7 @@ void ShootScene::DrawScreen()
 		dstrect.y = h - ((doublegui._Texture->h + 10.f));
 		dstrect.w = doublegui._Texture->w;
 		dstrect.h = doublegui._Texture->h;
-		SDL_RenderTexture(_Window, doublegui._Texture, &doublegui._SrcRect, &dstrect);
+		SDL_RenderTexture(_Window, doublegui._Texture, NULL, &dstrect);
 
 		SDL_FRect doublebar;
 		doublebar.w = doublegui._Texture->w / 2.f;
