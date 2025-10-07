@@ -2,7 +2,7 @@
 
 [x] Fix audio
 [x] Fix GUI
-[] Fix enemies
+[x] Fix enemies
 [] Finish tests/fixes
 
 //	Game Stuff	//

@@ -48,8 +48,8 @@ void ShootScene::Begin()
 		
 	_Level.SetBoss(_Level.GetFactory().Spawn(EntFactory::Boss, 250.f, -256.f));
 	//	This was commented out already when cloning GitHub (07/10/25)
-	//_SpawnQueue.Load("Queue.bin");
-	//GenSpawnQueue(&_SpawnQueue);
+	_SpawnQueue.Load("res/Queue.bin");
+	GenSpawnQueue(&_SpawnQueue);
 };
 void ShootScene::End()
 {
@@ -466,8 +466,8 @@ void ShootScene::DrawScreen()
 		DebugDrawEntity(_Level.GetPowerups().GetEnt(i), _Window, sf::Color::White);
 	DebugDrawEntity(_Level.GetLaser(), _Window, sf::Color::Green);
 	*/
-	if ((_Level.GetBoss() != 0) && (_Level.GetBoss()->GetAlive()))
-		DebugDrawEntity(_Level.GetBoss(), _Window, 255, 0, 0, 255);
+	//if ((_Level.GetBoss() != 0) && (_Level.GetBoss()->GetAlive()))
+	//	DebugDrawEntity(_Level.GetBoss(), _Window, 255, 0, 0, 255);
 };
 
 ///
