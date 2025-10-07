@@ -1,7 +1,9 @@
 #pragma once
 
+#include <string>
 #include <vector>
-#include "SFML/Graphics.hpp"
+#include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
 
 class MenuList
 {
@@ -24,25 +26,25 @@ public:
 	std::string GetList(int id);
 	void SetList(int id, std::string text);
 
-private:
+protected:
 
 	int _Choice;
 	bool _Loop;
 	std::vector<std::string> _List;
 };
 
-class SFMLMenuList : public MenuList
+class SDLMenuList : public MenuList
 {
 public:
 
-	SFMLMenuList();
-	~SFMLMenuList();
+	SDLMenuList();
+	~SDLMenuList();
 
-	void Format(sf::Font font, float x = 0.f, float y = 0.f, int orientation = SFMLMenuList::Left);
+	void Format(SDL_Renderer* renderer, TTF_Font* font, float x = 0.f, float y = 0.f, int orientation = SDLMenuList::Left);
 
 	void SetBuffers(float x, float y);
 
-	void Draw(sf::RenderWindow* rw);
+	void Draw(SDL_Renderer* renderer);
 
 	enum Orientation
 	{
@@ -51,10 +53,13 @@ public:
 		Right
 	};
 
+	void RedrawMenuItem(SDL_Renderer* renderer, int index, std::string msg);
+
 private:
 
 	float _XBuffer, _YBuffer;
 	float _X, _Y;
-	sf::Font _Font;
+	TTF_Font* _Font;
 	int _Orientation;
+	std::vector<SDL_Texture*> _Textures;
 };

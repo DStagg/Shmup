@@ -3,7 +3,8 @@
 #include "Entity.h"
 #include "PlayerEnt.h"
 
-#include "Utility.h"
+#include "core/Utility.h"
+#include "core/AABB.h"
 
 class BombEnt : public BasicEnt
 {

@@ -20,16 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ext\Timer.cpp" />
-    <ClCompile Include="src\AABB.cpp" />
+    <ClCompile Include="src\core\AABB.cpp" />
     <ClCompile Include="src\AudioService.cpp" />
-    <ClCompile Include="src\BinaryFile.cpp" />
-    <ClCompile Include="src\BinarySave.cpp" />
+    <ClCompile Include="src\core\BinaryFile.cpp" />
+    <ClCompile Include="src\core\BinarySave.cpp" />
     <ClCompile Include="src\BossEnt.cpp" />
     <ClCompile Include="src\EnemyEnts.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityComponents.cpp" />
     <ClCompile Include="src\Factory.cpp" />
-    <ClCompile Include="src\Grid.cpp" />
+    <ClCompile Include="src\core\Grid.cpp" />
     <ClCompile Include="src\Icon.cpp" />
     <ClCompile Include="src\ImageManager.cpp" />
     <ClCompile Include="src\Level.cpp" />
@@ -39,25 +39,25 @@
     <ClCompile Include="src\MenuScene.cpp" />
     <ClCompile Include="src\PlayerEnt.cpp" />
     <ClCompile Include="src\PopAnim.cpp" />
-    <ClCompile Include="src\Random.cpp" />
-    <ClCompile Include="src\Scene.cpp" />
-    <ClCompile Include="src\Service.cpp" />
+    <ClCompile Include="src\core\Random.cpp" />
+    <ClCompile Include="src\core\Scene.cpp" />
+    <ClCompile Include="src\core\Service.cpp" />
     <ClCompile Include="src\ShootScene.cpp" />
     <ClCompile Include="src\SpawnQueue.cpp" />
-    <ClCompile Include="src\Utility.cpp" />
+    <ClCompile Include="src\core\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\Timer.h" />
-    <ClInclude Include="src\AABB.h" />
+    <ClInclude Include="src\core\AABB.h" />
     <ClInclude Include="src\AudioService.h" />
-    <ClInclude Include="src\BinaryFile.h" />
-    <ClInclude Include="src\BinarySave.h" />
+    <ClInclude Include="src\core\BinaryFile.h" />
+    <ClInclude Include="src\core\BinarySave.h" />
     <ClInclude Include="src\BossEnt.h" />
     <ClInclude Include="src\EnemyEnts.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\EntityComponents.h" />
     <ClInclude Include="src\Factory.h" />
-    <ClInclude Include="src\Grid.h" />
+    <ClInclude Include="src\core\Grid.h" />
     <ClInclude Include="src\Icon.h" />
     <ClInclude Include="src\ImageManager.h" />
     <ClInclude Include="src\Level.h" />
@@ -66,12 +66,12 @@
     <ClInclude Include="src\MenuScene.h" />
     <ClInclude Include="src\PlayerEnt.h" />
     <ClInclude Include="src\PopAnim.h" />
-    <ClInclude Include="src\Random.h" />
-    <ClInclude Include="src\Scene.h" />
-    <ClInclude Include="src\Service.h" />
+    <ClInclude Include="src\core\Random.h" />
+    <ClInclude Include="src\core\Scene.h" />
+    <ClInclude Include="src\core\Service.h" />
     <ClInclude Include="src\ShootScene.h" />
     <ClInclude Include="src\SpawnQueue.h" />
-    <ClInclude Include="src\Utility.h" />
+    <ClInclude Include="src\core\Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ToDo.txt" />

@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "AABB.h"
+#include "core/AABB.h"
 #include "Icon.h"
 
 #include "EntityComponents.h"

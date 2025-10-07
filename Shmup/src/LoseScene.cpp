@@ -1,8 +1,8 @@
 #include "LoseScene.h"
 
-LoseScene::LoseScene(sf::RenderWindow* rw)
+LoseScene::LoseScene(SDL_Renderer* renderer)
 {
-	_Window = rw;
+	_Window = renderer;
 };
 LoseScene::~LoseScene()
 {
@@ -14,7 +14,9 @@ void LoseScene::Begin()
 	_Font.loadFromFile("Roboto-Regular.ttf");
 
 	_MenuList.Populate({ "Quit" });
-	_MenuList.Format(_Font, _Window->getSize().x / 2.f, _Window->getSize().y / 2.f, SFMLMenuList::Center);
+	int w, h;
+	SDL_GetRenderOutputSize(_Window, &w, &h);
+	_MenuList.Format(_Font, (float)w / 2.f, (float)h / 2.f, SDLMenuList::Center);
 	_MenuList.SetBuffers(0.f, 0.f);
 };
 void LoseScene::End()

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "SFML\Graphics.hpp"
-#include "Scene.h"
-#include "Random.h"
+#include <SDL3/SDL.h>
+#include "core/Scene.h"
+#include "core/Random.h"
 #include "Entity.h"
 #include "LoseScene.h"
 #include "ImageManager.h"
@@ -11,14 +11,14 @@
 #include "Level.h"
 #include "SpawnQueue.h"
 #include "PlayerEnt.h"
-#include "Service.h"
+#include "core/Service.h"
 #include "AudioService.h"
 
 class ShootScene : public Scene
 {
 public:
 
-	ShootScene(sf::RenderWindow* win);
+	ShootScene(SDL_Renderer* renderer);
 	~ShootScene();
 
 	void Begin();
@@ -30,7 +30,7 @@ public:
 
 private:
 
-	sf::RenderWindow* _Window;
+	SDL_Renderer* _Window;
 
 	float _ShootTimer = 0.f;
 	float _ShootDelay = 0.25f;
@@ -41,4 +41,4 @@ private:
 	ImageManager _ImgMan;
 };
 
-void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw, sf::Color col = sf::Color::Cyan);
+void DebugDrawEntity(Entity* ent, SDL_Renderer* renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a);

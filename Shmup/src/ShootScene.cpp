@@ -1,8 +1,8 @@
 #include "ShootScene.h"
 
-ShootScene::ShootScene(sf::RenderWindow* win)
+ShootScene::ShootScene(SDL_Renderer* renderer)
 {
-	_Window = win;
+	_Window = renderer;
 };
 ShootScene::~ShootScene()
 {
@@ -38,12 +38,14 @@ void ShootScene::Begin()
 	PopulateAnimations(&_ImgMan);
 	_Level.GetFactory().Init(&_Level, &_ImgMan, _Window);
 
-	_Level.GetSize().SetSize((float)_Window->getSize().x, (float)_Window->getSize().y);
+	int w, h;
+	SDL_GetRenderOutputSize(_Window, &w, &h);
+	_Level.GetSize().SetSize((float)w, (float)h);
 	_Level.SetPlayer(_Level.GetFactory().Spawn(EntFactory::Player, _Level.GetSize().GetWidth() / 2.f - 50.f, _Level.GetSize().GetHeight() - 50.f));
 	_Level.SetLaser(_Level.GetFactory().Spawn(EntFactory::Laser, 0.f, 0.f));
 		
-
 	_Level.SetBoss(_Level.GetFactory().Spawn(EntFactory::Boss, 250.f, -256.f));
+	//	This was commented out already when cloning GitHub (07/10/25)
 	//_SpawnQueue.Load("Queue.bin");
 	//GenSpawnQueue(&_SpawnQueue);
 };
@@ -353,7 +355,7 @@ void ShootScene::DrawScreen()
 	}
 
 
-	/*
+	/*	This was already commented out when cloning GitHub (07/10/25)
 	DebugDrawEntity(_Level.GetPlayer(), _Window, sf::Color::Blue);
 	for (int i = 0; i < _Level.GetPlayerBullets().CountEnts(); i++)
 		DebugDrawEntity(_Level.GetPlayerBullets().GetEnt(i), _Window, sf::Color::Cyan);
@@ -368,12 +370,12 @@ void ShootScene::DrawScreen()
 	DebugDrawEntity(_Level.GetLaser(), _Window, sf::Color::Green);
 	*/
 	if ((_Level.GetBoss() != 0) && (_Level.GetBoss()->GetAlive()))
-		DebugDrawEntity(_Level.GetBoss(), _Window, sf::Color::Red);
+		DebugDrawEntity(_Level.GetBoss(), _Window, 255, 0, 0, 255);
 };
 
 ///
 
-void DebugDrawEntity(Entity* ent, sf::RenderWindow* win, sf::Color col)
+void DebugDrawEntity(Entity* ent, SDL_Renderer* renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	sf::RectangleShape rect;
 	rect.setPosition(ent->GetPresence().GetX(), ent->GetPresence().GetY());

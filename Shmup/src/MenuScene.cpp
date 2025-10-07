@@ -1,8 +1,8 @@
 #include "MenuScene.h"
 
-MenuScene::MenuScene(sf::RenderWindow* rw)
+MenuScene::MenuScene(SDL_Renderer* renderer)
 {
-	_Window = rw;
+	_Window = renderer;
 };
 MenuScene::~MenuScene()
 {
@@ -15,7 +15,9 @@ void MenuScene::Begin()
 	Service::Init(new SFMLAudio());
 
 	_MenuList.Populate({ "Play","Quit" });
-	_MenuList.Format(_Font, _Window->getSize().x / 2.f, _Window->getSize().y / 2.f, SFMLMenuList::Center);
+	int w, h;
+	SDL_GetRenderOutputSize(_Window, &w, &h);
+	_MenuList.Format(_Font, (float)w / 2.f, (float)h / 2.f, SDLMenuList::Center);
 	_MenuList.SetBuffers(10.f, 50.f);
 
 	if (Service::GetAudio().StoreStream("MainBGM", "Paradox.ogg"))

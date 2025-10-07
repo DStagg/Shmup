@@ -2,7 +2,7 @@
 
 #include "Factory.h"
 #include <queue>
-#include "BinaryFile.h"
+#include "core/BinaryFile.h"
 
 struct SpawnEntry
 {

@@ -1,14 +1,13 @@
 #pragma once
 
-#include "Scene.h"
-#include "SFML\Graphics.hpp"
+#include "core/Scene.h"
 #include "MenuList.h"
 
 class LoseScene : public Scene
 {
 public:
 
-	LoseScene(sf::RenderWindow* rw);
+	LoseScene(SDL_Renderer* renderer);
 	~LoseScene();
 
 	void Begin();
@@ -20,8 +19,8 @@ public:
 
 private:
 
-	sf::RenderWindow* _Window;
-	sf::Font _Font;
+	SDL_Renderer* _Window;
+	//sf::Font _Font;
 
-	SFMLMenuList _MenuList;
+	SDLMenuList _MenuList;
 };

@@ -2,6 +2,8 @@
 
 #include "SFML\Graphics.hpp"
 #include "ImageManager.h"
+#include <string>
+#include <map>
 
 class Size
 {

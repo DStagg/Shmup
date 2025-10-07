@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Scene.h"
-#include "Service.h"
+#include <SDL3/SDL.h>
+
+#include "core/Scene.h"
+#include "core/Service.h"
 #include "MenuList.h"
 #include "ShootScene.h"
 
@@ -9,7 +11,7 @@ class MenuScene : public Scene
 {
 public:
 
-	MenuScene(sf::RenderWindow* rw);
+	MenuScene(SDL_Renderer* renderer);
 	~MenuScene();
 
 	void Begin();
@@ -21,7 +23,7 @@ public:
 
 private:
 
-	sf::RenderWindow* _Window;
-	SFMLMenuList _MenuList;
-	sf::Font _Font;
+	SDL_Renderer* _Window;
+	SDLMenuList _MenuList;
+	//sf::Font _Font;
 };

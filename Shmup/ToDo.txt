@@ -1,0 +1,37 @@
+//	SDL3	//
+
+[] AudioService.h/.cpp - make SDL3 version: SDL3AudioService
+[] BossEnt.h/.cpp - swap BossEnt::Draw() to SDL3
+[] Entity.h/.cpp - swap Entity::Draw() and BaseEnt::Draw() to SDL3
+[] EntityComponents.h/.cpp - make SDL3 version of Graphic
+[] Factory.h/.cpp - swap EntFactor::Init() and ::Spawn() to SDL3 (after EntityComponents)
+[] Icon.h/.cpp - swap ::Draw() and ::_Rectangle to SDL3
+[] ImageManager.h/.cpp - swap all to SDL3
+[] PlayerEnt.h/.cpp - swap constructor, ::Update() and ::Draw() to SDL3
+
+//	Scenes	//
+
+[] MenuScene.cpp - Menu initialisation in Begin()
+[] MenuScene.cpp - Music initialisation in Begin()
+[] MenuScene.cpp - Event handling in Update()
+[] ShootScene.cpp - Event handling in Update()
+[] ShootScene.cpp - GUI drawing in DrawScreen()
+[] ShootScene.cpp - DebugDrawEntity()
+[] LoseScene.cpp - Menu initialisation in Begin()
+[] LoseScene.cpp - Event handling in Update()
+
+//	Game Stuff	//
+
+Add boss
+Add boss healthbar GUI
+Add level complete win condition
+
+
+Polish:
+1. Make all bullets centered on where they appear
+2. Add an invincibility animation for the player
+3. Make a "hitframe" animation for the player - distinguish from the invincibility animation by time
+4. Make better powerup sprites
+5. Animate powerups
+6. Add remaining SFX (powerup pickup, player hurt, bomb, appropriate menu stuff)
+7. Add more appropriate background music
