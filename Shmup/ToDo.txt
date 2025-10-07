@@ -1,6 +1,6 @@
 //	SDL3	//
 
-[] AudioService.h/.cpp - make SDL3 version: SDL3AudioService
+[x] AudioService.h/.cpp - make SDL3 version: SDL3AudioService
 [] BossEnt.h/.cpp - swap BossEnt::Draw() to SDL3
 [] Entity.h/.cpp - swap Entity::Draw() and BaseEnt::Draw() to SDL3
 [] EntityComponents.h/.cpp - make SDL3 version of Graphic
@@ -12,10 +12,10 @@
 //	Scenes	//
 
 [x] MenuScene.cpp - Menu initialisation in Begin()
-[] MenuScene.cpp - Music initialisation in Begin()
+[] MenuScene.cpp - Music initialisation in Begin()	- AFTER AudioService
 [x] MenuScene.cpp - Event handling in Update()
 [x] ShootScene.cpp - Event handling in Update()
-[] ShootScene.cpp - GUI drawing in DrawScreen()
+[] ShootScene.cpp - GUI drawing in DrawScreen()		- AFTER ImageManager/etc.
 [x] ShootScene.cpp - DebugDrawEntity()
 [x] LoseScene.cpp - Menu initialisation in Begin()
 [x] LoseScene.cpp - Event handling in Update()
