@@ -1,8 +1,9 @@
 #include "MenuScene.h"
 
-MenuScene::MenuScene(SDL_Renderer* renderer)
+MenuScene::MenuScene(SDL_Renderer* renderer, MIX_Mixer* mix)
 {
 	_Window = renderer;
+	_Mixer = mix;
 };
 MenuScene::~MenuScene()
 {
@@ -14,7 +15,7 @@ void MenuScene::Begin()
 	_Font = TTF_OpenFont("res/Roboto-Regular.ttf", 18.0f);
 
 	//Service::Init(new SFMLAudio());
-	Service::Init(new SDLAudio());
+	Service::Init(new SDLAudio(_Mixer));
 
 	_MenuList.Populate({ "Play","Quit" });
 	int w, h;
@@ -23,7 +24,7 @@ void MenuScene::Begin()
 	_MenuList.SetBuffers(10.f, 50.f);
 	TTF_CloseFont(_Font);
 
-	if (Service::GetAudio().StoreStream("MainBGM", "Paradox.ogg"))
+	if (Service::GetAudio().StoreStream("MainBGM", "res/Paradox.ogg"))
 		Service::GetAudio().PlayStream("MainBGM");
 };
 
@@ -56,7 +57,7 @@ void MenuScene::Update(float dt)
 			switch (_MenuList.GetChoice())
 			{
 			case 0:
-				GetManager()->PushScene(new ShootScene(_Window));
+				GetManager()->PushScene(new ShootScene(_Window, _Mixer));
 				break;
 			case 1:
 				GetManager()->Quit();

@@ -6,6 +6,16 @@ SDLAudio::SDLAudio(MIX_Mixer* mix)
 	_Mixer = mix;
 };
 
+SDLAudio::~SDLAudio()
+{
+	for (std::vector<MIX_Track*>::iterator i = _Tracks.begin(); i != _Tracks.end(); i++)
+		MIX_DestroyTrack(*i);
+	for (std::map<std::string, MIX_Audio*>::iterator i = _SFXs.begin(); i != _SFXs.end(); i++)
+		MIX_DestroyAudio(i->second);
+	for (std::map<std::string, MIX_Audio*>::iterator i = _Music.begin(); i != _Music.end(); i++)
+		MIX_DestroyAudio(i->second);
+}
+
 void SDLAudio::PlaySFX(std::string id)
 {
 	std::map<std::string, MIX_Audio*>::iterator result = _SFXs.find(id);
@@ -40,7 +50,8 @@ void SDLAudio::PlayStream(std::string id)
 	SDL_SetNumberProperty(options, MIX_PROP_PLAY_LOOPS_NUMBER, -1);
 	MIX_PlayTrack(mix, options);
 	SDL_DestroyProperties(options);
-	
+
+	_Tracks.push_back(mix);
 };
 
 void SDLAudio::StopSFX(std::string id)

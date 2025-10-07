@@ -12,7 +12,7 @@ class MenuScene : public Scene
 {
 public:
 
-	MenuScene(SDL_Renderer* renderer);
+	MenuScene(SDL_Renderer* renderer, MIX_Mixer* mix);
 	~MenuScene();
 
 	void Begin();
@@ -27,4 +27,5 @@ private:
 	SDL_Renderer* _Window;
 	SDLMenuList _MenuList;
 	TTF_Font* _Font;
+	MIX_Mixer* _Mixer;
 };

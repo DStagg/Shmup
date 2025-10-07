@@ -18,7 +18,7 @@ class ShootScene : public Scene
 {
 public:
 
-	ShootScene(SDL_Renderer* renderer);
+	ShootScene(SDL_Renderer* renderer, MIX_Mixer* mix);
 	~ShootScene();
 
 	void Begin();
@@ -37,7 +37,7 @@ private:
 
 	Level _Level;
 	SpawnQueue _SpawnQueue;
-
+	MIX_Mixer* _Mixer;
 	ImageManager* _ImgMan;
 };
 

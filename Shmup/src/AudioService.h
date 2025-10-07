@@ -11,6 +11,7 @@ class SDLAudio : public AudioService
 public:
 	
 	SDLAudio(MIX_Mixer* mix = nullptr);
+	~SDLAudio();
 
 	void PlaySFX(std::string id);
 	void PlayStream(std::string id);

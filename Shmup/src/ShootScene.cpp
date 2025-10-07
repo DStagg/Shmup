@@ -1,9 +1,10 @@
 #include "ShootScene.h"
 
-ShootScene::ShootScene(SDL_Renderer* renderer)
+ShootScene::ShootScene(SDL_Renderer* renderer, MIX_Mixer* mix)
 {
 	_Window = renderer;
 	_ImgMan = new ImageManager(renderer);
+	_Mixer = mix;
 };
 ShootScene::~ShootScene()
 {

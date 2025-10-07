@@ -45,7 +45,7 @@ int main()
 	}
 
 	SceneManager SCM;
-	SCM.PushScene(new MenuScene(_Renderer));
+	SCM.PushScene(new MenuScene(_Renderer, _Mixer));
 	
 	UpdateClock.Reset();
 	while (SCM.GetActiveScenePntr() != 0)

@@ -1,24 +1,9 @@
 //	SDL3	//
 
-[x] AudioService.h/.cpp - make SDL3 version: SDL3AudioService
-[x] BossEnt.h/.cpp - swap BossEnt::Draw() to SDL3
-[x] Entity.h/.cpp - swap Entity::Draw() and BaseEnt::Draw() to SDL3
-[x] EntityComponents.h/.cpp - make SDL3 version of Graphic
-[x] Factory.h/.cpp - swap EntFactor::Init() and ::Spawn() to SDL3 (after EntityComponents)
-[x] Icon.h/.cpp - swap ::Draw() and ::_Rectangle to SDL3
-[] ImageManager.h/.cpp - swap all to SDL3
-[x] PlayerEnt.h/.cpp - swap constructor, ::Update() and ::Draw() to SDL3
-
-//	Scenes	//
-
-[x] MenuScene.cpp - Menu initialisation in Begin()
-[] MenuScene.cpp - Music initialisation in Begin()	- AFTER AudioService
-[x] MenuScene.cpp - Event handling in Update()
-[x] ShootScene.cpp - Event handling in Update()
-[] ShootScene.cpp - GUI drawing in DrawScreen()		- AFTER ImageManager/etc.
-[x] ShootScene.cpp - DebugDrawEntity()
-[x] LoseScene.cpp - Menu initialisation in Begin()
-[x] LoseScene.cpp - Event handling in Update()
+[] Fix audio
+[] Fix GUI
+[] Fix enemies
+[] Finish tests/fixes
 
 //	Game Stuff	//
 
