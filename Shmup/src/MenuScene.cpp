@@ -41,14 +41,14 @@ void MenuScene::Resume()
 
 void MenuScene::Update(float dt)
 {
-	sf::Event Event;
-	while (_Window->pollEvent(Event))
+	SDL_Event e;
+	while (SDL_PollEvent(&e))
 	{
-		if (Event.type == sf::Event::Closed)
+		if (e.type == SDL_EVENT_QUIT)
 			GetManager()->Quit();
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_ESCAPE))
 			GetManager()->Quit();
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Return))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_RETURN))
 		{
 			switch (_MenuList.GetChoice())
 			{
@@ -62,9 +62,9 @@ void MenuScene::Update(float dt)
 				break;
 			}
 		}
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::W))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_W))
 			_MenuList.DecChoice();
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::S))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_S))
 			_MenuList.IncChoice();
 
 	}

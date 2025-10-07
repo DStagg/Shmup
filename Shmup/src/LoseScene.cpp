@@ -33,14 +33,12 @@ void LoseScene::Resume()
 };
 void LoseScene::Update(float dt)
 {
-	sf::Event Event;
-	while (_Window->pollEvent(Event))
+	SDL_Event e;
+	while (SDL_PollEvent(&e))
 	{
-		if (Event.type == sf::Event::Closed)
+		if (e.type == SDL_EVENT_QUIT)
 			GetManager()->Quit();
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
-			GetManager()->Quit();
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Return))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && ((e.key.key == SDLK_ESCAPE) || (e.key.key == SDLK_RETURN)))
 			GetManager()->Quit();
 	}
 };

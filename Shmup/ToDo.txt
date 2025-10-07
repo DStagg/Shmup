@@ -13,12 +13,12 @@
 
 [] MenuScene.cpp - Menu initialisation in Begin()
 [] MenuScene.cpp - Music initialisation in Begin()
-[] MenuScene.cpp - Event handling in Update()
-[] ShootScene.cpp - Event handling in Update()
+[x] MenuScene.cpp - Event handling in Update()
+[x] ShootScene.cpp - Event handling in Update()
 [] ShootScene.cpp - GUI drawing in DrawScreen()
 [] ShootScene.cpp - DebugDrawEntity()
 [] LoseScene.cpp - Menu initialisation in Begin()
-[] LoseScene.cpp - Event handling in Update()
+[x] LoseScene.cpp - Event handling in Update()
 
 //	Game Stuff	//
 

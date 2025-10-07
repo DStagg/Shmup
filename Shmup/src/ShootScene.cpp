@@ -65,22 +65,22 @@ void ShootScene::Update(float dt)
 {
 	_ShootTimer += dt;
 
-	sf::Event Event;
-	while (_Window->pollEvent(Event))
+	SDL_Event e;
+	while (SDL_PollEvent(&e))
 	{
-		if (Event.type == sf::Event::Closed)
+		if (e.type == SDL_EVENT_QUIT)
 			SetRunning(false);
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_ESCAPE))
 			SetRunning(false);
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num1))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_1))
 			((PlayerEnt*)_Level.GetPlayer())->_DoubleShot = 5.f;
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num2))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_2))
 			((PlayerEnt*)_Level.GetPlayer())->_Laser = 2.5f;
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num3))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_3))
 			((PlayerEnt*)_Level.GetPlayer())->_Invincibility = 5.f;
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Num4))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_4))
 			((PlayerEnt*)_Level.GetPlayer())->_Bombs += 1;
-		else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::P))
+		else if ((e.type == SDL_EVENT_KEY_DOWN) && (e.key.key == SDLK_P))
 		{
 			if (Service::GetAudio().StreamPlaying("MainBGM"))
 				Service::GetAudio().PauseStream("MainBGM");
