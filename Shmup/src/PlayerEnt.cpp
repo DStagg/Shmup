@@ -1,9 +1,9 @@
 #include "PlayerEnt.h"
 #include "Level.h"
 
-PlayerEnt::PlayerEnt(Level* lvl , sf::RenderWindow* rw) : Entity(lvl)
+PlayerEnt::PlayerEnt(Level* lvl , SDL_Renderer* renderer) : Entity(lvl)
 {
-	_Window = rw;
+	_Window = renderer;
 };
 
 void PlayerEnt::Update(float dt)
@@ -85,8 +85,13 @@ void PlayerEnt::Update(float dt)
 
 };
 
-void PlayerEnt::Draw(sf::RenderWindow* rw)
+void PlayerEnt::Draw(SDL_Renderer* renderer)
 {
-	GetGraphic().GetSprPntr()->setPosition(GetPresence().GetX(), GetPresence().GetY());
-	rw->draw(*GetGraphic().GetSprPntr());
+	SDL_FRect dstrect;
+	dstrect.x = GetPresence().GetX();
+	dstrect.y = GetPresence().GetY();
+	dstrect.w = GetGraphic().GetSprPntr()->_SrcRect.w;
+	dstrect.h = GetGraphic().GetSprPntr()->_SrcRect.h;
+
+	SDL_RenderTexture(renderer, GetGraphic().GetSprPntr()->_Texture, &GetGraphic().GetSprPntr()->_SrcRect, &dstrect);
 };

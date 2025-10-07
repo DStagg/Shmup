@@ -7,10 +7,10 @@ class PlayerEnt : public Entity
 {
 public:
 
-	PlayerEnt(Level* lvl , sf::RenderWindow* rw);
+	PlayerEnt(Level* lvl , SDL_Renderer* renderer);
 
 	void Update(float dt);
-	void Draw(sf::RenderWindow* rw);
+	void Draw(SDL_Renderer* renderer);
 
 	float _DoubleShot = 0.f;
 	float _Invincibility = 0.f;
@@ -19,7 +19,7 @@ public:
 
 private:
 
-	sf::RenderWindow* _Window;
+	SDL_Renderer* _Window;
 
 	float _ShootTimer = 0.f;
 	float _ShootDelay = 0.25f;
