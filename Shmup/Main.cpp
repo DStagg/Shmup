@@ -8,7 +8,7 @@
 
 #include "ext/Timer.h"
 
-#include "src/Scene.h"
+#include "src/core/Scene.h"
 #include "src/MenuScene.h"
 
 SDL_Window* _Window = nullptr;
@@ -20,6 +20,8 @@ int main()
 	Timer UpdateClock;
 
 	SDL_CreateWindowAndRenderer("Shoot-em-up", 624, 624, NULL, &_Window, &_Renderer);
+	SDL_SetRenderDrawBlendMode(_Renderer, SDL_BLENDMODE_BLEND);
+	SDL_SetDefaultTextureScaleMode(_Renderer, SDL_SCALEMODE_NEAREST);
 
 	if (!TTF_Init())
 	{
@@ -48,7 +50,7 @@ int main()
 	UpdateClock.Reset();
 	while (SCM.GetActiveScenePntr() != 0)
 	{
-		SCM.GetActiveScenePntr()->Update(UpdateClock.restart().asSeconds());
+		SCM.GetActiveScenePntr()->Update(UpdateClock.Lap() / 1000.f);
 
 		SDL_SetRenderDrawColor(_Renderer, 0, 0, 0, 255);
 		SDL_RenderClear(_Renderer);

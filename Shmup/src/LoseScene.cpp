@@ -11,12 +11,12 @@ LoseScene::~LoseScene()
 
 void LoseScene::Begin()
 {
-	_Font.loadFromFile("Roboto-Regular.ttf");
+	_Font = TTF_OpenFont("res/Roboto-Regular.ttf", 18.0f);
 
 	_MenuList.Populate({ "Quit" });
 	int w, h;
 	SDL_GetRenderOutputSize(_Window, &w, &h);
-	_MenuList.Format(_Font, (float)w / 2.f, (float)h / 2.f, SDLMenuList::Center);
+	_MenuList.Format(_Window, _Font, (float)w / 2.f, (float)h / 2.f, SDLMenuList::Center);
 	_MenuList.SetBuffers(0.f, 0.f);
 };
 void LoseScene::End()

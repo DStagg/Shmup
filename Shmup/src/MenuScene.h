@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
 
 #include "core/Scene.h"
 #include "core/Service.h"
@@ -25,5 +26,5 @@ private:
 
 	SDL_Renderer* _Window;
 	SDLMenuList _MenuList;
-	//sf::Font _Font;
+	TTF_Font* _Font;
 };

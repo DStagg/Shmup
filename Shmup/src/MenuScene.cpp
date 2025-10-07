@@ -11,14 +11,16 @@ MenuScene::~MenuScene()
 
 void MenuScene::Begin()
 {
-	_Font.loadFromFile("Roboto-Regular.ttf");
+	_Font = TTF_OpenFont("res/Roboto-Regular.ttf", 18.0f);
+
 	Service::Init(new SFMLAudio());
 
 	_MenuList.Populate({ "Play","Quit" });
 	int w, h;
 	SDL_GetRenderOutputSize(_Window, &w, &h);
-	_MenuList.Format(_Font, (float)w / 2.f, (float)h / 2.f, SDLMenuList::Center);
+	_MenuList.Format(_Window, _Font, (float)w / 2.f, (float)h / 2.f, SDLMenuList::Center);
 	_MenuList.SetBuffers(10.f, 50.f);
+	TTF_CloseFont(_Font);
 
 	if (Service::GetAudio().StoreStream("MainBGM", "Paradox.ogg"))
 		Service::GetAudio().PlayStream("MainBGM");

@@ -377,11 +377,12 @@ void ShootScene::DrawScreen()
 
 void DebugDrawEntity(Entity* ent, SDL_Renderer* renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-	sf::RectangleShape rect;
-	rect.setPosition(ent->GetPresence().GetX(), ent->GetPresence().GetY());
-	rect.setSize(sf::Vector2f(ent->GetSize().GetWidth(), ent->GetSize().GetHeight()));
-	rect.setOutlineThickness(1.f);
-	rect.setOutlineColor(col);
-	rect.setFillColor(sf::Color(0, 0, 0, 0));
-	win->draw(rect);
+	SDL_FRect rect;
+	rect.x = ent->GetPresence().GetX();
+	rect.y = ent->GetPresence().GetY();
+	rect.w = ent->GetSize().GetWidth();
+	rect.h = ent->GetSize().GetHeight();
+
+	SDL_SetRenderDrawColor(renderer, r, g, b, a);
+	SDL_RenderRect(renderer, &rect);
 };
