@@ -1,5 +1,4 @@
-#ifndef MENULIST_H
-#define MENULIST_H
+#pragma once
 
 #include <vector>
 #include "SFML/Graphics.hpp"
@@ -59,5 +58,3 @@ private:
 	sf::Font _Font;
 	int _Orientation;
 };
-
-#endif

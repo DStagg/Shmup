@@ -1,5 +1,4 @@
-#ifndef SCENE_BASE_H
-#define SCENE_BASE_H
+#pragma once
 
 class SceneManager;
 
@@ -58,5 +57,3 @@ private:
 
 	Scene* _RootScenePntr;
 };
-
-#endif

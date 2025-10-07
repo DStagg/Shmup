@@ -1,5 +1,4 @@
-#ifndef SERVICE_H
-#define SERVICE_H
+#pragma once
 
 #include <string>
 
@@ -48,7 +47,3 @@ private:
 	static AudioService* _AudioService;
 
 };
-
-
-
-#endif

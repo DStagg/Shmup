@@ -1,5 +1,4 @@
-#ifndef SHOOTSCENE_H
-#define SHOOTSCENE_H
+#pragma once
 
 #include "SFML\Graphics.hpp"
 #include "Scene.h"
@@ -43,5 +42,3 @@ private:
 };
 
 void DebugDrawEntity(Entity* ent, sf::RenderWindow* rw, sf::Color col = sf::Color::Cyan);
-
-#endif

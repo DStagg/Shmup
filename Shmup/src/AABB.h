@@ -1,5 +1,4 @@
-#ifndef AABB_H
-#define AABB_H
+#pragma once
 
 class AABB
 {
@@ -17,5 +16,3 @@ public:
 	bool Contains(float x, float y);
 	bool Intersects(AABB box);
 };
-
-#endif

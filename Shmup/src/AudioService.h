@@ -1,5 +1,4 @@
-#ifndef AUDIOSERVICE_H
-#define AUDIOSERVICE_H
+#pragma once
 
 #include "Service.h"
 #include <map>
@@ -27,5 +26,3 @@ protected:
 	std::map<std::string, sf::SoundBuffer> _SFXs;
 	std::map<std::string, sf::Music> _Streams;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef RANDOM_H
-#define RANDOM_H
+#pragma once
 
 #include <random>
 #include <time.h>
@@ -25,5 +24,3 @@ private:
 	static int _Seed;
 	static Random* _Instance;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef ICON_H
-#define ICON_H
+#pragma once
 
 #include <SFML\Graphics.hpp>
 #include "ImageManager.h"
@@ -76,5 +75,3 @@ private:
 	sf::RectangleShape _Rectangle;
 
 };
-
-#endif

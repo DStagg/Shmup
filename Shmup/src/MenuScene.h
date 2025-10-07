@@ -1,5 +1,4 @@
-#ifndef MENUSCENE_H
-#define MENUSCENE_H
+#pragma once
 
 #include "Scene.h"
 #include "Service.h"
@@ -26,5 +25,3 @@ private:
 	SFMLMenuList _MenuList;
 	sf::Font _Font;
 };
-
-#endif

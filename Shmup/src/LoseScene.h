@@ -1,5 +1,4 @@
-#ifndef LOSESCENE_H
-#define LOSESCENE_H
+#pragma once
 
 #include "Scene.h"
 #include "SFML\Graphics.hpp"
@@ -26,5 +25,3 @@ private:
 
 	SFMLMenuList _MenuList;
 };
-
-#endif

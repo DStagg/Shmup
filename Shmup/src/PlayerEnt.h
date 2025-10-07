@@ -1,5 +1,4 @@
-#ifndef PLAYERENT_H
-#define PLAYERENT_H
+#pragma once
 
 #include "Entity.h"
 #include "Service.h"
@@ -26,5 +25,3 @@ private:
 	float _ShootDelay = 0.25f;
 
 };
-
-#endif

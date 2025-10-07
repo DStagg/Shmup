@@ -1,5 +1,4 @@
-#ifndef ENTITYCOMPONENTS_H
-#define ENTITYCOMPONENTS_H
+#pragma once
 
 #include "SFML\Graphics.hpp"
 #include "ImageManager.h"
@@ -95,5 +94,3 @@ private:
 	int _CurrentHP;
 	int _MaximumHP;
 };
-
-#endif

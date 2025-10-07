@@ -1,5 +1,4 @@
-#ifndef IMAGEMANAGER_H
-#define IMAGEMANAGER_H
+#pragma once
 
 #include "SFML\Graphics.hpp"
 #include <algorithm>
@@ -56,5 +55,3 @@ private:
 };
 
 sf::IntRect AnimIntRect(Animation anim);
-
-#endif

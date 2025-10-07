@@ -1,5 +1,4 @@
-#ifndef FACTORY_H
-#define FACTORY_H
+#pragma once
 
 #include "Entity.h"
 
@@ -46,5 +45,3 @@ private:
 	sf::RenderWindow* _Window;
 	Level* _Level;
 };
-
-#endif

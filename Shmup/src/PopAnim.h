@@ -1,8 +1,5 @@
-#ifndef POPANIM_H
-#define POPANIM_H
+#pragma once
 
 #include "ImageManager.h"
 
 void PopulateAnimations(ImageManager* img);
-
-#endif

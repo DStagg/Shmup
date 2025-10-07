@@ -1,5 +1,4 @@
-#ifndef ENEMYENTS_H
-#define ENEMYENTS_H
+#pragma once
 
 #include "Entity.h"
 #include "PlayerEnt.h"
@@ -72,5 +71,3 @@ private:
 	float _ShootTimer = 0.f;
 	float _ShootDelay = 1.5f;
 };
-
-#endif

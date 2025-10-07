@@ -1,5 +1,4 @@
-#ifndef SPAWNQUEUE_H
-#define SPAWNQUEUE_H
+#pragma once
 
 #include "Factory.h"
 #include <queue>
@@ -41,5 +40,3 @@ private:
 
 
 void GenSpawnQueue(SpawnQueue* sq);
-
-#endif

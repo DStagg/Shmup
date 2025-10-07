@@ -1,5 +1,4 @@
-#ifndef BOSSENT_H
-#define BOSSENT_H
+#pragma once
 
 #include "Entity.h"
 
@@ -20,5 +19,3 @@ private:
 	BasicEnt* _TurretA;
 	BasicEnt* _TurretB;
 };
-
-#endif

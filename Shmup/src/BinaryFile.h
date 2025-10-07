@@ -1,5 +1,4 @@
-#ifndef BINARY_FILE_H
-#define BINARY_FILE_H
+#pragma once
 
 #include <fstream>
 
@@ -66,5 +65,3 @@ T BinaryFile::Read()	//	generic function for reading T from the stream, can be o
 	
 	return Data;
 };
-
-#endif

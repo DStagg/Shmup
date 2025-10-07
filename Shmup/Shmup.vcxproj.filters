@@ -23,153 +23,153 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Grid.cpp">
+    <ClCompile Include="src\Grid.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
-    <ClCompile Include="Random.cpp">
+    <ClCompile Include="src\Random.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
+    <ClCompile Include="src\Scene.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility.cpp">
+    <ClCompile Include="src\Utility.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Project Files</Filter>
     </ClCompile>
-    <ClCompile Include="AABB.cpp">
+    <ClCompile Include="src\AABB.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
-    <ClCompile Include="MenuList.cpp">
+    <ClCompile Include="src\MenuList.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
-    <ClCompile Include="ImageManager.cpp">
+    <ClCompile Include="src\ImageManager.cpp">
       <Filter>Project Files\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="LoseScene.cpp">
+    <ClCompile Include="src\LoseScene.cpp">
       <Filter>Project Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="PopAnim.cpp">
+    <ClCompile Include="src\PopAnim.cpp">
       <Filter>Project Files\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="ShootScene.cpp">
+    <ClCompile Include="src\ShootScene.cpp">
       <Filter>Project Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
+    <ClCompile Include="src\Entity.cpp">
       <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClCompile>
-    <ClCompile Include="EntityComponents.cpp">
+    <ClCompile Include="src\EntityComponents.cpp">
       <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClCompile>
-    <ClCompile Include="Factory.cpp">
+    <ClCompile Include="src\Factory.cpp">
       <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClCompile>
-    <ClCompile Include="Icon.cpp">
+    <ClCompile Include="src\Icon.cpp">
       <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerEnt.cpp">
+    <ClCompile Include="src\PlayerEnt.cpp">
       <Filter>Project Files\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyEnts.cpp">
+    <ClCompile Include="src\EnemyEnts.cpp">
       <Filter>Project Files\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Level.cpp">
+    <ClCompile Include="src\Level.cpp">
       <Filter>Project Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpawnQueue.cpp">
+    <ClCompile Include="src\SpawnQueue.cpp">
       <Filter>Project Files</Filter>
     </ClCompile>
-    <ClCompile Include="BinaryFile.cpp">
+    <ClCompile Include="src\BinaryFile.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
-    <ClCompile Include="BinarySave.cpp">
+    <ClCompile Include="src\BinarySave.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
-    <ClCompile Include="Service.cpp">
+    <ClCompile Include="src\Service.cpp">
       <Filter>Project Files</Filter>
     </ClCompile>
-    <ClCompile Include="AudioService.cpp">
+    <ClCompile Include="src\AudioService.cpp">
       <Filter>Project Files\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
+    <ClCompile Include="src\MenuScene.cpp">
       <Filter>Project Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="BossEnt.cpp">
+    <ClCompile Include="src\BossEnt.cpp">
       <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Grid.h">
+    <ClInclude Include="src\Grid.h">
       <Filter>Core Files</Filter>
     </ClInclude>
-    <ClInclude Include="Random.h">
+    <ClInclude Include="src\Random.h">
       <Filter>Core Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
+    <ClInclude Include="src\Scene.h">
       <Filter>Core Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility.h">
+    <ClInclude Include="src\Utility.h">
       <Filter>Core Files</Filter>
     </ClInclude>
-    <ClInclude Include="AABB.h">
+    <ClInclude Include="src\AABB.h">
       <Filter>Core Files</Filter>
     </ClInclude>
-    <ClInclude Include="MenuList.h">
+    <ClInclude Include="src\MenuList.h">
       <Filter>Core Files</Filter>
     </ClInclude>
-    <ClInclude Include="ImageManager.h">
+    <ClInclude Include="src\ImageManager.h">
       <Filter>Project Files\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="LoseScene.h">
+    <ClInclude Include="src\LoseScene.h">
       <Filter>Project Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="PopAnim.h">
+    <ClInclude Include="src\PopAnim.h">
       <Filter>Project Files\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="ShootScene.h">
+    <ClInclude Include="src\ShootScene.h">
       <Filter>Project Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Icon.h">
+    <ClInclude Include="src\Icon.h">
       <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="src\Entity.h">
       <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClInclude>
-    <ClInclude Include="EntityComponents.h">
+    <ClInclude Include="src\EntityComponents.h">
       <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClInclude>
-    <ClInclude Include="Factory.h">
+    <ClInclude Include="src\Factory.h">
       <Filter>Project Files\Entity\Base Stuff</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerEnt.h">
+    <ClInclude Include="src\PlayerEnt.h">
       <Filter>Project Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyEnts.h">
+    <ClInclude Include="src\EnemyEnts.h">
       <Filter>Project Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
+    <ClInclude Include="src\Level.h">
       <Filter>Project Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpawnQueue.h">
+    <ClInclude Include="src\SpawnQueue.h">
       <Filter>Project Files</Filter>
     </ClInclude>
-    <ClInclude Include="BinaryFile.h">
+    <ClInclude Include="src\BinaryFile.h">
       <Filter>Core Files</Filter>
     </ClInclude>
-    <ClInclude Include="BinarySave.h">
+    <ClInclude Include="src\BinarySave.h">
       <Filter>Core Files</Filter>
     </ClInclude>
-    <ClInclude Include="Service.h">
+    <ClInclude Include="src\Service.h">
       <Filter>Project Files</Filter>
     </ClInclude>
-    <ClInclude Include="AudioService.h">
+    <ClInclude Include="src\AudioService.h">
       <Filter>Project Files\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="MenuScene.h">
+    <ClInclude Include="src\MenuScene.h">
       <Filter>Project Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="BossEnt.h">
+    <ClInclude Include="src\BossEnt.h">
       <Filter>Project Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>

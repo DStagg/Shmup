@@ -1,5 +1,4 @@
-#ifndef BINARY_SAVE_H
-#define BINARY_SAVE_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -19,5 +18,3 @@ template <>
 void BinaryFile::Write<bool>( bool b );
 template <>
 bool BinaryFile::Read<bool>();
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef LEVEL_H
-#define LEVEL_H
+#pragma once
 
 #include "Entity.h"
 #include "Factory.h"
@@ -41,5 +40,3 @@ private:
 	EntFactory _Factory;
 	Size _Size;
 };
-
-#endif
