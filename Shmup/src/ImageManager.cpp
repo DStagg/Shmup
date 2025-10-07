@@ -39,18 +39,18 @@ AnimationFrame Animation::GetCurrFrame()
 	return _Frames[_CurrentFrame];
 };
 
-ImageManager::ImageManager()
+ImageManager::ImageManager(SDL_Renderer* renderer)
 {
-	sf::Image defImg;
-	defImg.create(32, 32);
-	for (int x = 0; x < 32; x++)
-		for (int y = 0; y < 32; y++)
-			defImg.setPixel(x, y, sf::Color::Cyan);
-	sf::Texture defTex;
-	defTex.loadFromImage(defImg);
-	_Textures["Default"] = defTex;
-	SetTransMask();
-	SetSmooth(false);
+	_Window = renderer;
+
+	SDL_Texture* texture = SDL_CreateTexture(_Window, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, 32, 32);
+	SDL_Surface* surface = nullptr;
+
+	if (SDL_LockTextureToSurface(texture, NULL, &surface)) {
+		SDL_FillSurfaceRect(surface, NULL, SDL_MapRGB(SDL_GetPixelFormatDetails(surface->format), NULL, 0,0,0));  /* make the whole surface black */
+		SDL_UnlockTexture(texture);
+	}
+	_Textures["Default"] = texture;
 
 	AnimationFrame frame(0, 0, 1, 1, 0.f);
 	Animation anim;
@@ -59,37 +59,35 @@ ImageManager::ImageManager()
 };
 ImageManager::~ImageManager()
 {
-
+	for (std::map<std::string, SDL_Texture*>::iterator i = _Textures.begin(); i != _Textures.end(); i++)
+		SDL_DestroyTexture(i->second);
 };
 
 bool ImageManager::LoadTextureFromFile(std::string tag, std::string filename)
 {
-	sf::Image img;
-	sf::Texture tex;
+	if (!_Window) return false;
 
-	if (img.loadFromFile(filename))
+	SDL_Texture* new_text = IMG_LoadTexture(_Window, filename.c_str());
+	if (!new_text)
 	{
-		img.createMaskFromColor(GetTransMask());
-		tex.loadFromImage(img);
-		tex.setSmooth(GetSmooth());
-		_Textures[tag] = tex;
-		return true;
+		_Textures.insert_or_assign(tag, _Textures["Default"]);
+		std::cout << "Failed to load " << filename << std::endl;
+		return false;
 	}
-
-	//tex.create(32, 32);
-	_Textures[tag] = _Textures["Default"];
-	return false;
+	
+	_Textures.insert_or_assign(tag, new_text);
+	return true;
 };
 
-sf::Texture* ImageManager::GetTexturePntr(std::string tag)
+SDL_Texture* ImageManager::GetTexturePntr(std::string tag)
 {
-	for (std::map<std::string, sf::Texture>::iterator i = _Textures.begin(); i != _Textures.end(); i++)
+	for (std::map<std::string, SDL_Texture*>::iterator i = _Textures.begin(); i != _Textures.end(); i++)
 	{
 		if (i->first == tag)
-			return &i->second;
+			return i->second;
 	}
 
-	return &_Textures["Default"];
+	return _Textures["Default"];
 };
 
 void ImageManager::AddAnimation(std::string tag, Animation anim)
@@ -105,24 +103,6 @@ Animation ImageManager::GetAnimation(std::string tag)
 	}
 
 	return _Animations["Default"];
-};
-
-void ImageManager::SetTransMask(sf::Color col)
-{
-	_TransparencyMask = col;
-};
-sf::Color ImageManager::GetTransMask()
-{
-	return _TransparencyMask;
-};
-
-void ImageManager::SetSmooth(bool b)
-{
-	_Smooth = b;
-};
-bool ImageManager::GetSmooth()
-{
-	return _Smooth;
 };
 
 ///

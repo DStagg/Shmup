@@ -17,6 +17,13 @@ public:
 	float _Laser = 0.f;
 	int _Bombs = 0;
 
+	bool _W = false;
+	bool _A = false;
+	bool _S = false;
+	bool _D = false;
+	bool _Space = false;
+	bool _B = false;
+
 private:
 
 	SDL_Renderer* _Window;

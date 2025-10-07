@@ -90,6 +90,37 @@
       <Project>{dddbd07d-dc76-4af6-8d02-3e2deb6ee255}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Bomb.png" />
+    <Image Include="res\BombEnemy.png" />
+    <Image Include="res\Boss.png" />
+    <Image Include="res\DoublePowerup.png" />
+    <Image Include="res\DroneEnemy.png" />
+    <Image Include="res\EnemyBullet.png" />
+    <Image Include="res\Explosion.png" />
+    <Image Include="res\HealPowerup.png" />
+    <Image Include="res\HealthIcon.png" />
+    <Image Include="res\InvinciblePowerup.png" />
+    <Image Include="res\LaserBeam.png" />
+    <Image Include="res\LaserPowerup.png" />
+    <Image Include="res\Player.png" />
+    <Image Include="res\PlayerBullet.png" />
+    <Image Include="res\SpreaderEnemy.png" />
+    <Image Include="res\SwarmEnemy.png" />
+    <Image Include="res\TankEnemy.png" />
+    <Image Include="res\Turret.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="res\Explosion.wav" />
+    <Media Include="res\Shoot.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Paradox.ogg" />
+    <None Include="res\Queue.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\Roboto-Regular.ttf" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{69A9F25E-8005-4A47-8C03-D5C6B6309134}</ProjectGuid>
     <RootNamespace>Shmup</RootNamespace>

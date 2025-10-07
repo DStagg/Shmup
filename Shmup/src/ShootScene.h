@@ -38,7 +38,7 @@ private:
 	Level _Level;
 	SpawnQueue _SpawnQueue;
 
-	ImageManager _ImgMan;
+	ImageManager* _ImgMan;
 };
 
 void DebugDrawEntity(Entity* ent, SDL_Renderer* renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a);

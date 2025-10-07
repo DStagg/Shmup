@@ -2,6 +2,7 @@
 
 #include <SDL3/SDL.h>
 #include "ImageManager.h"
+#include "EntityComponents.h"
 
 class Entity;
 

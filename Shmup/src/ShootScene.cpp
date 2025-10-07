@@ -3,40 +3,41 @@
 ShootScene::ShootScene(SDL_Renderer* renderer)
 {
 	_Window = renderer;
+	_ImgMan = new ImageManager(renderer);
 };
 ShootScene::~ShootScene()
 {
-
+	delete _ImgMan;
 };
 
 void ShootScene::Begin()
 {
 	Random::TimeSeed();
 
-	Service::GetAudio().StoreSFX("Shoot", "Shoot.wav");
-	Service::GetAudio().StoreSFX("Explosion", "Explosion.wav");
+	Service::GetAudio().StoreSFX("Shoot", "res/Shoot.wav");
+	Service::GetAudio().StoreSFX("Explosion", "res/Explosion.wav");
 
-	_ImgMan.LoadTextureFromFile("Player", "Player.png");
-	_ImgMan.LoadTextureFromFile("PBullet", "PlayerBullet.png");
-	_ImgMan.LoadTextureFromFile("BombEnemy", "BombEnemy.png");
-	_ImgMan.LoadTextureFromFile("DroneEnemy", "DroneEnemy.png");
-	_ImgMan.LoadTextureFromFile("SpreaderEnemy", "SpreaderEnemy.png");
-	_ImgMan.LoadTextureFromFile("SwarmEnemy", "SwarmEnemy.png");
-	_ImgMan.LoadTextureFromFile("TankEnemy", "TankEnemy.png");
-	_ImgMan.LoadTextureFromFile("HealthIcon", "HealthIcon.png");
-	_ImgMan.LoadTextureFromFile("EBullet", "EnemyBullet.png");
-	_ImgMan.LoadTextureFromFile("Explosion", "Explosion.png");
-	_ImgMan.LoadTextureFromFile("DoublePowerup", "DoublePowerup.png");
-	_ImgMan.LoadTextureFromFile("LaserPowerup", "LaserPowerup.png");
-	_ImgMan.LoadTextureFromFile("HealPowerup", "HealPowerup.png");
-	_ImgMan.LoadTextureFromFile("InvinciblePowerup", "InvinciblePowerup.png");
-	_ImgMan.LoadTextureFromFile("LaserBeam", "LaserBeam.png");
-	_ImgMan.LoadTextureFromFile("Bomb", "Bomb.png");
-	_ImgMan.LoadTextureFromFile("Boss", "Boss.png");
-	_ImgMan.LoadTextureFromFile("Turret", "Turret.png");
+	_ImgMan->LoadTextureFromFile("Player", "res/Player.png");
+	_ImgMan->LoadTextureFromFile("PBullet", "res/PlayerBullet.png");
+	_ImgMan->LoadTextureFromFile("BombEnemy", "res/BombEnemy.png");
+	_ImgMan->LoadTextureFromFile("DroneEnemy", "res/DroneEnemy.png");
+	_ImgMan->LoadTextureFromFile("SpreaderEnemy", "res/SpreaderEnemy.png");
+	_ImgMan->LoadTextureFromFile("SwarmEnemy", "res/SwarmEnemy.png");
+	_ImgMan->LoadTextureFromFile("TankEnemy", "res/TankEnemy.png");
+	_ImgMan->LoadTextureFromFile("HealthIcon", "res/HealthIcon.png");
+	_ImgMan->LoadTextureFromFile("EBullet", "res/EnemyBullet.png");
+	_ImgMan->LoadTextureFromFile("Explosion", "res/Explosion.png");
+	_ImgMan->LoadTextureFromFile("DoublePowerup", "res/DoublePowerup.png");
+	_ImgMan->LoadTextureFromFile("LaserPowerup", "res/LaserPowerup.png");
+	_ImgMan->LoadTextureFromFile("HealPowerup", "res/HealPowerup.png");
+	_ImgMan->LoadTextureFromFile("InvinciblePowerup", "res/InvinciblePowerup.png");
+	_ImgMan->LoadTextureFromFile("LaserBeam", "res/LaserBeam.png");
+	_ImgMan->LoadTextureFromFile("Bomb", "res/Bomb.png");
+	_ImgMan->LoadTextureFromFile("Boss", "res/Boss.png");
+	_ImgMan->LoadTextureFromFile("Turret", "res/Turret.png");
 	
-	PopulateAnimations(&_ImgMan);
-	_Level.GetFactory().Init(&_Level, &_ImgMan, _Window);
+	PopulateAnimations(_ImgMan);
+	_Level.GetFactory().Init(&_Level, _ImgMan, _Window);
 
 	int w, h;
 	SDL_GetRenderOutputSize(_Window, &w, &h);
@@ -87,6 +88,56 @@ void ShootScene::Update(float dt)
 			else
 				Service::GetAudio().PlayStream("MainBGM");
 		}
+		else if (e.type == SDL_EVENT_KEY_DOWN)
+		{
+			PlayerEnt* player = (PlayerEnt*)_Level.GetPlayer();
+			switch (e.key.key)
+			{
+			case SDLK_W:
+				player->_W = true;
+				break;
+			case SDLK_A:
+				player->_A = true;
+				break;
+			case SDLK_S:
+				player->_S = true;
+				break;
+			case SDLK_D:
+				player->_D = true;
+				break;
+			case SDLK_SPACE:
+				player->_Space = true;
+				break;
+			case SDLK_B:
+				player->_B = true;
+				break;
+			}
+		}
+		else if (e.type == SDL_EVENT_KEY_UP)
+		{
+			PlayerEnt* player = (PlayerEnt*)_Level.GetPlayer();
+			switch (e.key.key)
+			{
+			case SDLK_W:
+				player->_W = false;
+				break;
+			case SDLK_A:
+				player->_A = false;
+				break;
+			case SDLK_S:
+				player->_S = false;
+				break;
+			case SDLK_D:
+				player->_D = false;
+				break;
+			case SDLK_SPACE:
+				player->_Space = false;
+				break;
+			case SDLK_B:
+				player->_B = false;
+				break;
+			}
+		}
 	}
 
 	if (_Level.GetPlayer()->GetAlive())
@@ -108,7 +159,8 @@ void ShootScene::Update(float dt)
 		_Level.GetPlayer()->Update(dt);
 		_Level.GetLaser()->Update(dt);
 		_Level.GetLaser()->GetPresence().SetPosition(_Level.GetPlayer()->GetPresence().GetX() + (_Level.GetPlayer()->GetSize().GetWidth() / 2.f), _Level.GetPlayer()->GetPresence().GetY() -_Level.GetSize().GetHeight());
-		_Level.GetLaser()->GetSize().SetSize(_Level.GetLaser()->GetGraphic().GetSprPntr()->getLocalBounds().width, _Level.GetSize().GetHeight());
+		//_Level.GetLaser()->GetSize().SetSize(_Level.GetLaser()->GetGraphic().GetSprPntr()->getLocalBounds().width, _Level.GetSize().GetHeight());
+		_Level.GetLaser()->GetSize().SetSize(_Level.GetLaser()->GetGraphic().GetSprPntr()->_SrcRect.w, _Level.GetSize().GetHeight());
 		
 		//	Update Bullets
 		for (int i = 0; i < _Level.GetPlayerBullets().CountEnts(); i++)
@@ -199,21 +251,21 @@ void ShootScene::Update(float dt)
 			if (GenBoundBox(_Level.GetPowerups().GetEnt(p)).Intersects(GenBoundBox(_Level.GetPlayer())))
 			{
 				_Level.GetPowerups().GetEnt(p)->SetAlive(false);
-				if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->getTexture() == _ImgMan.GetTexturePntr("HealPowerup"))
+				if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->_Texture == _ImgMan->GetTexturePntr("HealPowerup"))
 					_Level.GetPlayer()->GetStats().Hurt(-1);
-				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->getTexture() == _ImgMan.GetTexturePntr("DoublePowerup"))
+				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->_Texture == _ImgMan->GetTexturePntr("DoublePowerup"))
 				{
 					((PlayerEnt*)_Level.GetPlayer())->_DoubleShot = 5.f;
 				}
-				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->getTexture() == _ImgMan.GetTexturePntr("LaserPowerup"))
+				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->_Texture == _ImgMan->GetTexturePntr("LaserPowerup"))
 				{
 					((PlayerEnt*)_Level.GetPlayer())->_Laser = 2.5f;
 				}
-				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->getTexture() == _ImgMan.GetTexturePntr("InvinciblePowerup"))
+				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->_Texture == _ImgMan->GetTexturePntr("InvinciblePowerup"))
 				{
 					((PlayerEnt*)_Level.GetPlayer())->_Invincibility = 5.f;
 				}
-				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->getTexture() == _ImgMan.GetTexturePntr("Bomb"))
+				else if (_Level.GetPowerups().GetEnt(p)->GetGraphic().GetSprPntr()->_Texture == _ImgMan->GetTexturePntr("Bomb"))
 				{
 					((PlayerEnt*)_Level.GetPlayer())->_Bombs++;
 				}
@@ -293,9 +345,15 @@ void ShootScene::DrawScreen()
 	//	Health
 	for (int i = 0; i < _Level.GetPlayer()->GetStats().GetHP(); i++)
 	{
-		sf::Sprite pip(*_ImgMan.GetTexturePntr("HealthIcon"));
-		pip.setPosition(((i + 1)*5.f) + (i * pip.getTextureRect().width), _Window->getSize().y - (5.f + pip.getTextureRect().height));
-		_Window->draw(pip);
+		Sprite pip(_ImgMan->GetTexturePntr("HealthIcon"));
+		int w, h;
+		SDL_GetRenderOutputSize(_Window, &w, &h);
+		SDL_FRect dstrect;
+		dstrect.x = ((i + 1) * 5.f) + (i * pip._Texture->w);
+		dstrect.y = h - (5.f + pip._Texture->h);
+		dstrect.w = pip._Texture->w;
+		dstrect.h = pip._Texture->h;
+		SDL_RenderTexture(_Window, pip._Texture, &pip._SrcRect, &dstrect);
 	}
 
 	//	Powerups
@@ -304,52 +362,90 @@ void ShootScene::DrawScreen()
 
 	if (pent->_Bombs > 0)
 	{
-		sf::Sprite bombgui(*_ImgMan.GetTexturePntr("Bomb"));
+		Sprite bombgui(_ImgMan->GetTexturePntr("Bomb"));
 		
 		for (int i = 0; i < pent->_Bombs; i++)
 		{
-			bombgui.setPosition(_Window->getSize().x - ((bombgui.getLocalBounds().width + 10.f) * active), _Window->getSize().y - ((bombgui.getLocalBounds().height + 10.f) * (i + 1)));
-			_Window->draw(bombgui);
+			int w, h;
+			SDL_GetRenderOutputSize(_Window, &w, &h);
+			SDL_FRect dstrect;
+			dstrect.x = w - ((bombgui._Texture->w + 10.f) * active);
+			dstrect.y = h - ((bombgui._Texture->h + 10.f) * (i + 1));
+			dstrect.w = bombgui._Texture->w;
+			dstrect.h = bombgui._Texture->h;
+			SDL_RenderTexture(_Window, bombgui._Texture, &bombgui._SrcRect, &dstrect);
+			
+			
 		}
 
 		active++;
 	}
 	if (pent->_DoubleShot > 0.f)
 	{
-		sf::Sprite doublegui(*_ImgMan.GetTexturePntr("DoublePowerup"));
-		doublegui.setPosition(_Window->getSize().x - ((doublegui.getLocalBounds().width + 10.f) * (float)active), _Window->getSize().y - (doublegui.getLocalBounds().height + 10.f));
-		_Window->draw(doublegui);
-		
-		sf::RectangleShape doublebar(sf::Vector2f(doublegui.getLocalBounds().width / 2.f, pent->_DoubleShot * 10.f));
-		doublebar.setPosition(doublegui.getPosition().x + (doublegui.getLocalBounds().width / 4.f), doublegui.getPosition().y - (10.f + doublebar.getLocalBounds().height));
-		doublebar.setFillColor(sf::Color::Green);
-		_Window->draw(doublebar);
+		Sprite doublegui(_ImgMan->GetTexturePntr("DoublePowerup"));
+		int w, h;
+		SDL_GetRenderOutputSize(_Window, &w, &h);
+		SDL_FRect dstrect;
+		dstrect.x = w - ((doublegui._Texture->w + 10.f) * active);
+		dstrect.y = h - ((doublegui._Texture->h + 10.f));
+		dstrect.w = doublegui._Texture->w;
+		dstrect.h = doublegui._Texture->h;
+		SDL_RenderTexture(_Window, doublegui._Texture, &doublegui._SrcRect, &dstrect);
+
+		SDL_FRect doublebar;
+		doublebar.w = doublegui._Texture->w / 2.f;
+		doublebar.h = pent->_DoubleShot * 10.f;
+		doublebar.x = dstrect.x + (dstrect.w / 4.f);
+		doublebar.y = dstrect.y - (10.f + dstrect.h);
+
+		SDL_SetRenderDrawColor(_Window, 0, 255, 0, 255);
+		SDL_RenderRect(_Window, &doublebar);
 
 		active++;
 	}
 	if (pent->_Laser > 0.f)
 	{
-		sf::Sprite lasergui(*_ImgMan.GetTexturePntr("LaserPowerup"));
-		lasergui.setPosition(_Window->getSize().x - ((lasergui.getLocalBounds().width + 10.f) * (float)active), _Window->getSize().y - (lasergui.getLocalBounds().height + 10.f));
-		_Window->draw(lasergui);
+		Sprite lasergui(_ImgMan->GetTexturePntr("LaserPowerup"));
+		SDL_FRect dstrect;
+		int w, h;
+		SDL_GetRenderOutputSize(_Window, &w, &h);
+		dstrect.x = w - ((lasergui._Texture->w + 10.f) * (float)active);
+		dstrect.y = h - (lasergui._Texture->h + 10.f);
+		dstrect.w = lasergui._SrcRect.w;
+		dstrect.h = lasergui._SrcRect.h;
+		SDL_RenderTexture(_Window, lasergui._Texture, NULL, &dstrect);
 
-		sf::RectangleShape laserbar(sf::Vector2f(lasergui.getLocalBounds().width / 2.f, pent->_Laser * 10.f));
-		laserbar.setPosition(lasergui.getPosition().x + (lasergui.getLocalBounds().width / 4.f), lasergui.getPosition().y - (10.f + laserbar.getLocalBounds().height));
-		laserbar.setFillColor(sf::Color::Green);
-		_Window->draw(laserbar);
+		SDL_FRect laserbar;
+		laserbar.w = lasergui._Texture->w / 2.f;
+		laserbar.h = pent->_Invincibility * 10.f;
+		laserbar.x = dstrect.x + (lasergui._SrcRect.w / 4.f);
+		laserbar.y = dstrect.y - (10.f + laserbar.h);
+
+		SDL_SetRenderDrawColor(_Window, 0, 255, 0, 255);
+		SDL_RenderRect(_Window, &laserbar);
 
 		active++;
 	}
 	if (pent->_Invincibility > 0.f)
 	{
-		sf::Sprite lasergui(*_ImgMan.GetTexturePntr("InvinciblePowerup"));
-		lasergui.setPosition(_Window->getSize().x - ((lasergui.getLocalBounds().width + 10.f) * (float)active), _Window->getSize().y - (lasergui.getLocalBounds().height + 10.f));
-		_Window->draw(lasergui);
+		Sprite lasergui(_ImgMan->GetTexturePntr("InvinciblePowerup"));
+		SDL_FRect dstrect;
+		int w, h;
+		SDL_GetRenderOutputSize(_Window, &w, &h);
+		dstrect.x = w - ((lasergui._Texture->w + 10.f) * (float)active);
+		dstrect.y = h - (lasergui._Texture->h + 10.f);
+		dstrect.w = lasergui._SrcRect.w;
+		dstrect.h = lasergui._SrcRect.h;
+		SDL_RenderTexture(_Window, lasergui._Texture, NULL, &dstrect);
 
-		sf::RectangleShape laserbar(sf::Vector2f(lasergui.getLocalBounds().width / 2.f, pent->_Invincibility * 10.f));
-		laserbar.setPosition(lasergui.getPosition().x + (lasergui.getLocalBounds().width / 4.f), lasergui.getPosition().y - (10.f + laserbar.getLocalBounds().height));
-		laserbar.setFillColor(sf::Color::Green);
-		_Window->draw(laserbar);
+		SDL_FRect laserbar;
+		laserbar.w = lasergui._Texture->w / 2.f;
+		laserbar.h = pent->_Invincibility * 10.f;
+		laserbar.x = dstrect.x + (lasergui._SrcRect.w / 4.f);
+		laserbar.y = dstrect.y - (10.f + laserbar.h);
+
+		SDL_SetRenderDrawColor(_Window, 0, 255, 0, 255);
+		SDL_RenderRect(_Window, &laserbar);
 
 		active++;
 	}

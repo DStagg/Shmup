@@ -25,21 +25,21 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		ent = new PlayerEnt(_Level, _Window);
 		ent->GetStats().SetMaxHP(5);
 		ent->GetStats().SetHP(5);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Player")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("Player")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("Player_Idle"));
 		ent->GetGraphic().AddAnimation("Death", _ImgMan->GetAnimation("Player_Death"));
 		ent->GetGraphic().Swap("Idle");
 		break;
 	case Types::PlayerBullet:
 		ent = new BasicEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("PBullet")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("PBullet")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("PBullet_Idle"));
 		ent->GetGraphic().Swap("Idle");
 		ent->GetPresence().SetYVel(-300.f);
 		break;
 	case Types::BombEnemy:
 		ent = new BombEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("BombEnemy")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("BombEnemy")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("BombEnemy_Idle"));
 		ent->GetGraphic().AddAnimation("Armed", _ImgMan->GetAnimation("BombEnemy_Armed"));
 		ent->GetGraphic().AddAnimation("Death", _ImgMan->GetAnimation("BombEnemy_Death"));
@@ -48,7 +48,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		break;
 	case Types::DroneEnemy:
 		ent = new DroneEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("DroneEnemy")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("DroneEnemy")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("DroneEnemy_Idle"));
 		ent->GetGraphic().Swap("Idle");
 		ent->GetPresence().SetYVel(100.f);
@@ -56,7 +56,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		break;
 	case Types::SpreaderEnemy:
 		ent = new SpreaderEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("SpreaderEnemy")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("SpreaderEnemy")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("SpreaderEnemy_Idle"));
 		ent->GetGraphic().Swap("Idle");
 		ent->GetPresence().SetYVel(100.f);
@@ -64,14 +64,14 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		break;
 	case Types::SwarmEnemy:
 		ent = new SwarmEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("SwarmEnemy")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("SwarmEnemy")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("SwarmEnemy_Idle"));
 		ent->GetGraphic().Swap("Idle");
 		ent->GetPresence().SetYVel(150.f);
 		break;
 	case Types::TankEnemy:
 		ent = new TankEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("TankEnemy")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("TankEnemy")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("TankEnemy_Idle"));
 		ent->GetGraphic().Swap("Idle");
 		ent->GetPresence().SetYVel(75.f);
@@ -79,7 +79,7 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		break;
 	case Types::EnemyBullet:
 		ent = new BasicEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("EBullet")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("EBullet")));
 		ent->GetGraphic().AddAnimation("Idle", _ImgMan->GetAnimation("EBullet_Idle"));
 		ent->GetGraphic().Swap("Idle");
 		ent->GetPresence().SetYVel(150.f);
@@ -87,50 +87,51 @@ Entity* EntFactory::Spawn(int type, float x, float y)
 		break;
 	case Types::Explosion:
 		ent = new SFXEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Explosion")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("Explosion")));
 		ent->GetGraphic().AddAnimation("Explosion", _ImgMan->GetAnimation("Explosion"));
 		ent->GetGraphic().Swap("Explosion");
 		break;
 	case Types::DoublePowerup:
 		ent = new BasicEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("DoublePowerup")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("DoublePowerup")));
 		ent->GetPresence().SetYVel(100.f);
 		break;
 	case Types::HealPowerup:
 		ent = new BasicEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("HealPowerup")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("HealPowerup")));
 		ent->GetPresence().SetYVel(100.f);
 		break;		
 	case Types::LaserPowerup:
 		ent = new BasicEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("LaserPowerup")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("LaserPowerup")));
 		ent->GetPresence().SetYVel(100.f);
 		break;
 	case Types::InvinciblePowerup:
 		ent = new BasicEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("InvinciblePowerup")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("InvinciblePowerup")));
 		ent->GetPresence().SetYVel(100.f);
 		break;
 	case Types::Laser:
 		ent = new BasicEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("LaserBeam")));
-		ent->GetGraphic().GetSprPntr()->setScale(1.f, _Level->GetSize().GetHeight() / ent->GetGraphic().GetSprPntr()->getLocalBounds().height);
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("LaserBeam")));
+		//ent->GetGraphic().GetSprPntr()->setScale(1.f, _Level->GetSize().GetHeight() / ent->GetGraphic().GetSprPntr()->getLocalBounds().height);
+		//TODO: fix laser scaling
 		break;
 	case Types::BombPowerup:
 		ent = new BasicEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Bomb")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("Bomb")));
 		ent->GetPresence().SetYVel(100.f);
 		break;
 	case Types::Boss:
 		ent = new BossEnt(_Level);
-		ent->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Boss")));
+		ent->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("Boss")));
 		ent->GetPresence().SetYVel(50.f);
 		ent->GetPresence().SetPosition(x, y);
 		ta = new BasicEnt(_Level);
-		ta->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Turret")));
+		ta->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("Turret")));
 		ta->GetPresence().SetYVel(50.f);
 		tb = new BasicEnt(_Level);
-		tb->GetGraphic().SetSprite(sf::Sprite(*_ImgMan->GetTexturePntr("Turret")));
+		tb->GetGraphic().SetSprite(Sprite(_ImgMan->GetTexturePntr("Turret")));
 		tb->GetPresence().SetYVel(50.f);
 		((BossEnt*)ent)->InitTurrets(ta, tb);
 		break;

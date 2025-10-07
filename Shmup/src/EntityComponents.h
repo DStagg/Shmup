@@ -54,7 +54,7 @@ private:
 
 struct Sprite
 {
-	Sprite(SDL_Texture* tex = nullptr, SDL_FRect rect)
+	Sprite(SDL_Texture* tex = nullptr, SDL_FRect rect = SDL_FRect())
 	{
 		_Texture = tex;
 		_SrcRect = rect;

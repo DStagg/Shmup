@@ -1,7 +1,12 @@
 #pragma once
 
 #include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
 #include <algorithm>
+#include <vector>
+#include <string>
+#include <map>
+#include <iostream>
 
 struct AnimationFrame
 {
@@ -29,28 +34,20 @@ class ImageManager
 {
 public:
 
-	ImageManager();
+	ImageManager(SDL_Renderer* renderer);
 	~ImageManager();
 
 	bool LoadTextureFromFile(std::string tag, std::string filename);
-	sf::Texture* GetTexturePntr(std::string tag);
+	SDL_Texture* GetTexturePntr(std::string tag);
 
 	void AddAnimation(std::string tag, Animation anim);
 	Animation GetAnimation(std::string tag);
 
-	void SetTransMask(sf::Color col = sf::Color(163, 73, 164));
-	sf::Color GetTransMask();
-
-	void SetSmooth(bool b);
-	bool GetSmooth();
-
 private:
 
-	sf::Color _TransparencyMask;
-	bool _Smooth;
-
-	std::map<std::string, sf::Texture> _Textures;
+	std::map<std::string, SDL_Texture*> _Textures;
 	std::map<std::string, Animation> _Animations;
+	SDL_Renderer* _Window;
 
 };
 

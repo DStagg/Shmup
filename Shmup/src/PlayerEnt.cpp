@@ -17,17 +17,18 @@ void PlayerEnt::Update(float dt)
 	if (_Laser > 0.f)
 		_Laser -= dt;
 
+
 	//	Control Player
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (_W && !_S)
 		GetPresence().SetYVel(-200.f);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	else if (_S && !_W)
 		GetPresence().SetYVel(200.f);
 	else
 		GetPresence().SetYVel(0.f);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (_A && !_D)
 		GetPresence().SetXVel(-200.f);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	else if (_D && !_A)
 		GetPresence().SetXVel(200.f);
 	else
 		GetPresence().SetXVel(0.f);
@@ -52,7 +53,7 @@ void PlayerEnt::Update(float dt)
 	if (GetPresence().GetY() > GetLevel()->GetSize().GetHeight() - GetSize().GetHeight())
 		GetPresence().SetY(GetLevel()->GetSize().GetHeight() - GetSize().GetHeight());
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (_ShootTimer >= _ShootDelay))
+	if (_Space && (_ShootTimer >= _ShootDelay))
 	{
 		_ShootTimer = 0.f;
 
@@ -68,7 +69,7 @@ void PlayerEnt::Update(float dt)
 	
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && (_ShootTimer >= _ShootDelay) && (_Bombs >= 1))
+	if (_B && (_ShootTimer >= _ShootDelay) && (_Bombs >= 1))
 	{
 		_ShootTimer = 0.f;
 		_Bombs--;

@@ -13,7 +13,8 @@ void MenuScene::Begin()
 {
 	_Font = TTF_OpenFont("res/Roboto-Regular.ttf", 18.0f);
 
-	Service::Init(new SFMLAudio());
+	//Service::Init(new SFMLAudio());
+	Service::Init(new SDLAudio());
 
 	_MenuList.Populate({ "Play","Quit" });
 	int w, h;
