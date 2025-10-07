@@ -1,7 +1,11 @@
+#ifdef __RELEASE__
+	#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+#endif
+
 #include <SFML/Graphics.hpp>
 
-#include "Scene.h"
-#include "MenuScene.h"
+#include "src/Scene.h"
+#include "src/MenuScene.h"
 
 
 int main()
