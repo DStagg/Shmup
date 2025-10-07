@@ -31,13 +31,18 @@ void BossEnt::Update(float dt)
 	GetGraphic().Play(dt);
 	GetSize().SetSize((float)GetGraphic().GetCurrentFrame()._Width, (float)GetGraphic().GetCurrentFrame()._Height);
 }
-void BossEnt::Draw(sf::RenderWindow* rw)
+void BossEnt::Draw(SDL_Renderer* renderer)
 {
-	GetGraphic().GetSprPntr()->setPosition(sf::Vector2f(GetPresence().GetX(), GetPresence().GetY()));
-	rw->draw(*GetGraphic().GetSprPntr());
+	SDL_FRect dstrect;
+	dstrect.x = GetPresence().GetX();
+	dstrect.y = GetPresence().GetY();
+	dstrect.w = GetGraphic().GetSprPntr()->_SrcRect.w;
+	dstrect.h = GetGraphic().GetSprPntr()->_SrcRect.h;
 
+	SDL_RenderTexture(renderer, GetGraphic().GetSprPntr()->_Texture, &GetGraphic().GetSprPntr()->_SrcRect, &dstrect);
+	
 	if (_TurretA != 0)
-		_TurretA->Draw(rw);
+		_TurretA->Draw(renderer);
 	if (_TurretB != 0)
-		_TurretB->Draw(rw);
+		_TurretB->Draw(renderer);
 };

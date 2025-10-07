@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entity.h"
+#include <SDL3/SDL.h>
 
 class BossEnt : public Entity
 {
@@ -12,7 +13,7 @@ public:
 	void InitTurrets(BasicEnt* ta, BasicEnt* tb);
 
 	void Update(float dt);
-	void Draw(sf::RenderWindow* rw);
+	void Draw(SDL_Renderer* renderer);
 
 private:
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL3/SDL.h>
+
 #include <vector>
 #include <algorithm>
 
@@ -26,7 +28,7 @@ public:
 	bool GetAlive();
 
 	virtual void Update(float dt) = 0;
-	virtual void Draw(sf::RenderWindow* rw) = 0;
+	virtual void Draw(SDL_Renderer* renderer) = 0;
 
 	void SetLevel(Level* lvl);
 	Level* GetLevel();
@@ -50,7 +52,7 @@ public:
 	BasicEnt(Level* lvl);
 
 	void Update(float dt);
-	void Draw(sf::RenderWindow* rw);
+	void Draw(SDL_Renderer* renderer);
 
 private:
 

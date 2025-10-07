@@ -97,9 +97,9 @@ Graphic::Graphic()
 {
 	
 };
-Graphic::Graphic(sf::Sprite spr)
+Graphic::Graphic(Sprite spr)
 {
-
+	SetSprite(spr);
 };
 
 void Graphic::AddAnimation(std::string tag, Animation anim)
@@ -113,7 +113,10 @@ void Graphic::Play(float dt)
 		return;
 	
 	GetCurrentAnim().Play(dt);
-	_Sprite.setTextureRect(sf::IntRect(GetCurrentFrame()._X, GetCurrentFrame()._Y, GetCurrentFrame()._Width, GetCurrentFrame()._Height));
+	_Sprite._SrcRect.x = GetCurrentFrame()._X;
+	_Sprite._SrcRect.y = GetCurrentFrame()._Y;
+	_Sprite._SrcRect.w = GetCurrentFrame()._Width;
+	_Sprite._SrcRect.h = GetCurrentFrame()._Height;
 };
 
 void Graphic::Swap(std::string tag)
@@ -123,8 +126,15 @@ void Graphic::Swap(std::string tag)
 
 	_CurrentAnim = tag;
 
-	if ( tag == "Static" )
-		_Sprite.setTextureRect(sf::IntRect(0,0,_Sprite.getTexture()->getSize().x, _Sprite.getTexture()->getSize().y));
+	if (tag == "Static")
+	{
+		_Sprite._SrcRect.x = 0.f;
+		_Sprite._SrcRect.y = 0.f;
+		if (_Sprite._Texture) _Sprite._SrcRect.w = _Sprite._Texture->w;
+		else _Sprite._SrcRect.w = 1.0f;
+		if (_Sprite._Texture) _Sprite._SrcRect.h = _Sprite._Texture->h;
+		else _Sprite._SrcRect.h = 1.0f;
+	}
 }
 
 std::string Graphic::GetCurrentAnimName()
@@ -138,16 +148,24 @@ Animation& Graphic::GetCurrentAnim()
 AnimationFrame Graphic::GetCurrentFrame()
 {
 	if (GetCurrentAnimName() == "Static")
-		return AnimationFrame(0, 0, _Sprite.getTexture()->getSize().x, _Sprite.getTexture()->getSize().y, 0.f);
+	{
+		float w, h;
+		if (_Sprite._Texture) w = _Sprite._Texture->w;
+		else w = 1.0f;
+		if (_Sprite._Texture) h = _Sprite._Texture->h;
+		else h = 1.0f;
+		return AnimationFrame(0.f, 0.f,w,h,0.f);
+	}
+
 	return _Animations[GetCurrentAnimName()].GetCurrFrame();
 };
 
-void Graphic::SetSprite(sf::Sprite spr)
+void Graphic::SetSprite(Sprite spr)
 {
 	_Sprite = spr;
 };
 
-sf::Sprite* Graphic::GetSprPntr()
+Sprite* Graphic::GetSprPntr()
 {
 	return &_Sprite;
 };

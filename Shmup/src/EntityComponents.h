@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SFML\Graphics.hpp"
+#include <SDL3/SDL.h>
 #include "ImageManager.h"
 #include <string>
 #include <map>
@@ -52,12 +52,24 @@ private:
 	float _XVel, _YVel;
 };
 
+struct Sprite
+{
+	Sprite(SDL_Texture* tex = nullptr, SDL_FRect rect)
+	{
+		_Texture = tex;
+		_SrcRect = rect;
+	}
+
+	SDL_Texture* _Texture;
+	SDL_FRect _SrcRect;
+};
+
 class Graphic
 {
 public:
 
 	Graphic();
-	Graphic(sf::Sprite spr);
+	Graphic(Sprite spr);
 
 	void AddAnimation(std::string tag, Animation anim);
 
@@ -68,14 +80,14 @@ public:
 	Animation& GetCurrentAnim();
 	AnimationFrame GetCurrentFrame();
 
-	void SetSprite(sf::Sprite spr);
-	sf::Sprite* GetSprPntr();
+	void SetSprite(Sprite spr);
+	Sprite* GetSprPntr();
 
 private:
 
 	std::string _CurrentAnim = "Static";
 	std::map <std::string, Animation > _Animations;
-	sf::Sprite _Sprite;
+	Sprite _Sprite;
 };
 
 class Stats
