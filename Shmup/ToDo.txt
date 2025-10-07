@@ -1,11 +1,11 @@
 //	SDL3	//
 
 [x] AudioService.h/.cpp - make SDL3 version: SDL3AudioService
-[] BossEnt.h/.cpp - swap BossEnt::Draw() to SDL3
+[x] BossEnt.h/.cpp - swap BossEnt::Draw() to SDL3
 [x] Entity.h/.cpp - swap Entity::Draw() and BaseEnt::Draw() to SDL3
 [x] EntityComponents.h/.cpp - make SDL3 version of Graphic
 [] Factory.h/.cpp - swap EntFactor::Init() and ::Spawn() to SDL3 (after EntityComponents)
-[] Icon.h/.cpp - swap ::Draw() and ::_Rectangle to SDL3
+[x] Icon.h/.cpp - swap ::Draw() and ::_Rectangle to SDL3
 [] ImageManager.h/.cpp - swap all to SDL3
 [] PlayerEnt.h/.cpp - swap constructor, ::Update() and ::Draw() to SDL3
 

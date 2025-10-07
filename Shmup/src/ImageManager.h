@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SFML\Graphics.hpp"
+#include <SDL3/SDL.h>
 #include <algorithm>
 
 struct AnimationFrame
@@ -54,4 +54,4 @@ private:
 
 };
 
-sf::IntRect AnimIntRect(Animation anim);
+SDL_FRect AnimIntoRect(Animation anim);

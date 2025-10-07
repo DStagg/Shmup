@@ -8,33 +8,40 @@ Icon::Icon(Entity* ent)
 
 /////
 
-SpriteIcon::SpriteIcon(Entity* ent, sf::Sprite spr) : Icon(ent)
+SpriteIcon::SpriteIcon(Entity* ent, Sprite spr) : Icon(ent)
 {
 	_Sprite = spr;
 };
 
 void SpriteIcon::Update(float dt)
 {
-	_Sprite.setPosition(_Entity->GetPresence().GetX(), _Entity->GetPresence().GetY());
+
 };
 
-void SpriteIcon::Draw(sf::RenderWindow* rw)
+void SpriteIcon::Draw(SDL_Renderer* renderer)
 {
-	rw->draw(_Sprite);
+	SDL_FRect dstrect;
+	dstrect.x = _Entity->GetPresence().GetX();
+	dstrect.y = _Entity->GetPresence().GetY();
+	dstrect.w = _Sprite._SrcRect.w;
+	dstrect.h = _Sprite._SrcRect.h;
+
+	SDL_RenderTexture(renderer, _Sprite._Texture, &_Sprite._SrcRect, &dstrect);
+
 };
 
 float SpriteIcon::GetWidth()
 {
-	return _Sprite.getLocalBounds().width;
+	return _Sprite._SrcRect.w;
 };
 float SpriteIcon::GetHeight()
 {
-	return _Sprite.getLocalBounds().height;
+	return _Sprite._SrcRect.h;
 };
 
 /////
 
-AnimIcon::AnimIcon(Entity* ent, sf::Sprite spr, Animation anim) : Icon(ent)
+AnimIcon::AnimIcon(Entity* ent, Sprite spr, Animation anim) : Icon(ent)
 {
 	_Sprite = spr;
 	_Animation = anim;
@@ -43,14 +50,18 @@ AnimIcon::AnimIcon(Entity* ent, sf::Sprite spr, Animation anim) : Icon(ent)
 void AnimIcon::Update(float dt)
 {
 	_Animation.Play(dt);
-	_Sprite.setPosition(_Entity->GetPresence().GetX(), _Entity->GetPresence().GetY());
-	_Sprite.setTextureRect(AnimIntRect(_Animation));
-
+	_Sprite._SrcRect = AnimIntoRect(_Animation);
 };
 
-void AnimIcon::Draw(sf::RenderWindow* rw)
+void AnimIcon::Draw(SDL_Renderer* renderer)
 {
-	rw->draw(_Sprite);
+	SDL_FRect dstrect;
+	dstrect.x = _Entity->GetPresence().GetX();
+	dstrect.y = _Entity->GetPresence().GetY();
+	dstrect.w = _Sprite._SrcRect.w;
+	dstrect.h = _Sprite._SrcRect.h;
+
+	SDL_RenderTexture(renderer, _Sprite._Texture, &_Sprite._SrcRect, &dstrect);
 };
 
 float AnimIcon::GetWidth()
@@ -65,30 +76,33 @@ float AnimIcon::GetHeight()
 
 /////
 
-RectIcon::RectIcon(Entity* ent, sf::Color col) : Icon(ent)
+RectIcon::RectIcon(Entity* ent, Uint8 r, Uint8 g, Uint8 b, Uint8 a) : Icon(ent)
 {
-	_Rectangle.setOutlineColor(col);
-	_Rectangle.setOutlineThickness(1.f);
-	_Rectangle.setFillColor(sf::Color(0, 0, 0, 0));
-	_Rectangle.setSize(sf::Vector2f(0.f, 0.f));
+	_R = r;
+	_G = g;
+	_B = b;
+	_A = a;
 };
 
 void RectIcon::Update(float dt)
 {
-	_Rectangle.setPosition(_Entity->GetPresence().GetX(), _Entity->GetPresence().GetY());
-	_Rectangle.setSize(sf::Vector2f(_Entity->GetSize().GetWidth(), _Entity->GetSize().GetHeight()));
+	_Rectangle.x = _Entity->GetPresence().GetX();
+	_Rectangle.y = _Entity->GetPresence().GetY();
+	_Rectangle.w = _Entity->GetSize().GetWidth();
+	_Rectangle.h = _Entity->GetSize().GetHeight();
 };
 
-void RectIcon::Draw(sf::RenderWindow* rw)
+void RectIcon::Draw(SDL_Renderer* renderer)
 {
-	rw->draw(_Rectangle);
+	SDL_SetRenderDrawColor(renderer, _R, _G, _B, _A);
+	SDL_RenderRect(renderer, &_Rectangle);
 };
 
 float RectIcon::GetWidth()
 {
-	return _Rectangle.getLocalBounds().width;
+	return _Rectangle.w;
 };
 float RectIcon::GetHeight()
 {
-	return _Rectangle.getLocalBounds().height;
+	return _Rectangle.h;
 };

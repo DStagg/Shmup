@@ -127,7 +127,12 @@ bool ImageManager::GetSmooth()
 
 ///
 
-sf::IntRect AnimIntRect(Animation anim)
+SDL_FRect AnimIntoRect(Animation anim)
 {
-	return sf::IntRect(anim._Frames[anim._CurrentFrame]._X, anim._Frames[anim._CurrentFrame]._Y, anim._Frames[anim._CurrentFrame]._Width, anim._Frames[anim._CurrentFrame]._Height);
+	SDL_FRect rec;
+	rec.x = anim._Frames[anim._CurrentFrame]._X;
+	rec.y = anim._Frames[anim._CurrentFrame]._Y;
+	rec.w = anim._Frames[anim._CurrentFrame]._Width;
+	rec.h = anim._Frames[anim._CurrentFrame]._Height;
+	return rec;
 };
