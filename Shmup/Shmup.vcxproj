@@ -19,60 +19,76 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AABB.cpp" />
-    <ClCompile Include="AudioService.cpp" />
-    <ClCompile Include="BinaryFile.cpp" />
-    <ClCompile Include="BinarySave.cpp" />
-    <ClCompile Include="BossEnt.cpp" />
-    <ClCompile Include="EnemyEnts.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="EntityComponents.cpp" />
-    <ClCompile Include="Factory.cpp" />
-    <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="Icon.cpp" />
-    <ClCompile Include="ImageManager.cpp" />
-    <ClCompile Include="Level.cpp" />
-    <ClCompile Include="LoseScene.cpp" />
+    <ClCompile Include="ext\Timer.cpp" />
+    <ClCompile Include="src\AABB.cpp" />
+    <ClCompile Include="src\AudioService.cpp" />
+    <ClCompile Include="src\BinaryFile.cpp" />
+    <ClCompile Include="src\BinarySave.cpp" />
+    <ClCompile Include="src\BossEnt.cpp" />
+    <ClCompile Include="src\EnemyEnts.cpp" />
+    <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\EntityComponents.cpp" />
+    <ClCompile Include="src\Factory.cpp" />
+    <ClCompile Include="src\Grid.cpp" />
+    <ClCompile Include="src\Icon.cpp" />
+    <ClCompile Include="src\ImageManager.cpp" />
+    <ClCompile Include="src\Level.cpp" />
+    <ClCompile Include="src\LoseScene.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MenuList.cpp" />
-    <ClCompile Include="MenuScene.cpp" />
-    <ClCompile Include="PlayerEnt.cpp" />
-    <ClCompile Include="PopAnim.cpp" />
-    <ClCompile Include="Random.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Service.cpp" />
-    <ClCompile Include="ShootScene.cpp" />
-    <ClCompile Include="SpawnQueue.cpp" />
-    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="src\MenuList.cpp" />
+    <ClCompile Include="src\MenuScene.cpp" />
+    <ClCompile Include="src\PlayerEnt.cpp" />
+    <ClCompile Include="src\PopAnim.cpp" />
+    <ClCompile Include="src\Random.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\Service.cpp" />
+    <ClCompile Include="src\ShootScene.cpp" />
+    <ClCompile Include="src\SpawnQueue.cpp" />
+    <ClCompile Include="src\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AABB.h" />
-    <ClInclude Include="AudioService.h" />
-    <ClInclude Include="BinaryFile.h" />
-    <ClInclude Include="BinarySave.h" />
-    <ClInclude Include="BossEnt.h" />
-    <ClInclude Include="EnemyEnts.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="EntityComponents.h" />
-    <ClInclude Include="Factory.h" />
-    <ClInclude Include="Grid.h" />
-    <ClInclude Include="Icon.h" />
-    <ClInclude Include="ImageManager.h" />
-    <ClInclude Include="Level.h" />
-    <ClInclude Include="LoseScene.h" />
-    <ClInclude Include="MenuList.h" />
-    <ClInclude Include="MenuScene.h" />
-    <ClInclude Include="PlayerEnt.h" />
-    <ClInclude Include="PopAnim.h" />
-    <ClInclude Include="Random.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Service.h" />
-    <ClInclude Include="ShootScene.h" />
-    <ClInclude Include="SpawnQueue.h" />
-    <ClInclude Include="Utility.h" />
+    <ClInclude Include="ext\Timer.h" />
+    <ClInclude Include="src\AABB.h" />
+    <ClInclude Include="src\AudioService.h" />
+    <ClInclude Include="src\BinaryFile.h" />
+    <ClInclude Include="src\BinarySave.h" />
+    <ClInclude Include="src\BossEnt.h" />
+    <ClInclude Include="src\EnemyEnts.h" />
+    <ClInclude Include="src\Entity.h" />
+    <ClInclude Include="src\EntityComponents.h" />
+    <ClInclude Include="src\Factory.h" />
+    <ClInclude Include="src\Grid.h" />
+    <ClInclude Include="src\Icon.h" />
+    <ClInclude Include="src\ImageManager.h" />
+    <ClInclude Include="src\Level.h" />
+    <ClInclude Include="src\LoseScene.h" />
+    <ClInclude Include="src\MenuList.h" />
+    <ClInclude Include="src\MenuScene.h" />
+    <ClInclude Include="src\PlayerEnt.h" />
+    <ClInclude Include="src\PopAnim.h" />
+    <ClInclude Include="src\Random.h" />
+    <ClInclude Include="src\Scene.h" />
+    <ClInclude Include="src\Service.h" />
+    <ClInclude Include="src\ShootScene.h" />
+    <ClInclude Include="src\SpawnQueue.h" />
+    <ClInclude Include="src\Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ToDo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Cpp\Offline\SDL\VisualC\SDL\SDL.vcxproj">
+      <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Cpp\Offline\SDL_image\VisualC\SDL_image.vcxproj">
+      <Project>{2bd5534e-00e2-4bea-ac96-d9a92ea24696}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Cpp\Offline\SDL_mixer\VisualC\SDL_mixer.vcxproj">
+      <Project>{f7e944b3-0815-40cd-b3e4-90b2a15b0e33}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Cpp\Offline\SDL_ttf\VisualC\SDL_ttf.vcxproj">
+      <Project>{dddbd07d-dc76-4af6-8d02-3e2deb6ee255}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{69A9F25E-8005-4A47-8C03-D5C6B6309134}</ProjectGuid>
@@ -130,7 +146,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\User\Documents\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Cpp\Offline\SDL_ttf\include;C:\Cpp\Offline\SDL_mixer\include;C:\Cpp\Offline\SDL_image\include;C:\Cpp\Offline\SDL\include;C:\Users\User\Documents\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_DEBUG_</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\User\Documents\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -142,6 +159,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_DEBUG_</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Cpp\Offline\SDL_ttf\include;C:\Cpp\Offline\SDL_mixer\include;C:\Cpp\Offline\SDL_image\include;C:\Cpp\Offline\SDL\include;</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -151,7 +170,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\User\Documents\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Cpp\Offline\SDL_ttf\include;C:\Cpp\Offline\SDL_mixer\include;C:\Cpp\Offline\SDL_image\include;C:\Cpp\Offline\SDL\include;C:\Users\User\Documents\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_RELEASE_</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -167,6 +187,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_RELEASE_</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Cpp\Offline\SDL_ttf\include;C:\Cpp\Offline\SDL_mixer\include;C:\Cpp\Offline\SDL_image\include;C:\Cpp\Offline\SDL\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

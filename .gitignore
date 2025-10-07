@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Shmup/ToDo.txt
+/Shmup/Shmup.vcxproj.filters
