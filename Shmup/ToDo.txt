@@ -11,6 +11,9 @@ Add boss
 Add boss healthbar GUI
 Add level complete win condition
 
+Functional:
+1. Functions for easily rendering Sprites
+2. Encapsulate GUI
 
 Polish:
 1. Make all bullets centered on where they appear
